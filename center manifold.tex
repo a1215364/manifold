@@ -13,21 +13,31 @@
 
 \IfFileExists{ajr.sty}{\usepackage{ajr}}{}
 
+\renewcommand{\mid}{:}
 \newcommand{\Lip}{\operatorname{Lip}}
+\newcommand{\sde}{\textsc{sde}}
+\newcommand{\spde}{\textsc{spde}}
 \newcommand{\Ord}[1]{\ensuremath{\mathcal O\big(#1\big)}}
 \newcommand{\rat}[2]{{\textstyle\frac{#1}{#2}}}
 \newcommand{\doi}[1]{\href{http://dx.doi.org/#1}{doi:#1}}
-\newcommand{\Z}[1]{\ensuremath{e^{#1 t}\star}}
-\newcommand{\Za}[1]{\ifcase#1 undef0
-  \or undef1
-  \or\Z{-\rat{27}{10}}
-  \or\Z{-\rat{38}{5}}
-  \else undefinf \fi}
-\newcommand{\Zb}[1]{\ifcase#1 undef0
-  \or\Z{-\rat{2}{\epsilon}}
-  \or\Z{-\rat{5}{\epsilon}}
-  \or\Z{-\rat{10}{\epsilon}}
-  \else undefinf \fi}
+%\newcommand{\Z}[1]{\ensuremath{e^{#1 t}\star}}
+\newcommand{\D}[2]{\mathchoice
+  {\frac{\partial #2}{\partial #1}}% display
+  {{\partial #2}/{\partial #1}}% text
+  {{\partial #2}/{\partial #1}}% script
+  {{\partial #2}/{\partial #1}}% scriptscript
+  }
+\newcommand{\Dn}[3]{\mathchoice
+  {\frac{\partial^#2 #3}{\partial #1^#2}}%
+  {{\partial^#2 #3}/{\partial #1^#2}}%
+  {{\partial^#2 #3}/{\partial #1^#2}}%
+  {{\partial^#2 #3}/{\partial #1^#2}}%
+  }
+\newcommand{\DD}[2]{\Dn{#1}2{#2}}
+\newcommand{\DDD}[2]{\Dn{#1}3{#2}}
+\newcommand{\DDDD}[2]{\Dn{#1}4{#2}}
+\newcommand{\cK}{\mathcal K_a}
+\newcommand{\csch}{\operatorname{csch}}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -97,9 +107,9 @@ In this paper, we treat the problems of stochastic center manifolds  on infinite
 \begin{equation}\label{eq(2.1)}
     \frac{d u}{dt}=A u+F( u)+u\circ \dot{W}(t),
 \end{equation}
-where $u\in H$ is a Hilbert space typically defined on some spatial domain,  ${W}(t)$ is the standard $\mathbb{R}$-valued Wiener process on a probability space~$(\Omega,\mathcal{F}, \mathbb{P} )$,  which is only	dependent on  time. A simple example is the linear stochastic parabolic equation
+where $u\in H$ is a Hilbert space typically defined on some spatial domain,  ${W}(t)$~is the standard $\mathbb{R}$-valued Wiener process on a probability space~$(\Omega,\mathcal{F}, \mathbb{P} )$,  which is only	dependent on  time. A simple example is the linear stochastic parabolic equation
 \begin{equation}\label{pa}
- u_{t}= u_{xx}+4u+u\circ\dot{W}(t), \quad u(0,t)=u(\pi,t)=0,  \; {\;\; t\geq 0}.
+ u_{t}= u_{xx}+4u+u\circ\dot{W}(t), \quad u(0,t)=u(\pi,t)=0\,, \quad  t\geq 0\,.
 \end{equation}
 In this example the Hilbert space~$H$ is the function space~$L^2(0,\pi)$.  This example  stochastic partial differential equation (\textsc{spde}) has   stable center  and unstable subspaces.
 %  This \textsc{spde} also defines a center subspace.
@@ -142,36 +152,38 @@ First we introduce the exponential trichotomy,  which generalizes the exponentia
 %Let $H$ be an infinite dimensional separable Hilbert space with norm $|\cdot|$.
 \begin{definition} A
 strongly continuous semigroup $S(t):=\exp({At})$ on~$H$ is said to  satisfy  the
-exponential trichotomy  with exponents $\alpha >\gamma> 0>-\gamma>-\beta$, if the following four conditions hold. There exist continuous projection operators~$P^c$, $P^u$ and~$P^s$ on~$H$ such
-that
-\begin{itemize}
-\item[(i)] $\operatorname{id}=P^c+P^s+P^u$,  $P^iP^j=0$\,, $ i\neq j$ and $i,j\in\{c,s,u\}$, $\operatorname{id}$ is the identity operator.
-\item [(ii)] $P^c \exp (At)=\exp(At)P^c$, $P^u\exp(At)=\exp(At)P^u$, $P^s\exp(At)=\exp(At)P^s$ for $t\geq 0$.
-\item[(iii)] Denote the reducing subspaces $H^c:= P^cH$, $H^u:=P^uH$ and  $H^s:=P^sH$. We  call~$H^c$,  $H^u$ and~$H^s$ the center subspace, the unstable
-subspace  and the stable subspace, respectively.  The restriction~$\exp(At)|_{H^i}$,  $t\geq 0$ are
+exponential trichotomy  with exponents $\alpha >\gamma> 0>-\gamma>-\beta$\,, if the there exist continuous projection operators~$P^c$, $P^u$ and~$P^s$ on~$H$ such
+that the following four conditions hold.
+\begin{enumerate}
+\item $\operatorname{id}=P^c+P^s+P^u$,  where $P^iP^j=0$ for $ i\neq j$ and $i,j\in\{c,s,u\}$, and where $\operatorname{id}$~is the identity operator.
+\item  $P^c \exp (At)=\exp(At)P^c$, $P^u\exp(At)=\exp(At)P^u$, $P^s\exp(At)=\exp(At)P^s$ for $t\geq 0$\,.
+\item Denote the reducing subspaces $H^c:= P^cH$\,, $H^u:=P^uH$ and  $H^s:=P^sH$\,. We  call~$H^c$,  $H^u$ and~$H^s$ the center subspace, the unstable
+subspace  and the stable subspace, respectively.  The restriction~$\exp(At)|_{H^i}$\,,  $t\geq 0$ are
 isomorphism from~$H^i$ onto~$H^i$,  and we
 define~$\exp(At)|_{H^i}$ for $t <0$ as the inverse map of~$\exp(-At)|_{H^i}$, $i\in\{c,s,u\}$.
-\item[(iv)]
+\item
 \begin{eqnarray}
 &&|\exp(At)P^c v|\leq K \exp({\gamma |t|})|P^cv|,  \quad t \in  \mathbb{R},   v\in H,   \label{trichotomy1} \\
-&&|\exp(At)P^u v|\leq K \exp({\alpha t}) |P^uv|,\quad t\leq 0,  v\in H,   \label{trichotomy2}\\
-&&|\exp(At) P^sv|\leq K \exp({-\beta t}) |P^sv|,  \quad t\geq 0,   v\in H. \label{trichotomy3}
+&&|\exp(At)P^u v|\leq K \exp({\alpha t}) |P^uv|,\quad t\leq 0\,,  v\in H,   \label{trichotomy2}\\
+&&|\exp(At) P^sv|\leq K \exp({-\beta t}) |P^sv|,  \quad t\geq 0\,,   v\in H. \label{trichotomy3}
 \end{eqnarray}
-\end{itemize}
+\end{enumerate}
 % Then$H=H^c\oplus H^u\oplus H^s$.
 
 \end{definition}
 
-\begin{remark}If $H$ is a  finite dimensional space  and there exist     eigenvalues with real part   zero, less than zero,  and greater than zero,  then we have the
-exponential trichotomy.  If $H$ is an infinite dimension space and  the spectrum of~$A$ satisfies $\sigma(A)=\sigma^s\cup\sigma^c\cup\sigma^u$, where $\sigma^s=\{\lambda\in \sigma(A)\mid \operatorname{Re} \lambda \leq-\beta\}$, $\sigma^c=\{\lambda\in \sigma(A)\mid| \operatorname{Re} \lambda| \leq \gamma\}$, $\sigma^u=\{\lambda\in \sigma(A)\mid \operatorname{Re} \lambda \geq \alpha\}$, $\sigma^c$ is finite and $A$~generates a strong continuous semigroup,  then we  have the exponential trichotomy~\cite{Gal, Har}.
+\begin{remark}If $H$~is a  finite dimensional space  and there exist     eigenvalues with real part   zero, less than zero,  and greater than zero,  then we have the
+exponential trichotomy.  If $H$~is an infinite dimension space and  the spectrum of~$A$ satisfies $\sigma(A)=\sigma^s\cup\sigma^c\cup\sigma^u$, where $\sigma^s=\{\lambda\in \sigma(A)\mid \operatorname{Re} \lambda \leq-\beta\}$, $\sigma^c=\{\lambda\in \sigma(A)\mid| \operatorname{Re} \lambda| \leq \gamma\}$, $\sigma^u=\{\lambda\in \sigma(A)\mid \operatorname{Re} \lambda \geq \alpha\}$, $\sigma^c$~is finite 
+\marginpar{What is this `finite' condition doing here??  I thought we were trying to cater for infnite-D center manifolds.}
+and $A$~generates a strong continuous semigroup,  then we  have the exponential trichotomy~\cite{Gal, Har}.
 \end{remark}
 
- We assume the nonlinear term~$F$ satisfies $F(0)=0$,  and assume it to be Lipschitz
+ We assume the nonlinear term~$F$ satisfies $F(0)=0$\,,  and assume it to be Lipschitz
 continuous on~$H$, that is,
 \[
 |F(u_1)-F(u_2)|\le \Lip  F\,|u_1-u_2 |
 \]
-with the sufficiently small  Lipschitz constant $\Lip  F>0$. If  the  nonlinear term~$F$ is locally Lipschitz, let $F^{(R)}(u)=\chi_R(u)F(u)$, where $\chi_R(u)$ is a cut-off function, and then  $F^{(R)}$ is  globally Lipschitz with Lipschitz  constant~$R\Lip  F$.
+with the sufficiently small  Lipschitz constant $\Lip  F>0$\,. If  the  nonlinear term~$F$ is locally Lipschitz, let $F^{(R)}(u)=\chi_R(u)F(u)$, where $\chi_R(u)$~is a cut-off function, and then  $F^{(R)}$~is  globally Lipschitz with Lipschitz  constant~$R\Lip  F$.
 
 
 
@@ -207,39 +219,37 @@ dz+z\,dt=dW.
 A solution of this equation is called an Ornstein--Uhlenbeck
 process. Let $C_0(\mathbb{R},\mathbb{R})$ be continuous functions on~$\mathbb{R}$, the associated distribution~$\mathbb{P}$ is a Wiener measure defined on the Borel-$\sigma$-algebra $\mathcal{B}(C_0(\mathbb{R},\mathbb{R}))$.  Caraballo et~al.~\cite{Car3} and Duan et al.~\cite{ Duan1} established the following lemma, which is used in the proof of existence of a stochastic  center manifold.
 \begin{lemma}\label{lem(2.1)}
-\begin{itemize}
-\item[(i)]  There exists a $\{\theta_t\}_{t\in\mathbb{R}}$-invariant set
+\begin{enumerate}
+\item  There exists a $\{\theta_t\}_{t\in\mathbb{R}}$-invariant set
 $\Omega\in\mathcal{B}(C_0(\mathbb{R},\mathbb{R}))$ of full measure
 with sublinear growth:
 \[
-\lim_{t\to\pm\infty}\frac{|\omega(t)|}{|t|}=0,\qquad
-\omega\in\Omega.
+\lim_{t\to\pm\infty}\frac{|\omega(t)|}{|t|}=0\,,\quad
+\omega\in\Omega\,.
 \]
-\item[(ii)] For $\omega\in\Omega$ the random variable
-\[
-z(\omega)=-\int_{-\infty}^0e^\tau\omega(\tau)d\tau
-\]
-exists and generates a unique stationary solution of~(\ref{eq(2.4)})
-given by
+\item For $\omega\in\Omega$ the random variable
+$z(\omega)=-\int_{-\infty}^0e^\tau\omega(\tau)\,d\tau$
+exists and generates a unique stationary solution of the Ornstein--Uhlenbeck \sde~(\ref{eq(2.4)})
+given by the convolutions
 \begin{eqnarray*}
 \Omega\times \mathbb{R}\ni(\omega,t)\to z(\theta_t\omega)
-&=&-\int_{-\infty}^0\exp(\tau)\theta_t\omega(\tau)d\tau\\
-&=&-\int_{-\infty}^0\exp(\tau)\omega(\tau+t)d\tau+\omega(t).
+&=&-\int_{-\infty}^0\exp(\tau)\theta_t\omega(\tau)\,d\tau\\
+&=&-\int_{-\infty}^0\exp(\tau)\omega(\tau+t)\,d\tau+\omega(t).
 \end{eqnarray*}
 The mapping $t\to z(\theta_t\omega)$
 is continuous.
-\item[(iii)]  In particular,
+\item  In particular,
 \begin{equation*}
 %\label{eq401}
 \lim_{t\to\pm\infty}\frac{|z(\theta_t\omega)|}{|t|}=0\quad
-   \text{for }\omega\in\Omega.
+   \text{for }\omega\in\Omega\,.
 \end{equation*}
-\item[(iv)] In addition,
+\item In addition,
 \begin{equation*}
-\lim_{t\to\pm\infty}\frac{1}{t}\int_0^tz(\theta_\tau\omega)d\tau=0\quad
-  \text{for }\omega\in\Omega.
+\lim_{t\to\pm\infty}\frac{1}{t}\int_0^tz(\theta_\tau\omega)\,d\tau=0\quad
+  \text{for }\omega\in\Omega\,.
  \end{equation*}
- \end{itemize}
+ \end{enumerate}
 \end{lemma}
 %We give a simple and complete  proof of this lemma.
 %\begin{proof}i) $W_t(\omega)=:\omega(t)$ is a process with independent and stationary increments. The strong law of large numbers states that there exists a set $\Omega_1\in \mathcal{B}(C_0(\mathbb{R},\mathbb{R}))$,  $ \mathbb{P}(\Omega_1)=1$, such that
@@ -251,7 +261,7 @@ is continuous.
 
 
 %The  unique solution of the eq~(\ref{eq(2.4)}) is
-%\begin{equation*}\int_{-\infty}^t\exp(\tau-t)dW_\tau(\omega). \end{equation*}
+%\begin{equation*}\int_{-\infty}^t\exp(\tau-t)\,dW_\tau(\omega). \end{equation*}
 
 
 
@@ -264,7 +274,7 @@ is continuous.
 % \end{proof}
 We now replace the Borel-$\sigma$-algebra  $\mathcal{B}(C_0(\mathbb{R},\mathbb{R}))$ by
 \[
-\mathcal{F}=\{\Omega\cap D \mid\,D\in
+\mathcal{F}=\{\Omega\cap D \mid D\in
 \mathcal{B}(C_0(\mathbb{R},\mathbb{R}))\}
 \]
 for $\Omega$ given in Lemma~\ref{lem(2.1)}. The probability
@@ -274,7 +284,7 @@ following we consider a random dynamical system over  the metric dynamical syste
 (\Omega,\mathcal{F},\mathbb{P},\theta)$.
 
 
-We show that  the solution of equation~(\ref{eq(2.1)}) define  a random dynamical system.  For any $v\in H$ and $\omega\in \Omega$,
+We show that  the solution of equation~(\ref{eq(2.1)}) define  a random dynamical system.  For any $v\in H$ and $\omega\in \Omega$\,,
 we introduce the  coordinate transform
 \begin{equation}\label{eq(2.7)}
 T(v, \omega)=v\exp[{-z(\omega)}]
@@ -300,17 +310,15 @@ respect to~$u$.
 For  any $\omega\in\Omega$ the function~$G$ has the
 same global Lipschitz constant  as~$F$ by the construction of~$G$. %In contrast to the
 %stochastic PDE~(\ref{eq(2.2)}),  no stochastic differential appears in the random PDE  ~\eqref{eq(2.5)}.
-Define \begin{equation*}\Psi_A(t,s)=\exp\left[A(t-s)+\int_s^tz(\theta_r\omega)dr\right]\end{equation*} as a `state transition operator' for the linear random partial differential equation~\eqref{eq(2.5)} in the case
-when the nonlinearity is neglected,  $G(\omega,u)=0$.
+Define \begin{equation*}\Psi_A(t,s)=\exp\left[A(t-s)+\int_s^tz(\theta_r\omega)\,dr\right]\end{equation*} as a `state transition operator' for the linear random partial differential equation~\eqref{eq(2.5)} in the case
+when the nonlinearity is neglected,  $G(\omega,u)=0$\,.
 The solution is interpreted in a mild sense
-\begin{eqnarray}\label{eq(2.6)}
-u(t)&=&\Psi_A(t,0)u_0\nonumber+\int_0^t
-\Psi_A(t,s)G(\theta_s\omega,u(s))ds.
-\end{eqnarray}
+\begin{equation*}\label{eq(2.6)}
+u(t)=\Psi_A(t,0)u_0 +\int_0^t
+\Psi_A(t,s)G(\theta_s\omega,u(s))\,ds\,.
+\end{equation*}
 This equation has  a unique measurable solution from the  Lipschitz continuity of~$G$ and measurable property of~$z(\omega)$.  Hence the solution mapping
-\[
-(t,v,\omega)\mapsto u(t, v, \omega)
-\]
+$(t,v,\omega)\mapsto u(t, v, \omega)$
 generates a random dynamical system. % Indeed, the mapping $u$ is
 %$(\mathcal{B}(\mathbb{R})\otimes\mathcal{F}\otimes\mathcal{B}(H),\mathcal{F})$-measurable.
 
@@ -319,7 +327,7 @@ generates a random dynamical system. % Indeed, the mapping $u$ is
 Duan, Lu and Schmalfu{\ss}~\cite{Duan2} proved that  the  solution of~\eqref{eq(2.5)} is the coordinate transformation the  solution of~\eqref{eq(2.1)}.
 
 \begin{lemma}\label{lem(2.2)}
-Suppose that $u$ is the random dynamical system generated by~(\ref{eq(2.5)}). Then
+Suppose that $u$~is the random dynamical system generated by~(\ref{eq(2.5)}). Then
 \begin{equation}\label{eq(2.9)}
 (t, v,\omega)\mapsto T^{-1}(\theta_t\omega,
 u(t,T(\omega,v),\omega))=:\hat u(t, v,\omega)
@@ -356,21 +364,15 @@ We introduce the definition of stochastic center manifolds.  A basic tool of pro
 \begin{definition}
 A random set~$M(\omega)$ is called an (forward) invariant set for a random
 dynamical system~$\Psi(t, \omega, x)$ if
-\[
-\Psi(t,M(\omega),\omega)\subset M(\theta_t\omega)\quad \text{for }
-t\geq 0.
-\]
+$\Psi(t,M(\omega),\omega)\subset M(\theta_t\omega)$ for 
+$t\geq 0$\,.
 If we can represent~$M(\omega)$ by a graph of a  (Lipschitz)
 mapping from the center subspace to its complement,
-\[
-h^c(\cdot,\omega): H^c\to H^u\oplus H^s\, ,
-\]
+$h^c(\cdot,\omega): H^c\to H^u\oplus H^s$,
 such that
-\begin{align*}
-M(\omega)=\{v + h^c(v,\omega) \mid v\in H^c\},
-\end{align*}
-$h^c(0,\omega)=0$, and the tangency condition that  the derivative $Dh^c(0,\omega)=0$,
-then $M(\omega)$ is called a (Lipschitz) center
+$M(\omega)=\{v + h^c(v,\omega) \mid v\in H^c\}$,
+$h^c(0,\omega)=0$\,, and the tangency condition that  the derivative $Dh^c(0,\omega)=0$\,,
+then $M(\omega)$~is called a (Lipschitz) center
 manifold, often denoted as~$M^c(\omega)$.
 \end{definition}
 
@@ -388,46 +390,45 @@ manifold for the stochastic evolution equation~(\ref{eq(2.1)}).
 %Denote by $u(t, \omega, u_0)$ the solution of~(\ref{eq(3.1)}) with the
 %initial data $u (0, \omega, u_0) $
 %$= u_0$.
-For each $\eta>0$,  we denote the Banach
+For each $\eta>0$\,,  we denote the Banach
 space
 \begin{align*}
-C_\eta=&\left \{\Psi\;\mid\; \Psi\in C(\mathbb{R}, H)\text{
-and }  \sup_{t\in \mathbb{R}}\exp\left[{-\eta |t| - \int_0^t
-z(\theta_r\omega) dr}\right] | \Psi(t)|
+C_\eta=&\left \{ \Psi\in C(\mathbb{R}, H) \mid  \sup_{t\in \mathbb{R}}\exp\left[{-\eta |t| - \int_0^t
+z(\theta_r\omega) \,dr}\right] | \Psi(t)|
  < \infty\right\}
 \end{align*}
 with the norm
 \[\left|\Psi\right|_{C_\eta}=\sup_{t\in \mathbb{R}}\exp\left[{-\eta |t|-\int_0^t z(\theta_r\omega)
-dr}\right] |\Psi(t)|.
+\,dr}\right] |\Psi(t)|.
 \]
-$C_\eta$ is the set of  slow growth  functions. We know that the functions  are controlled by
+The set~$C_\eta$ is the set of  `slowly varying' functions. We know that the functions  are controlled by
  $\exp\left[{\eta |t|+\int_0^t z(\theta_r\omega)
-dr}\right]$.
+\,dr}\right]$.
 Let
-\[M^c(\omega)=\left\{u_0\in H\ \mid u(\cdot, u_0, \omega) \in C_\eta\right\},
+\[M^c(\omega)=\left\{u_0\in H \mid u(\cdot, u_0, \omega) \in C_\eta\right\},
 \]
-where  $u(t, u_0, \omega)$ is  the solution of~(\ref{eq(2.5)}) with the
+where  $u(t, u_0, \omega)$~is  the solution of~(\ref{eq(2.5)}) with the
 initial data $u (0)= u_0$\,.
 
 %This is the set of all initial datum through  which solutions
 %decay  as $e^{\eta t +\int_0^t z(\theta_\tau\omega) d\tau}$.
   We
-prove that $M^c(\omega)$ is invariant and is  the
+prove that $M^c(\omega)$~is invariant and is  the
 graph of a Lipschitz function.
 
 For simple the expression of the proof, define the operator $B: \mathbb{R} \to L(H)$ by
-\[ B(t):= \begin{cases}-\exp(At) P^u, & t \leq 0; \\   \exp(At) P^s, &  t \geq 0. \end{cases}\]
+\[ B(t):= \begin{cases}-\exp(At) P^u, & t \leq 0\,; \\   \exp(At) P^s, &  t \geq 0\,. \end{cases}\]
 %It follows that  $\|B(t)\|\leq  e^{+\beta |t|}$.
-Different from the proof process on Duan et al~\cite{Duan1,Duan2}, we need analysis the behavior of the  solution on center subspace.
+Different from the proof process of Duan et al.~\cite{Duan1,Duan2}, we need analysis the behavior of the  solution on center subspace.
 \begin{theorem} \label{Thm(3.1)}    If   $\gamma < \eta<\min\{\beta, \alpha\}$ such that the nonlinearity term is sufficiently small,
-\begin{eqnarray}K \;  \Lip_u G \; \left(\frac{1}{\eta-\gamma}+\frac{1}{\beta-\eta}+\frac{1}{\alpha-\eta}\right)<
-1,\label{pr1}\end{eqnarray} then there exists a  center manifold for
+\begin{eqnarray}K    \Lip_u G   \left(\frac{1}{\eta-\gamma}+\frac{1}{\beta-\eta}+\frac{1}{\alpha-\eta}\right)<
+1\,,\label{pr1}\end{eqnarray} then there exists a  center manifold for
  the random partial differential  equation~(\ref{eq(2.5)}),  which is written as the graph
 \[
 M^c(\omega) = \{v+h^c(v,\omega)\mid v \in H^c\},
 \]
 where $h^c(\cdot,  \omega) : H^c\to  H^u\oplus H^s$ is a Lipschitz continuous mapping from the center subspace and
-satisfies $h^c(0,\omega)=0$. %Note that $K, \alpha, -\beta$ are from the
+satisfies $h^c(0,\omega)=0$\,. %Note that $K, \alpha, -\beta$ are from the
 %exponential trichotomy condition  and $\text{{\rm
 %Lip}}_u G$ denotes the Lipschitz constant of $G(\cdot, u)$ with
 %respect to $u$.
@@ -441,96 +442,93 @@ satisfies $h^c(0,\omega)=0$. %Note that $K, \alpha, -\beta$ are from the
 %\end{equation*}
 
 \begin{proof}
- First we claim that $u_0 \in M^c(\omega)$ if and only if  there exists a slow growth function $u(\cdot, u_0, \omega)\in
+ First we claim that $u_0 \in M^c(\omega)$ if and only if  there exists a slowly varying function $u(\cdot, u_0, \omega)\in
 C_\eta$  with
 \begin{align}\label{eq(3.2)}\begin{split}
 u(t, u_0,\omega)=&\Psi_A(t,0)v+\int_0^t
-\Psi_A(t,s)P^cG(\theta_s\omega,u(s))ds
-\\&+\int^{+\infty}_{-\infty}\Psi_0(t,s) B(t-s)G(\theta_s\omega,u(s))ds,
+\Psi_A(t,s)P^cG(\theta_s\omega,u(s))\,ds
+\\&{} +\int^{+\infty}_{-\infty}\Psi_0(t,s) B(t-s)G(\theta_s\omega,u(s))\,ds\,,
 \end{split}
 \end{align}
-where $v = P^c u_0$.  %The last integration of equation~\eqref{eq(3.2)}  is existence by the sublinear growth of $z(\theta_t \omega)$.
+where $v = P^c u_0$\,.  %The last integration of equation~\eqref{eq(3.2)}  is existence by the sublinear growth of $z(\theta_t \omega)$.
 
 
 To prove this claim,  first we let $u_0 \in M^c(\omega)$.  By
 using the variation of constants formula, the solution on each subspace denoted as
-\begin{align}\label{eq(3.3)}\begin{split}
-P^cu(t, u_0, \omega) = &\Psi_A(t,0)
+\begin{align}&\label{eq(3.3)}
+P^cu(t, u_0, \omega) = \Psi_A(t,0)
 v + \int_0^t\Psi_A(t,s)
-P^cG(\theta_s\omega,u)ds.
-\end{split}
+P^cG(\theta_s\omega,u)\,ds\,.
+\\&
+\label{eq(3.4)}
+P^u u(t,u_0, \omega) =\Psi_A(t,\tau)P^uu(\tau, u_0, \omega)+\int_{\tau}^t \Psi_A(t,s)
+P^uG(\theta_s\omega,u)\,ds\,.
+\\&\label{eq(3.44)}
+P^s u(t, u_0, \omega) =\Psi_A(t,\tau)P^s u(\tau, u_0, \omega)+\int_{\tau}^t \Psi_A(t,s)
+P^s G(\theta_s\omega,u)\,ds\,.
 \end{align}
-
-\begin{align}\label{eq(3.4)}\begin{split}
-P^u u(t,u_0, \omega) =&\Psi_A(t,\tau)P^uu(\tau, u_0, \omega)+\int_{\tau}^t \Psi_A(t,s)
-P^uG(\theta_s\omega,u)ds.
-\end{split}
-\end{align}
-\begin{align}\label{eq(3.44)}\begin{split}
-P^s u(t, u_0, \omega) =&\Psi_A(t,\tau)P^s u(\tau, u_0, \omega)+\int_{\tau}^t \Psi_A(t,s)
-P^s G(\theta_s\omega,u)ds.
-\end{split}
-\end{align}
-Since the slow growth function $u \in C_\eta$, we have for $t < \tau $ that the magnitude
+Since the slowly varying function $u \in C_\eta$\,, we have for $t < \tau $ that the magnitude
 \begin{align*}
-&\left|\Psi_A(t,\tau)P^uu(\tau, u_0, \omega)\right| \\
+\left|\Psi_A(t,\tau)P^uu(\tau, u_0, \omega)\right| 
 &\leq K\exp[{\alpha(t-\tau)} ]\Psi_0(t,0)\exp ({\eta
 \tau} )|u|_{C_\eta} \\
 & = K\Psi_\alpha(t,0)
-\exp[{-(\alpha-\eta)\tau}] |u|_{C_\eta} \to 0\;\text{as }\tau \to +\infty.\\
+\exp[{-(\alpha-\eta)\tau}] |u|_{C_\eta}
+\\& \to 0 \quad\text{as }\tau \to +\infty.
 \end{align*}
-For  $t > \tau $
+For  $t > \tau $\,,
 \begin{align*}
-&\left|\Psi_A(t,\tau)P^su(\tau, u_0,
-\omega)\right| \\
+\left|\Psi_A(t,\tau)P^su(\tau, u_0,
+\omega)\right| 
 &\leq K\exp[{-\beta(t-\tau)}]\Psi_0(t,0)\exp({\eta
 \tau}) |u|_{C_\eta} \\
-& =K\Psi_{-\beta}(t,0)
-\exp[{(\beta+\eta)\tau}] |u|_{C_\eta} \to 0\;\text{as }\tau \to -\infty.
+& =K\Psi_{-\beta}(t,0) 
+\exp[{(\beta+\eta)\tau}] |u|_{C_\eta} 
+\\&\to 0 \quad\text{as }\tau \to -\infty.
 \end{align*}
 Then, taking the two separate limits $\tau \to \pm  \infty$   in~(\ref{eq(3.4)}) and~\eqref{eq(3.44)} respectively,
-\begin{align}\label{eq(3.5)}
+\begin{align}&\label{eq(3.5)}
 P^uu(t, u_0, \omega)=\int^t_\infty
 \Psi_A(t,s)
-P^uG(\theta_s\omega,u(s))ds,
-\end{align}
-\begin{align}\label{eq(3.55)}
+P^uG(\theta_s\omega,u(s))\,ds\,,
+\\&\label{eq(3.55)}
 P^su(t, u_0, \omega)=\int^t_{-\infty}
 \Psi_A(t,s)
-P^sG(\theta_s\omega,u(s))ds.
+P^sG(\theta_s\omega,u(s))\,ds\,.
 \end{align}
 Combining~(\ref{eq(3.3)}),  (\ref{eq(3.5)}) and~(\ref{eq(3.55)}), we have~(\ref{eq(3.2)}). The converse  follows from a direct computation.
 
 
 Next we prove  that for any given $v \in H^c$, the centre subspace, the integral
-equation~(\ref{eq(3.2)}) has a unique solution in the slow growth functions space~$C_\eta$.
+equation~(\ref{eq(3.2)}) has a unique solution in the slowly varying functions space~$C_\eta$.
 Let
 \begin{align}\label{eq(3.22)}\begin{split}
 J^c(u,v):=&\Psi_A(t,0)v+\int_0^t
 \Psi_A(t,s)
-P^cG(\theta_s\omega,u(s))ds\\&+\int^{+\infty}_{-\infty}\Psi_0(t,s)B(t-s)G(\theta_s\omega,u(s))ds.
+P^cG(\theta_s\omega,u(s))\,ds\\&{}
++\int^{+\infty}_{-\infty}\Psi_0(t,s)B(t-s)G(\theta_s\omega,u(s))\,ds\,.
 \end{split}
 \end{align}  
-$ J^c$ is
-well-defined from $C_\eta \times H^c$ to the slow growth functions space~$C_\eta$. For each pair of slow growth functions
-$u, \bar u \in C_\eta$, we have  that for $\gamma < \eta<\min\{\beta, \alpha\}$,
+$ J^c$~is
+well-defined from $C_\eta \times H^c$ to the slowly varying functions space~$C_\eta$. For each pair of slowly varying functions
+$u, \bar u \in C_\eta$\,, we have  that for $\gamma < \eta<\min\{\beta, \alpha\}$,
 \begin{align}\label{eq(3.6)}
 \begin{split}
 &| J^c(u,v ) -  J^c (\bar u, v ) |_{C_\eta} \\
 &\leq\sup_{t\in \mathbb{R}} \Bigg\{\exp\left[
 {-\eta |t| - \int_0^t
-z(\theta_s\omega) ds}\right] \bigg |\int_0^t
+z(\theta_s\omega) \,ds}\right] \bigg |\int_0^t
 \Psi_A(t,s)
-P^c(G(\theta_s\omega,u)-G(\theta_s\omega,\bar u))ds\\&
-\quad \quad+\int^{+\infty}_{-\infty}\Psi_0(t,s)B(t-s)(G(\theta_s\omega,u)-G(\theta_s\omega,\bar u))ds\bigg|
+P^c(G(\theta_s\omega,u)-G(\theta_s\omega,\bar u))\,ds
+\\&
+\quad \quad{}
++\int^{+\infty}_{-\infty}\Psi_0(t,s)B(t-s)(G(\theta_s\omega,u)-G(\theta_s\omega,\bar u))\,ds\bigg|
 \Bigg\}\\
 &\leq\sup_{t\in \mathbb{R}} \Bigg\{K \Lip_u G |u-\bar
-u|_{C_\eta}\bigg|\int_0^{t} \exp[
-{(\gamma-\eta)|t-s|}]ds+\int^t_{-\infty}
-\exp[
-{(\eta-\beta)(t-s)}]ds\\&  \quad \quad+\int_t^{+\infty}
-(-\exp[
-{(\alpha-\eta)(t-s)}])ds\bigg |
+u|_{C_\eta}\bigg|\int_0^{t} \exp[{(\gamma-\eta)|t-s|}]\,ds
+\\&  \quad \quad
++\int^t_{-\infty}\exp[{(\eta-\beta)(t-s)}]\,ds
++\int_t^{+\infty}-\exp[{(\alpha-\eta)(t-s)}]\,ds\bigg |
 \Bigg\}\\
 &\leq K \Lip_u
 G\left(\frac{1}{\eta-\gamma}+\frac{1}{\beta-\eta}+\frac{1}{\alpha-\eta}\right) |u-\bar
@@ -538,12 +536,12 @@ u|_{C_\eta}.
 \end{split}
 \end{align}
 
-From equation~\eqref{eq(3.6)}, $ J^c$ is Lipschitz continuous in~$v$.  By the
+From equation~\eqref{eq(3.6)}, $ J^c$~is Lipschitz continuous in~$v$.  By the
 theorem's precondition~\eqref{pr1},
 % \begin{equation*}K \Lip_u G\left(\frac{1}{\eta-\gamma}+\frac{1}{\beta-\eta}+\frac{1}{\alpha-\eta}\right)< 1,\end{equation*}
-$ J^c$ is a uniform contraction with respect to the parameter~$v$.  By the uniform contraction mapping principle,
+$ J^c$~is a uniform contraction with respect to the parameter~$v$.  By the uniform contraction mapping principle,
 for each $v \in H^c$,  the mapping $J^c (\cdot , v )$ has a
-unique fixed point $u(\cdot,v, \omega) \in C_\eta$. Combining equation~\eqref{eq(3.22)} and equation~\eqref{eq(3.6)},
+unique fixed point $u(\cdot,v, \omega) \in C_\eta$\,. Combining equation~\eqref{eq(3.22)} and equation~\eqref{eq(3.6)},
 \begin{align}\label{eq(3.7)}
 |u(\cdot ,  v,   \omega) - u (\cdot,  \bar v, \omega
 )|_{C_\eta}\leq \frac{K}{1-K \Lip_u
@@ -551,21 +549,21 @@ G\left(\frac{1}{\eta-\gamma}+\frac{1}{\beta-\eta}+\frac{1}{\alpha-\eta}\right)}|
 \end{align}
 for each
  fixed point~$u(\cdot,v, \omega)$.
- Then for each time $t\geq 0$,
-$u(t,   \cdot, \omega )$ is Lipschitz from the center subspace~$H^c$ to slow growth  functions~$C_\eta$.
+ Then for each time $t\geq 0$\,,
+$u(t,   \cdot, \omega )$~is Lipschitz from the center subspace~$H^c$ to slowly varying  functions~$C_\eta$.
  $u(\cdot,  v, \omega  )\in C_\eta$ is a unique solution
 of the integral equation~(\ref{eq(3.2)}).
 Since $u(\cdot , v,   \omega)$ can be an $\omega$-wise limit of the
 iteration of contraction mapping~$J^c$ starting at~$0$ and $J^c$
 maps a $\mathcal{F}$-measurable function to a $\mathcal{F}$-measurable function,
-$u(\cdot, v,   \omega)$ is $\mathcal{F}$-measurable. Combining $u(\cdot, v, \omega)$ is  continuous with respect to~$H$, we have $u(\cdot , v,   \omega)$ are measurable with respect to~$(\cdot, v, \omega)$.
+$u(\cdot, v,   \omega)$~is $\mathcal{F}$-measurable. Combining $u(\cdot, v, \omega)$~is  continuous with respect to~$H$, we have $u(\cdot , v,   \omega)$ are measurable with respect to~$(\cdot, v, \omega)$.
 
 Let $h^c (v,\omega) := P^s u (0, v, \omega)\oplus P^u u (0, v, \omega)$. Then
 \[
 h^c(v, \omega) =\int^{+\infty}_{-\infty} \Psi_0(0,s)
-B(-s)G(\theta_s\omega,u(s,v,\omega))ds.
+B(-s)G(\theta_s\omega,u(s,v,\omega))\,ds\,.
 \]
-We see that~$h^c$ is $\mathcal{F}$-measurable and  $h^c(0,\omega)=0$.
+We see that~$h^c$ is $\mathcal{F}$-measurable and  $h^c(0,\omega)=0$\,.
 %Thus, by using~(\ref{eq(3.7)}), we obtain that
 %\[
 %|h^c(v,\omega) - h^c(\bar v, \omega)|\leq \frac{K^2\text{{\rm
@@ -574,7 +572,7 @@ We see that~$h^c$ is $\mathcal{F}$-measurable and  $h^c(0,\omega)=0$.
 %\]
  From the definition of~$h^c(v,
 \omega)$ and the claim that $ u_0 \in M^c(\omega)$  if and only if
-there exists \begin{equation*}u(\cdot, u_0, \omega)~\in~C_\eta\end{equation*} with $u(0)=u_0$ and satisfies~(\ref{eq(3.2)}) it follows that $ u_0 \in M^c(\omega)$ if and only
+there exists $u(\cdot, u_0, \omega)~\in~C_\eta$ with $u(0)=u_0$ and satisfies~(\ref{eq(3.2)}) it follows that $ u_0 \in M^c(\omega)$ if and only
 if there exists $v \in H^c$ such that $ u_0=v+h^c(v,
 \omega)$, therefore,
 \begin{equation*}
@@ -582,7 +580,7 @@ M^c(\omega) = \{v+ h^c(v, \omega) \mid v \in H^c\}.
 \end{equation*}
 
 Next we prove
-that for any $x\in H$, the function
+that for any $x\in H$\,, the function
 \begin{equation}\label{eq(3.8)}
 \omega\to\inf_{y\in H^c}\left |x-(y+ h^c(y, \omega))\right |
 \end{equation}
@@ -596,29 +594,29 @@ The measurability of~(\ref{eq(3.8)}) follows since
 $\omega\to h^c(P^cy,\omega)$ is measurable for any $y\in H'$.
 
 
-Finally, we show that $M^c(\omega)$ is invariant, that is for each
+Finally, we show that $M^c(\omega)$~is invariant, that is for each
 $u_0\in M^c(\omega)$, $u(s, u_0, \omega) \in M^c(\theta_s\omega)$
-for all $ s\geq 0$. Since for $s \geq 0$,
+for all $ s\geq 0$\,. Since for $s \geq 0$\,,
 $u(t+s, u_0,\omega)$ is a solution of
 \[
 \frac{du}{dt}=Au+z(\theta_t(\theta_s\omega))u+G(\theta_t(\theta_s\omega),u),\quad
 u(0)=u(s, u_0, \omega).
 \]
 Thus $u(t,u(s,u_0,\omega), \theta_s\omega)=u(t+s, u_0,\omega)$ and  $u(t,u(s,u_0,\omega),
-\theta_s\omega) \in C_\eta$.  So we have  $u(s, u_0, \omega) \in
+\theta_s\omega) \in C_\eta$\,.  So we have  $u(s, u_0, \omega) \in
 M^c(\theta_s\omega)$
 
 \end{proof}
 
 
 
-\begin{theorem} \label{Thm(3.2)} Suppose that $u$ is the random dynamical system generated by random partial differential equation~(\ref{eq(2.5)}), then
+\begin{theorem} \label{Thm(3.2)} Suppose that $u$~is the random dynamical system generated by random partial differential equation~(\ref{eq(2.5)}), then
 $\widetilde {M}^c(\omega)=T^{-1}(\omega,M^c(\omega))$ is a
 center manifold of the stochastic partial differential equation~(\ref{eq(2.1)}).
 \end{theorem}
 \begin{proof}
 Denote~$\tilde u(t, \omega, x)$ the solution of~(\ref{eq(2.1)}).
-From Lemma~\ref{lem(2.2)},  for $t\geq 0$,
+From Lemma~\ref{lem(2.2)},  for $t\geq 0$\,,
 \begin{align*}
 \tilde u(t,\omega,&\widetilde  {M}^c(\omega))=T^{-1}(\theta_t\omega,u(t,\omega,T(\omega,\widetilde {M}^c(\omega))))\\
 &=T^{-1}(\theta_t\omega, u(t,\omega,M^c(\omega)))\subset
@@ -628,7 +626,7 @@ T^{-1}(\theta_t\omega,M^c(\theta_t\omega)) =\widetilde
 So $\widetilde {M}^c(\omega)$ is an invariant set.  Note
 that
 \begin{align*}
-&\widetilde {M}^c(\omega)\\ &= T^{-1}(\omega,M^c(\omega))\\ &
+\widetilde {M}^c(\omega) &= T^{-1}(\omega,M^c(\omega))\\ &
 =\big\{u_0=T^{-1}(\omega, v+h^c(v, \omega) \mid v \in H^c
 \big\} \\
 &=\big\{u_0= e^{z(\omega)}(v+h^c(v, \omega))\mid v \in
@@ -640,7 +638,7 @@ H^c \big\},
 which implies that $\widetilde {M}^c(\omega)$ is a center
 manifold.
 \end{proof}
-Note that a locally center manifolds is not unique~\cite{Carr}.
+Note that a local center manifolds is not unique~\cite{Carr}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -650,35 +648,35 @@ Note that a locally center manifolds is not unique~\cite{Carr}.
 
 \section{Smoothness of center  manifolds} \label{Sec4}
 Duan et al.'s work~\cite{Duan1} only implies existence of~$M^c$ but not the smoothness.
-In this section, we prove that for each $\omega\in \Omega$, $M^c(\omega)$ is
+In this section, we prove that for each $\omega\in \Omega$\,, $M^c(\omega)$~is
 a $C^k$~center manifold.
 
 \begin{theorem} \label{Thm(4.1)}   Assume that $G$~is~$C^k$ in~$u$. If $\gamma < k\eta < \min\{\beta, \alpha\}$ and
 \[
 K \Lip_u
 G\left(\frac{1}{i\eta-\gamma}+\frac{1}{\beta-i\eta}+\frac{1}{\alpha-i\eta}\right)< 1 \quad\text{for
-all}\; 1\leq i\leq k,
+all }  1\leq i\leq k,
 \]
-then $M^c(\omega)$ is a $C^k$ center manifold for the
+then $M^c(\omega)$~is a $C^k$ center manifold for the
 random
-evolutionary equation~(\ref{eq(2.5)}),  and $Dh^c(0,\omega)=0$.\end{theorem}
+evolutionary equation~(\ref{eq(2.5)}),  and $Dh^c(0,\omega)=0$\,.\end{theorem}
 
 \begin{proof} We prove this theorem by induction.
-First, we consider $k=1$. Since
+First, we consider $k=1$\,. Since
 \[
 K \Lip_u
 G\left(\frac{1}{\eta-\gamma}+\frac{1}{\beta-\eta}+\frac{1}{\alpha-\eta}\right)< 1
 \]
 there exists a small number $\delta>0$ such that $\gamma <
-\eta-\eta'<\min\{\beta,\alpha\}$ and for all  $ 0 \leq \eta' \leq 2\delta$,
+\eta-\eta'<\min\{\beta,\alpha\}$ and for all  $ 0 \leq \eta' \leq 2\delta$\,,
 \[
 K \Lip_u
 G\left[\frac{1}{(\eta-\eta')-\gamma}+\frac{1}{\beta-(\eta-\eta')}+\frac{1}{\alpha-(\eta-\eta')}\right]<
-1.
+1\,.
 \]
 Thus, $J^s(\cdot,v, \omega)$ defined in the proof of Theorem~\ref{Thm(3.1)} is a uniform contraction in $C_{\eta-\eta'}
-\subset  C_\eta$ for any $0\leq \eta'\leq 2\delta$. Therefore,
-$u(\cdot, v,\omega)\in C_{\eta-\eta'}$. For $v_0\in H^c$, we
+\subset  C_\eta$ for any $0\leq \eta'\leq 2\delta$\,. Therefore,
+$u(\cdot, v,\omega)\in C_{\eta-\eta'}$\,. For $v_0\in H^c$, we
 define two operators: let
 \[
 Sv_0=\Psi_A(t,0)v_0 \,,
@@ -691,13 +689,13 @@ P^cD_uG(\theta_s\omega,u(s,v_0,\omega)) v\, ds \\
 B(t-s)D_uG(\theta_s\omega,u(s,v_0,\omega)) v \,ds\,.
 \end{align*}
 From the assumption, 
-$S$ is a bounded linear operator from center subspace~$H^c$ to slow growth functions space~$C_{\eta-\delta}$. Using the same arguments in the proof Theorem~\ref{Thm(3.1)}  that
-$J^c$ is a contraction, we have that $T$ is a bounded linear
+$S$~is a bounded linear operator from center subspace~$H^c$ to slowly varying functions space~$C_{\eta-\delta}$. Using the same arguments in the proof Theorem~\ref{Thm(3.1)}  that
+$J^c$~is a contraction, we have that $T$~is a bounded linear
 operator from~$C_{\eta-\delta}$ to itself and
 \[
 \|T\| \leq K \Lip_u
 G\left(\frac{1}{\eta-\delta-\gamma}+\frac{1}{\beta-(\eta-\delta)}+\frac{1}{\alpha-(\eta-\delta)}\right)<
-1,
+1\,,
 \]
 which implies that the operator $(\operatorname{id}-T)$ is invertible in~$C_{\eta-\delta}$.
 For $v, v_0\in H^c$, we set
@@ -705,13 +703,13 @@ For $v, v_0\in H^c$, we set
 I=&\int_0^t \Psi_A(t,s)
 P^c\Big[G(\theta_s\omega,u(s,v,\omega))-
 G(\theta_s\omega,u(s,v_0,\omega))\\
-&\quad\quad\quad\quad\quad\quad-D_uG(\theta_s\omega,u(s,v_0,\omega))
-(u(s,v,\omega)-u(s,v_0,\omega))\Big]ds\\
-&+\int^{+\infty}_{-\infty} \Psi_0(t,s)
+&\quad\quad\quad\quad\quad\quad{}-D_uG(\theta_s\omega,u(s,v_0,\omega))
+(u(s,v,\omega)-u(s,v_0,\omega))\Big]\,ds\\
+&{} +\int^{+\infty}_{-\infty} \Psi_0(t,s)
 B(t-s)\Big[G(\theta_s\omega,u(s,v,\omega))-
 G(\theta_s\omega,u(s,v_0,\omega))\\
-&\quad\quad\quad\quad\quad\quad-D_uG(\theta_s\omega,u(s,v_0,\omega))
-(u(s,v,\omega)-u(s,v_0,\omega))\Big]ds.
+&\quad\quad\quad\quad\quad\quad{}-D_uG(\theta_s\omega,u(s,v_0,\omega))
+(u(s,v,\omega)-u(s,v_0,\omega))\Big]\,ds\,.
 \end{align*}
 
 We obtain
@@ -739,107 +737,101 @@ usual space of bounded linear operators and
 \begin{split}
 D_v u(t, v,\omega)& =\Psi_A(t,0)
 v  +\int_0^t \Psi_A(t,s)
-P^cD_uG(\theta_s\omega,u(s,v,\omega))D_v u(s,v,\omega)ds\\& \quad+\int^{+\infty}_{-\infty} \Psi_0(t,s)
-B(t-s)D_uG(\theta_s\omega,u(s,v,\omega)) D_v u(s,v,\omega) ds.
+P^cD_uG(\theta_s\omega,u(s,v,\omega))D_v u(s,v,\omega)\,ds\\& \quad+\int^{+\infty}_{-\infty} \Psi_0(t,s)
+B(t-s)D_uG(\theta_s\omega,u(s,v,\omega)) D_v u(s,v,\omega) \,ds\,.
 \end{split}
 \end{align}
 
 The tangency condition $Dh^c(0,\omega)=0$ is from  equation~\eqref{eq(4.2)}.
 
 Now we prove that \begin{eqnarray}|I|_{C_{\eta-\delta}} = o(|v-v_0|)\label{Claim1}\end{eqnarray} as
-$v\to v_0$. We divide~$I$ into several sufficient small parts. Let $N$ be a large  positive number to be chosen
+$v\to v_0$\,. We divide~$I$ into several sufficient small parts. Let $N$ be a large  positive number to be chosen
 later and define the following ten integrals
 \begin{align*}
-I_1=&\exp\left[{-(\eta-\delta)|t|-\int_0^t z(\theta_s\omega) ds}\right]
-\Bigg \{\bigg |\int_N^t \Psi_A(t,s)
+I_1=&\exp\left[{-(\eta-\delta)|t|-\int_0^t z(\theta_s\omega) \,ds}\right]
+\bigg |\int_N^t \Psi_A(t,s)
  P^c\Big[G(\theta_s\omega,u(s,v,\omega))
- \\ & \quad{}
+ \\ &{}
 -G(\theta_s\omega,u(s,v_0,\omega))-D_uG(\theta_s\omega,u(s,v_0,\omega))
-(u(s,v,\omega) -u(s,v_0,\omega))\Big]ds\bigg|\Bigg\}
+(u(s,v,\omega) -u(s,v_0,\omega))\Big]\,ds\bigg|
 \end{align*}
-for $t\geq N$.
+for $t\geq N$\,.
 \begin{align*}
-I_1'=&\exp\left[{-(\eta-\delta)|t|-\int_0^t z(\theta_s\omega) ds}\right]
-\Bigg\{\bigg|\int^{-N}_t \Psi_A(t,s)
-P^c\Big[G(\theta_s\omega,u(s,v,\omega))\\& -
+I_1'=&\exp\left[{-(\eta-\delta)|t|-\int_0^t z(\theta_s\omega) \,ds}\right]
+\bigg|\int^{-N}_t \Psi_A(t,s)
+P^c\Big[G(\theta_s\omega,u(s,v,\omega))\\&{} -
 G(\theta_s\omega,u(s,v_0,\omega))-D_uG(\theta_s\omega,u(s,v_0,\omega))
-(u(s,v,\omega)-u(s,v_0,\omega))\Big]ds\bigg|\Bigg\}
+(u(s,v,\omega)-u(s,v_0,\omega))\Big]\,ds\bigg|
 \end{align*}
-for $t\leq -N$.
+for $t\leq -N$\,.
 \begin{align*}
-I_2=&\exp\left[{-(\eta-\delta)|t|-\int^t_0 z(\theta_s\omega) ds}\right]
-\Bigg\{\bigg|\int_0^N \Psi_A(t,s)
-P^c\Big[G(\theta_s\omega,u(s,v,\omega)) \\&-
+I_2=&\exp\left[{-(\eta-\delta)|t|-\int^t_0 z(\theta_s\omega) \,ds}\right]
+\bigg|\int_0^N \Psi_A(t,s)
+P^c\Big[G(\theta_s\omega,u(s,v,\omega)) \\&{}-
 G(\theta_s\omega,u(s,v_0,\omega))-D_uG(\theta_s\omega,u(s,v_0,\omega))
-(u(s,v,\omega)-u(s,v_0,\omega))\Big]ds\bigg|\Bigg\}
+(u(s,v,\omega)-u(s,v_0,\omega))\Big]\,ds\bigg|
 \end{align*}
-for $0\leq t \leq N$.
+for $0\leq t \leq N$\,.
 \begin{align*}
-I_2'=&\exp\left[{-(\eta-\delta)|t|-\int^t_0 z(\theta_s\omega) ds}\right]
-\Bigg\{\bigg|\int_{-N}^0 \Psi_A(t,s)
-P^c\Big[G(\theta_s\omega,u(s,v,\omega)) \\&-
+I_2'=&\exp\left[{-(\eta-\delta)|t|-\int^t_0 z(\theta_s\omega) \,ds}\right]
+\bigg|\int_{-N}^0 \Psi_A(t,s)
+P^c\Big[G(\theta_s\omega,u(s,v,\omega)) \\&{}-
 G(\theta_s\omega,u(s,v_0,\omega))-D_uG(\theta_s\omega,u(s,v_0,\omega))
-(u(s,v,\omega)-u(s,v_0,\omega))\Big]ds\bigg|\Bigg\}
+(u(s,v,\omega)-u(s,v_0,\omega))\Big]\,ds\bigg|
 \end{align*}
-for $-N \leq t \leq 0$.\\
+for $-N \leq t \leq 0$\,.
 
 
 
 Let $\overline N$ be a large  positive number to be chosen later. For
-$| t| \leq \overline N$, we set
+$| t| \leq \overline N$\,, we set
 \begin{align*}
-I_3=&\exp\left[{-(\eta-\delta)|t|-\int^t_0 z(\theta_s\omega) ds}\right]
-\Bigg\{\bigg|\int^{\overline N}_t [-\Psi_A(t,s)]
+I_3=&\exp\left[{-(\eta-\delta)|t|-\int^t_0 z(\theta_s\omega) \,ds}\right]
+\bigg|\int^{\overline N}_t [-\Psi_A(t,s)]
 P^u\Big[G(\theta_s\omega,u(s,v,\omega))
 \\&{}
 -G(\theta_s\omega,u(s,v_0,\omega))-D_uG(\theta_s\omega,u(s,v_0,\omega))
-(u(s,v,\omega)-u(s,v_0,\omega))\Big]ds\bigg|\Bigg\}.
-\end{align*}
-\begin{align*}
-I_3'=&\exp\left[{-(\eta-\delta)|t|-\int^t_0 z(\theta_s\omega) ds}\right]
-\Bigg\{\bigg|\int_{-\overline N}^t \Psi_A(t,s)
-P^s\Big[G(\theta_s\omega,u(s,v,\omega))\\&-
+(u(s,v,\omega)-u(s,v_0,\omega))\Big]\,ds\bigg|.
+\\
+I_3'=&\exp\left[{-(\eta-\delta)|t|-\int^t_0 z(\theta_s\omega) \,ds}\right]
+\bigg|\int_{-\overline N}^t \Psi_A(t,s)
+P^s\Big[G(\theta_s\omega,u(s,v,\omega))\\&{} -
 G(\theta_s\omega,u(s,v_0,\omega))-D_uG(\theta_s\omega,u(s,v_0,\omega))
-(u(s,v,\omega)-u(s,v_0,\omega))\Big]ds\bigg|\Bigg\}.
-\end{align*}
-\begin{align*}
-I_4=&\exp\left[{-(\eta-\delta)|t|-\int^t_0 z(\theta_s\omega) ds}\right]
-\Bigg\{\bigg|\int^\infty_{\overline N} [\Psi_A(t,s)]
-P^u\Big[G(\theta_s\omega,u(s,v,\omega))\\&-
+(u(s,v,\omega)-u(s,v_0,\omega))\Big]\,ds\bigg|.
+\\
+I_4=&\exp\left[{-(\eta-\delta)|t|-\int^t_0 z(\theta_s\omega) \,ds}\right]
+\bigg|\int^\infty_{\overline N} [\Psi_A(t,s)]
+P^u\Big[G(\theta_s\omega,u(s,v,\omega))\\&{} -
 G(\theta_s\omega,u(s,v_0,\omega))-D_uG(\theta_s\omega,u(s,v_0,\omega))
-(u(s,v,\omega) -u(s,v_0,\omega))\Big]ds\bigg|\Bigg\}.
-\end{align*}
-%For $-\overline{N}\leq t\leq 0$,
-
-\begin{align*}
-I_4'=&\exp\left[{-(\eta-\delta)|t|-\int^t_0 z(\theta_s\omega) ds}\right]
-\Bigg\{\bigg|\int_{-\infty}^{-\overline N} \Psi_A(t,s)
-P^s\Big[G(\theta_s\omega,u(s,v,\omega))\\&-
+(u(s,v,\omega) -u(s,v_0,\omega))\Big]\,ds\bigg|.
+\\
+I_4'=&\exp\left[{-(\eta-\delta)|t|-\int^t_0 z(\theta_s\omega) \,ds}\right]
+\bigg|\int_{-\infty}^{-\overline N} \Psi_A(t,s)
+P^s\Big[G(\theta_s\omega,u(s,v,\omega))\\&{} -
 G(\theta_s\omega,u(s,v_0,\omega))-D_uG(\theta_s\omega,u(s,v_0,\omega))
-(u(s,v,\omega) -u(s,v_0,\omega))\Big]ds\bigg|\Bigg\}.
+(u(s,v,\omega) -u(s,v_0,\omega))\Big]\,ds\bigg|.
 \end{align*}
 
-For $|t| \geq \overline N$, we set
+For $|t| \geq \overline N$\,, we set
 \begin{align*}
-I_5=&\exp\left[{-(\eta-\delta)|t|-\int^t_0 z(\theta_s\omega) ds}\right]
-\Bigg\{\bigg|\int^{+\infty}_{t} [\Psi_A(t,s)]
-P^u\Big[G(\theta_s\omega,u(s,v,\omega))\\&-
+I_5=&\exp\left[{-(\eta-\delta)|t|-\int^t_0 z(\theta_s\omega) \,ds}\right]
+\bigg|\int^{+\infty}_{t} [\Psi_A(t,s)]
+P^u\Big[G(\theta_s\omega,u(s,v,\omega))\\&{} -
 G(\theta_s\omega,u(s,v_0,\omega))-D_uG(\theta_s\omega,u(s,v_0,\omega))
-(u(s,v,\omega) -u(s,v_0,\omega))\Big]ds\bigg|\Bigg\}.
-\end{align*}
-\begin{align*}
-I_5'=&\exp\left[{-(\eta-\delta)|t|-\int^t_0 z(\theta_s\omega) ds}\right]
-\Bigg\{\bigg|\int_{-\infty}^{t} \Psi_A(t,s)
-P^s\Big[G(\theta_s\omega,u(s,v,\omega))\\ & -
+(u(s,v,\omega) -u(s,v_0,\omega))\Big]\,ds\bigg|.
+\\
+I_5'=&\exp\left[{-(\eta-\delta)|t|-\int^t_0 z(\theta_s\omega) \,ds}\right]
+\bigg|\int_{-\infty}^{t} \Psi_A(t,s)
+P^s\Big[G(\theta_s\omega,u(s,v,\omega))\\ &{} -
 G(\theta_s\omega,u(s,v_0,\omega))-D_uG(\theta_s\omega,u(s,v_0,\omega))
-(u(s,v,\omega)-u(s,v_0,\omega))\Big]ds\bigg|\Bigg\}.
+(u(s,v,\omega)-u(s,v_0,\omega))\Big]\,ds\bigg|.
 \end{align*}
 %for $t\leq -\overline{N}$.
 
 
 It is sufficient to show that for any $\epsilon >0$ there is a
 $\sigma
->0$ such that if $ |v-v_0| \leq \sigma $, then
+>0$ such that if $ |v-v_0| \leq \sigma $\,, then
 $|I|_{C_{\eta-\delta}} \leq \epsilon |v-v_0|$. Note that
 \begin{align*}
 |I|_{C_{\eta-\delta}}& \leq \sup_{t\geq N} I_1 + \sup_{N\geq t\geq 0}
@@ -852,7 +844,7 @@ A computation similar to~(\ref{eq(3.7)}) implies that
 \begin{align*}
 I_1 &\leq 2K\Lip_uG \int_N^t
 \exp[{(\gamma-(\eta-\delta))|t-s|}]\exp({-\delta |s|})
-|u(\cdot, v,\omega)-u(\cdot,v_0,\omega)|_{C_{\eta-2\delta}} ds \\
+|u(\cdot, v,\omega)-u(\cdot,v_0,\omega)|_{C_{\eta-2\delta}} \,ds \\
 & \leq \frac{2K^2\Lip_uG \exp({-\delta
 N})}{(\eta-\gamma-\delta)\left\{1-K \Lip_u
 G\left[\frac{1}{(\eta-2\delta)-\gamma}+\frac{1}{\beta-(\eta-2\delta)}+\frac{1}{\alpha-(\eta-2\delta)}\right]\right\}}
@@ -880,18 +872,18 @@ Fixing such~$N$, for~$I_2$ we have that
 I_2 &\leq K\int_0^N \exp[{(\gamma+(\eta-\delta))|t-s|}]\Big\{
 \int^1_0\big |
 D_uG(\theta_s\omega,\tau u(s,v,\omega)+(1-\tau)u(s,v_0,\omega)) \\
-&\quad -D_uG(\theta_s\omega,u(s,v_0,\omega))\big |d\tau\Big\}
-|u(\cdot, v,\omega)-u(\cdot,v_0,\omega)|_{C_{\eta-\delta}} ds \\
+&\quad -D_uG(\theta_s\omega,u(s,v_0,\omega))\big |\,d\tau\Big\}
+|u(\cdot, v,\omega)-u(\cdot,v_0,\omega)|_{C_{\eta-\delta}} \,ds \\
 & \leq \frac{K^2|v-v_0|}{1-K \Lip_u
 G\left[\frac{1}{\eta-\delta-\gamma}+\frac{1}{\beta-(\eta-\delta)}+\frac{1}{\alpha-(\eta-\delta)}\right]}\\&
 \quad \int_0^N \exp[{(\gamma+(\eta-\delta))|t-s|}]\Big\{ \int^1_0\big |
 D_uG(\theta_s\omega,\tau
 u(s,v,\omega)+(1-\tau)u(s,v_0,\omega))\\&
-\quad-D_uG(\theta_s\omega,u(s,v_0,\omega))\big | d\tau\Big\}ds.\;
+\quad-D_uG(\theta_s\omega,u(s,v_0,\omega))\big | \,d\tau\Big\}\,ds\,. 
 \end{align*}
 From the continuity of  the integrand in~$(s, v)$,   the last integral is continuous at the point~$v_0$. Thus, we have that there
 is a $\sigma_1
->0$ such that if $|v-v_0| \leq \sigma_1$, then
+>0$ such that if $|v-v_0| \leq \sigma_1$\,, then
 \begin{equation*}
 \sup_{N\geq t\geq 0}I_2 \leq \frac{1}{8}\epsilon |v-v_0|.
 \end{equation*}
@@ -899,7 +891,7 @@ is a $\sigma_1
 %\begin{equation*}
 %\sup_{  -N\leq t}I_2' \leq \frac{1}{8}\epsilon |v-v_0|.
 %\end{equation*}
-Therefore, if  $|v-v_0| \leq \sigma_1$, then
+Therefore, if  $|v-v_0| \leq \sigma_1$\,, then
 \begin{equation*}
 \sup_{t\geq N} I_1 + \sup_{N\geq t\geq 0}
 I_2 \leq \frac{1}{4}\epsilon
@@ -923,7 +915,7 @@ Similarly, by choosing~$\overline N$ to be sufficiently large,
 \frac{1}{8}\epsilon|v-v_0|,
 \end{equation*}
 and for fixed such~$\overline N$, there exists $\sigma_2>0$ such that
-if $|v-v_0| \leq \sigma_2$, then
+if $|v-v_0| \leq \sigma_2$\,, then
 \begin{equation*}
 \sup_{  |t|\leq \overline N}I_3  \leq \frac{1}{8}\epsilon
 |v_1-v_2|
@@ -932,17 +924,17 @@ if $|v-v_0| \leq \sigma_2$, then
 |v_1-v_2|.
 \end{equation*}
 Taking $\sigma = \min \{\sigma_1, \sigma_1', \sigma_2\}$, we have that if
-$|v-v_0| \leq \sigma$, then
+$|v-v_0| \leq \sigma$\,, then
 \begin{equation*}
 |I|_{C_{\eta-\delta}} \leq  \epsilon |v-v_0|.
 \end{equation*}
 Therefore  $|I|_{C_{\eta-\delta}} = o(|v-v_0|)$ as $v\to
-v_0$.
+v_0$\,.
 
 
 
-We now prove that $D_v u(t, v,\omega)$ is
-continuous from the center subspace~$H^c$ to slow growth functions space~$C_\eta$. For $v, v_0 \in H^c$,
+We now prove that $D_v u(t, v,\omega)$~is
+continuous from the center subspace~$H^c$ to slowly varying functions space~$C_\eta$. For $v, v_0 \in H^c$,
 using~(\ref{eq(4.2)}),
 \begin{align}\label{eq(4.3)}
 \begin{split}
@@ -950,22 +942,22 @@ using~(\ref{eq(4.2)}),
 &=\int_0^t \Psi_A(t,s)
 P^c\Big(D_uG(\theta_s\omega,u(s,v,\omega))D_v
 u(s,v,\omega)\\&\qquad{}  -
-D_uG(\theta_s\omega,u(s,v_0,\omega))D_v u(s,v_0,\omega)\Big)ds\\
+D_uG(\theta_s\omega,u(s,v_0,\omega))D_v u(s,v_0,\omega)\Big)\,ds\\
 &\quad{}+\int_{-\infty}^\infty \Psi_0(t,s)
  B(t-s)
 \Big(D_uG(\theta_s\omega,u(s,v,\omega))D_v
 u(s,v,\omega)\\&\qquad{}  -
 D_uG(\theta_s\omega,u(s,v_0,\omega))D_v
-u(s,v_0,\omega)\Big)ds \\
+u(s,v_0,\omega)\Big)\,ds \\
 &=\int_0^t\Psi_A(t,s)
 P^c\Big(D_uG(\theta_s\omega,u(s,v,\omega))
 \\&\qquad{} (D_v
-u(s,v,\omega)- D_v u(s,v_0,\omega))\Big)ds\\
+u(s,v,\omega)- D_v u(s,v_0,\omega))\Big)\,ds\\
 &\quad+\int_{-\infty}^\infty \Psi_0(t,s)
  B(t-s)
 \Big(D_uG(\theta_s\omega,u(s,v,\omega))
 \\&\qquad{}  (D_v u(s,v,\omega)-
-D_v u(s,v_0,\omega))\Big)ds + \bar I,
+D_v u(s,v_0,\omega))\Big)\,ds + \bar I,
 \end{split}
 \end{align}
 where
@@ -973,11 +965,11 @@ where
 \int_0^t \Psi_A(t,s)
 P^c\big(D_uG(\theta_s\omega,u(s,v,\omega))\\ & \qquad{} 
 -D_uG(\theta_s\omega,u(s,v_0,\omega)
-\big)D_v u(s,v_0,\omega)ds\\
+\big)D_v u(s,v_0,\omega)\,ds\\
 &{} +\int^{+\infty}_{-\infty} \Psi_0(t,s)
 B(t-s)\big(D_uG(\theta_s\omega,u(s,v,\omega))\\ & \qquad{} 
 -D_uG(\theta_s\omega,u(s,v_0,\omega)
-\big)D_v u(s,v_0,\omega)ds.
+\big)D_v u(s,v_0,\omega)\,ds\,.
 \end{align*}
  Then from estimating $|D_v u(\cdot, v,\omega)-D_v u(\cdot,v_0,\omega)|_{L(H^c,
  C_\eta)}$, we have
@@ -989,24 +981,24 @@ G\left(\frac{1}{\eta-\gamma}+\frac{1}{\beta-\eta}+\frac{1}{\alpha-\eta}\right)}.
 
 
 Using the same argument we used for the last claim of equation~\eqref{Claim1}, we obtain that
-$|\bar I|_{L(H^c, C_\eta)} = o(|v-v_0|)$ as $v \to v_0$. Hence
-$D_v u(t, v,\omega)$ is continuous from the center space~$H^c$ to bounded linear operators space~${L(H^c,
+$|\bar I|_{L(H^c, C_\eta)} = o(|v-v_0|)$ as $v \to v_0$\,. Hence
+$D_v u(t, v,\omega)$~is continuous from the center space~$H^c$ to bounded linear operators space~${L(H^c,
 C_\eta)}$. Therefore, $u(t,v,\omega)$ is~$C^1$ from~$H^c$ to~$C_\eta$.
 
 
 
-Now we show that~$u$ is~$C^k$ from the center space~$H^c$ to slow growth functions space~$C_{k\eta}$ by induction for $k\ge 2$. By the induction
+Now we show that~$u$ is~$C^k$ from the center space~$H^c$ to slowly varying functions space~$C_{k\eta}$ by induction for $k\ge 2$\,. By the induction
 assumption, we know that~$u$ is~$C^{k-1}$ from~$H^c$ to~$C_{(k-1)\eta}$ and the   $(k-1)$st~derivative~$D^{k-1}_v
 u(t, v,\omega)$ satisfies the following equation.
 \begin{align*}
 D_v^{k-1} u =& \int^t_0\Psi_A(t,s)
 P^c(D_uG(\theta_s\omega,u)D_v^{k-1} u\, ds\\
-&+ \int^{+\infty}_{-\infty} \Psi_0(t,s)
+&{} + \int^{+\infty}_{-\infty} \Psi_0(t,s)
 B(t-s)D_uG(\theta_s\omega,u)D_v^{k-1} u\, ds\\
-& \int^t_0\Psi_A(t,s)
-P^cR_{k-1}(s, v, \omega) ds\\
-&+ \int^{+\infty}_{-\infty} \Psi_0(t,s)
-B(t-s) R_{k-1}(s, v, \omega) ds,
+=& \int^t_0\Psi_A(t,s)
+P^cR_{k-1}(s, v, \omega) \,ds\\
+&{} + \int^{+\infty}_{-\infty} \Psi_0(t,s)
+B(t-s) R_{k-1}(s, v, \omega) \,ds\,,
 \end{align*}
 where
 \begin{equation*}
@@ -1014,7 +1006,7 @@ R_{k-1}(s,v,\omega) =  \sum_{i=0}^{k-3}\begin{pmatrix} k-2\\i
 \end{pmatrix} D_v^{k-2-i} \big(D_uG(\theta_s
 \omega,u(s,v,\omega))\big) D_v^{i+1}u(s,v,\omega).
 \end{equation*}
-Note that $D^i_v u \in C_{i\eta} $ for $i=1,\ldots, k-1$,
+Note that $D^i_v u \in C_{i\eta} $ for $i=1,\ldots, k-1$\,,
 from the induction hypothesis. Thus, using~$G$ is~$C^k$, we  verify that $R_{k-1}(\cdot,v,\omega) \in
 L^{k-1}\big(H^c,C_{(k-1)\eta}\big)$ and is~$C^1$  with respect to~$v$, where
 $L^{k-1}\big(H^c,C_{(k-1)\eta}\big)$ is the usual space of
@@ -1043,18 +1035,18 @@ If $\gamma < k\eta < \min\{\beta,\alpha\}$ and
 \[
 K  \Lip 
 F \left(\frac{1}{i\eta-\gamma}+\frac{1}{\beta-i\eta}+\frac{1}{\alpha-i\eta}\right)< 1 \quad\text{for
-all}\; 1\leq i\leq k,
+all }  1\leq i\leq k,
 \]
 then
 $\widetilde M^c(\omega)=T^{-1}(\omega,M^c(\omega))$  is a $C^k$~center
  manifold for the stochastic partial differential  equation~(\ref{eq(2.1)}).
 \end{theorem}
 \begin{proof}
-Since
-\[
-\widetilde M^c(\omega)=\big\{v+\tilde h^c(v, \omega) \big |\;
+Since \marginpar{What is the meaning of this sentence??  Clarify.}
+\begin{equation*}
+\widetilde M^c(\omega)=\big\{v+\tilde h^c(v, \omega) \mid 
 v\in H^c\big\},
-\]
+\end{equation*}
 where $\tilde h^c(v, \omega)=\exp[z(\omega)]h^c(\exp[{-z(\omega)]}v, \omega)$. Since
 $h^c(v, \omega)$ is~$C^k$ in~$v$, $\tilde h^c(v, \omega)$ is~$C^k$ in~$v$.
 \end{proof}
@@ -1067,7 +1059,7 @@ $h^c(v, \omega)$ is~$C^k$ in~$v$, $\tilde h^c(v, \omega)$ is~$C^k$ in~$v$.
 
 
 \section{Exponential attraction  principle} \label{Sec5}
-This section proves the stability of the random evolution equation~\eqref{eq(2.5)}.  Our main result is Theorem~\ref{th5.3}, which shows that the dynamic behavior of equation~\eqref{eq(2.5)} is exponentially approximated by the   stochastic center manifold. We do not assume $H^s=\emptyset$ or $H^u=\emptyset$.  Instead, we project the solution of equation~\eqref{eq(2.5)} to the stable  and unstable subspaces.  Lemma~\ref{lemma9} is a week approach solutions version as it only concerns solutions approach~$M^c(\omega)$. It does not assert solutions.
+This section proves the stability of the random evolution equation~\eqref{eq(2.5)}.  Our main result is Theorem~\ref{th5.3}, which shows that the dynamic behavior of equation~\eqref{eq(2.5)} is exponentially approximated by the   stochastic center manifold. We do not assume $H^s=\emptyset$ or $H^u=\emptyset$\,.  Instead, we project the solution of equation~\eqref{eq(2.5)} to the stable  and unstable subspaces.  Lemma~\ref{lemma9} is a week approach solutions version as it only concerns solutions approach~$M^c(\omega)$. It does not assert solutions.
 
 
 
@@ -1084,23 +1076,24 @@ Let $X(t,u_0,\omega)=P^su(t,u_0, \omega)-P^sh^c(P^cu(t,u_0,\omega),\omega)$,  th
 \frac {d{X(t,u_0,\omega)}}{dt }=AX+z(\theta_t\omega)X+N( X, \omega),\end{equation}
 where
 \begin{align*}
-N(X,\omega)=&P^sG(\theta_t\omega,(\operatorname{id}-P^s)u+X+P^sh^c(P^cu(t,u_0,\omega),\omega))\\&-P^sG(\theta_t\omega,(\operatorname{id}-P^s)u+P^sh^c(P^cu(t,u_0,\omega),\omega),\omega))\\
-&+DP^sh^c(P^cu(t,u_0,\omega),\omega),\omega)[
-P^cG(\theta_t\omega,(\operatorname{id}-P^s)u\\ \quad &+P^sh^c(P^cu(t,u_0,\omega),\omega))\\ \quad&-P^cG(\theta_t\omega,(\operatorname{id}-P^s)u+X+P^sh^c(P^cu(t,u_0,\omega),\omega))].
+N(X,\omega)=&P^sG(\theta_t\omega,(\operatorname{id}-P^s)u+X+P^sh^c(P^cu(t,u_0,\omega),\omega))\\&{} -P^sG(\theta_t\omega,(\operatorname{id}-P^s)u+P^sh^c(P^cu(t,u_0,\omega),\omega),\omega))\\
+&{} +DP^sh^c(P^cu(t,u_0,\omega),\omega),\omega)[
+P^cG(\theta_t\omega,(\operatorname{id}-P^s)u\\ \quad &{} +P^sh^c(P^cu(t,u_0,\omega),\omega))\\ \quad&{} -P^cG(\theta_t\omega,(\operatorname{id}-P^s)u+X+P^sh^c(P^cu(t,u_0,\omega),\omega))].
 \end{align*}
 Since the derivative of  stochastic center manifold is  less than Lipschitz constant~$ \Lip_uG$ and $G$~is Lipschitz continuous,  we have  $|N(\omega, X)|<U_1 |X|$.  We obtain
 \begin{eqnarray*}
-X(t,u_0,\omega)&=&\Psi_A(t,0)X(0,u_0,\omega)+\int_0^t\Psi_A(t,s)N(X,\omega)ds.\end{eqnarray*}
-The conclusion of Lemma~\ref{lem(2.1)} yields  $\int_0^tz(\theta_r\omega)dr<\epsilon t$,   $\int_s^tz(\theta_r\omega)dr<\epsilon(t-s)$  for $t$~large enough and  $\beta>\epsilon>0$.     Then
+X(t,u_0,\omega)&=&\Psi_A(t,0)X(0,u_0,\omega)+\int_0^t\Psi_A(t,s)N(X,\omega)\,ds\,.\end{eqnarray*}
+The conclusion of Lemma~\ref{lem(2.1)} yields  $\int_0^tz(\theta_r\omega)dr<\epsilon t$\,,   $\int_s^tz(\theta_r\omega)dr<\epsilon(t-s)$  for $t$~large enough and  $\beta>\epsilon>0$\,.     Then
 \begin{eqnarray*}
 |X(t,u_0,\omega)&|\leq &K \exp[{(-\beta+\epsilon) t}]|X(0,u_0,\omega)|\\
-&&+U_1K\int_0^t\exp[{(-\beta+\epsilon) (t-s)}|X(s,u_0,\omega)|ds.\end{eqnarray*}
+&&{}+U_1K\int_0^t\exp[{(-\beta+\epsilon) (t-s)}|X(s,u_0,\omega)|\,ds\,.
+\end{eqnarray*}
 From  Gronwall's inequality we have the lemma.
 \end{proof}
-\begin{remark}Similarly we have the conclusion there exist  positive constants~$V$ and~$\nu$ such that \begin{eqnarray*}
+\begin{remark}Similarly we have the conclusion there exist  positive constants~$V$ and~$\nu$ such that \begin{equation*}
 |P^uu(t,u_0, \omega)-P^uh^c(P^cu(t,u_0,\omega),\omega)|\leq V\exp({\nu t})|P^uu_0-P^uh^c(v,\omega)|,
-\end{eqnarray*}
- $t\leq 0$ small enough.   Note that in the finite dimension case~\cite[Theorem 7.1]{Box}, the conclusions are expressed as the random norm.
+\end{equation*}
+ $t\leq 0$ small enough.   In the finite dimensional case~\cite[Theorem 7.1]{Box}, the conclusions are expressed as the random norm.
 \end{remark}
 Now we consider the asymptotic behavior of the  stochastic evolution equation~\eqref{eq(2.5)}.  The stochastic dynamical system on the stochastic center manifold  is governed by the following random evolution equation:
 \begin{equation}\label{th2}
@@ -1108,8 +1101,7 @@ Now we consider the asymptotic behavior of the  stochastic evolution equation~\e
 \end{equation}
 If the subspace~$H^c$ is finite dimension,   then equation~\eqref{th2} is an ordinary differential equation. The following theorem shows that the solution of  stochastic evolution equation~\eqref{eq(2.5)} is exponentially approximated by the solution of equation~\eqref{th2}.
 \begin{theorem}\label{th5.3}
-Let~$M^c(\omega)$ be a  locally stochastic center manifold for stochastic evolution equation~\eqref{eq(2.5)}, then there are positive  random variables $L_1(\omega)$~and~$L_2(\omega)$ and constants $l_1$~and~$l_2$ such that for initial values $u_0\in H$ and $v_0\in M^c$, the following
-hold:
+Let~$M^c(\omega)$ be a  locally stochastic center manifold for stochastic evolution equation~\eqref{eq(2.5)}, then there are positive  random variables $L_1(\omega)$~and~$L_2(\omega)$ and constants $l_1$~and~$l_2$ such that for initial values $u_0\in H$ and $v_0\in M^c$, the following two conditions hold:
 \begin{eqnarray}
 &&|P^cu(t,u_0,\omega)-v(t,v_0,\omega)|\leq L_1(\omega) \exp( {-l_1 t}),\label{th31} \\
 &&|P^su(t,u_0,\omega)-P^s h^c(v(t,v_0,\omega),\omega)|\leq L_2(\omega) \exp({ -l_2 t}),\label{th311}
@@ -1127,19 +1119,19 @@ N'(X',\omega)=&P^cG(\theta_t\omega,u(t,u_0,\omega))-P^cG(\theta_t\omega, v+h^c(v
 Rewrite the nonlinearity as three steps, so that $N'$ can be bounded.  
 \begin{align*}
 N'(X',\omega)=&P^cG(\theta_t\omega,u(t,u_0,\omega))-P^cG(\theta_t\omega, P^cu+h^c(P^cu,\omega))\\
-&+P^cG(\theta_t\omega, P^cu+h^c(P^cu,\omega))-P^cG(\theta_t\omega, P^cu+h^c(v,\omega))\\
-&+P^cG(\theta_t\omega, P^cu+h^c(v,\omega))-P^cG(\theta_t\omega, v+h^c(v,\omega)).
+&{} +P^cG(\theta_t\omega, P^cu+h^c(P^cu,\omega))-P^cG(\theta_t\omega, P^cu+h^c(v,\omega))\\
+&{} +P^cG(\theta_t\omega, P^cu+h^c(v,\omega))-P^cG(\theta_t\omega, v+h^c(v,\omega)).
 \end{align*}
 Rewrite equation~\eqref{eq31} as an integral equation. 
 \begin{eqnarray*}
-X'(t,u_0,\omega)=\Psi_A(t,0)X'(0,u_0,\omega)+\int_0^t\Psi_A(t,s)N'(X',\omega)ds.\end{eqnarray*}
-Since  $G$ is Lipschitz continuous,  there exist positive constants $V_1$~and~$v_1$ and random variable~$V_2(\omega)$ such that
+X'(t,u_0,\omega)=\Psi_A(t,0)X'(0,u_0,\omega)+\int_0^t\Psi_A(t,s)N'(X',\omega)\,ds\,.\end{eqnarray*}
+Since  $G$~is Lipschitz continuous,  there exist positive constants $V_1$~and~$v_1$ and random variable~$V_2(\omega)$ such that
 \begin{eqnarray*}
 |N'(X',\omega)|\leq V_1\exp(-v_1 t)|(\operatorname{id}-P^c)u_0-h^c(P^cu_0,\omega)|+V_2(\omega)|X'|.
 \end{eqnarray*}
-Lemma~\ref{lem(2.1)} yields  $\int_0^tz(\theta_r\omega)dr<\epsilon t$ and  $\int_s^tz(\theta_r\omega)dr<\epsilon(t-s)$  for $t$~large enough and  $\gamma>\epsilon>0$. It follows that
+Lemma~\ref{lem(2.1)} yields  $\int_0^tz(\theta_r\omega)dr<\epsilon t$ and  $\int_s^tz(\theta_r\omega)dr<\epsilon(t-s)$  for $t$~large enough and  $\gamma>\epsilon>0$\,. It follows that
 \begin{align*}
-|X'(t,u_0,\omega)|\leq& K \exp[{(\gamma+\epsilon) t}]|X'(0,u_0,\omega)|\\\quad \quad&+K(\gamma+\epsilon+v_1)^{-1} \exp[{(\gamma+\epsilon) t}]V_1|(\operatorname{id}-P^c)u_0-h^c(P^cu_0,\omega)|\\&+V_2(\omega)K\int_0^t\exp[{(\gamma+\epsilon) (t-s)}|X'(s,u_0,\omega)|ds.\end{align*}
+|X'(t,u_0,\omega)|\leq& K \exp[{(\gamma+\epsilon) t}]|X'(0,u_0,\omega)|\\\quad \quad&{} +K(\gamma+\epsilon+v_1)^{-1} \exp[{(\gamma+\epsilon) t}]V_1|(\operatorname{id}-P^c)u_0-h^c(P^cu_0,\omega)|\\&{} +V_2(\omega)K\int_0^t\exp[{(\gamma+\epsilon) (t-s)}|X'(s,u_0,\omega)|\,ds\,.\end{align*}
 From  Gronwall's inequality we have inequality~\eqref{th31}.
 
 Now we prove inequality~\eqref{th311}, 
@@ -1157,7 +1149,7 @@ By   Lemma~\ref{lemma9} and inequality~\eqref{th31} we have inequality~\eqref{th
 \begin{corollary} \label{cor5.4}
 Suppose that the zero solution of~\eqref{th2} is (asymptotically stable) stable. Then the zero solution of the~\eqref{eq(2.5)} is (asymptotically stable) stable. \end{corollary}
 \begin{proof}
-From  Theorem~\ref{th5.3} and Remark~\ref{rem1} we conclude the zero   solution of~\eqref{th2} is (asymptotically stable) stable on centre, stable, unstable subspaces respectively. We conclude Corollary~\ref{cor5.4}.
+From  Theorem~\ref{th5.3} and Remark~\ref{rem1} we conclude that the zero   solution of~\eqref{th2} is (asymptotically stable) stable on centre, stable, unstable subspaces respectively. This establishes Corollary~\ref{cor5.4}.
 \end{proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1166,22 +1158,22 @@ From  Theorem~\ref{th5.3} and Remark~\ref{rem1} we conclude the zero   solution 
 For a $\mathcal{F}$-measurable function $g(v,\omega):H^c\to  H^u\oplus H^s$ which are~$C^1$ in a neighborhood of origin  in~$H^c$,
 define
 \begin{align*}
-M(g)(v,\omega)=& \,g_v(v,\omega)[P^cAv+z(\theta_t\omega)v+P^cG(\theta_t\omega,v+ g)]-(\operatorname{id}-P^cA)v\\&-z(\theta_t\omega)v-P^s G(\theta_t\omega, v+v)-P^uG(\theta_t\omega, v+ g),\end{align*}
+M(g)(v,\omega)=& \,g_v(v,\omega)[P^cAv+z(\theta_t\omega)v+P^cG(\theta_t\omega,v+ g)]-(\operatorname{id}-P^cA)v\\&{} -z(\theta_t\omega)v-P^s G(\theta_t\omega, v+v)-P^uG(\theta_t\omega, v+ g),\end{align*}
 where $v\in H^c$.
 \begin{theorem}
-Suppose that a  $\mathcal{F}$-measurable function $g(0,\omega)=0$, $g_v(0,\omega)=0$ and that $M(g)(v,\omega)=\Ord{|v|^q}$ for some $q>1$. Then as $v\to 0$,
+Suppose that a  $\mathcal{F}$-measurable function $g(0,\omega)=0$\,, $g_v(0,\omega)=0$ and that $M(g)(v,\omega)=\Ord{|v|^q}$ for some $q>1$\,. Then as $v\to 0$\,,
 \begin{equation*}|h^c(v,\omega)-g(v,\omega)|=\Ord{|v|^q}.\end{equation*}
 \end{theorem}
 \begin{proof}
 Let a  $\mathcal{F}$-measurable function  $y(t,v,\omega)\in C_\eta$ and let $y(0,v,\omega):H^c\to H^u\oplus H^s$ be continuous differential with compact support such that
-$y(0,0,\omega)=g(0,\omega)=0$,  $y_v(0,0,\omega)=g_v(0,\omega)=0$ and $y_v(0,v,\omega)=g_v(v,\omega)$ for $|v|$~small enough. The function~$y(t,v,\omega)$ connects the functions~$h^c(v,\omega)$ and~$g(v,\omega)$. Set
+$y(0,0,\omega)=g(0,\omega)=0$\,,  $y_v(0,0,\omega)=g_v(0,\omega)=0$ and $y_v(0,v,\omega)=g_v(v,\omega)$ for $|v|$~small enough. The function~$y(t,v,\omega)$ connects the functions~$h^c(v,\omega)$ and~$g(v,\omega)$. Set
 \begin{align*}
-M(y)(0,v,\omega)=& \,y_v(0,v,\omega)[P^cAv+z(\theta_t\omega)v+P^cG(\theta_t\omega, y(0,v,\omega))]\\&-(\operatorname{id}-P^cA)y(0,v,\omega)-z(\theta_t\omega)y(0,v,\omega)-P^s G(\theta_t\omega, y(0,v,\omega))\\&-P^uG(\theta_t\omega, y(0,v,\omega)),\end{align*}
+M(y)(0,v,\omega)=& \,y_v(0,v,\omega)[P^cAv+z(\theta_t\omega)v+P^cG(\theta_t\omega, y(0,v,\omega))]\\&{} -(\operatorname{id}-P^cA)y(0,v,\omega)-z(\theta_t\omega)y(0,v,\omega)-P^s G(\theta_t\omega, y(0,v,\omega))\\&{} -P^uG(\theta_t\omega, y(0,v,\omega)),\end{align*}
 where $v\in H^c$. For a  $\mathcal{F}$-measurable function~$w(t,v,\omega)$, define the operator
 \begin{equation*}Sw=J^c \left[(w(t,v,\omega)+y(t,v,\omega)\right]-y(t,v,\omega),\end{equation*}
 where the operator~$J^c$ is defined by equation~\eqref{eq(3.22)}.   The domain~$Y$ 
 \begin{equation*}Y(\omega)=\left\{w(t,v,\omega)\in C_\eta\mid|w(0,v,\omega)|\leq K(\omega) |v|^q\quad \mbox{for all } v\in H^c\right\}.\end{equation*}
-From the construction of~$Y(\omega)$,  $Y(\omega)$ is closed in~$C_\eta$. Since $J^c$ is a contraction mapping on~$C_\eta$, $S$ is a contracting mapping on~$Y(\omega)$.
+From the construction of~$Y(\omega)$,  $Y(\omega)$~is closed in~$C_\eta$. Since $J^c$~is a contraction mapping on~$C_\eta$, $S$~is a contracting mapping on~$Y(\omega)$.
 We prove that there exist a random variable~$K(\omega)$ such that $S$ maps~$Y(\omega)$ into~$Y(\omega)$.  Then by the uniqueness of fixed points and definition of~$h^c$ we conclude the theorem.
 
  Now we prove there exists~$Y(\omega)$.  For $w\in C_\eta$,  let $u_c(t,v,\omega)$ be the solution of
@@ -1190,34 +1182,34 @@ We prove that there exist a random variable~$K(\omega)$ such that $S$ maps~$Y(\o
  \end{align}
      From equation~\eqref{eq(3.22)}
 \begin{align*}
-&J^c(y(0,u_c,\omega)+w(0,u_c,\omega))=\\&\quad\quad \quad\quad \int^{+\infty}_{-\infty}\Psi_0(0,s)B(-s)G(\theta_s\omega,y(s,u_c,\omega)+w(s,u_c,\omega))ds.
+&J^c(y(0,u_c,\omega)+w(0,u_c,\omega))=\\&\quad\quad \quad\quad \int^{+\infty}_{-\infty}\Psi_0(0,s)B(-s)G(\theta_s\omega,y(s,u_c,\omega)+w(s,u_c,\omega))\,ds\,.
 \end{align*}
 Since
 \begin{align*}
-&y(0,u_c,\omega)\\=&\int_{-\infty}^0\frac d{ds}\left[\Psi_{-A}(0,s)P^sy(0,u_c(s,v,\omega),\omega)\right]ds\\&-\int^{\infty}_0\frac d{ds}\left[\Psi_{-A}(0,s)P^uy(0,u_c(s,v,\omega),\omega)\right]ds
-\\  =&\int_{-\infty}^0\Psi_{-A}(0,s)\left[(-A-z(\theta_s\omega))P^sy(0,u_c(s,v,\omega),\omega)+\frac d{ds}P^sy(0,u_c(s,v,\omega),\omega)\right]ds\\&-\int^{\infty}_0\Psi_{-A}(0,s)\left[(-A-z(\theta_s\omega))P^uy(0,u_c(s,v,\omega),\omega)
- +\frac d{ds}P^uy(0,u_c(s,v,\omega),\omega)\right]ds.
+&y(0,u_c,\omega)\\=&\int_{-\infty}^0\frac d{ds}\left[\Psi_{-A}(0,s)P^sy(0,u_c(s,v,\omega),\omega)\right]\,ds\\&{} -\int^{\infty}_0\frac d{ds}\left[\Psi_{-A}(0,s)P^uy(0,u_c(s,v,\omega),\omega)\right]\,ds
+\\  =&\int_{-\infty}^0\Psi_{-A}(0,s)\left[(-A-z(\theta_s\omega))P^sy(0,u_c(s,v,\omega),\omega)+\frac d{ds}P^sy(0,u_c(s,v,\omega),\omega)\right]\,ds\\&{} -\int^{\infty}_0\Psi_{-A}(0,s)\left[(-A-z(\theta_s\omega))P^uy(0,u_c(s,v,\omega),\omega)
+ +\frac d{ds}P^uy(0,u_c(s,v,\omega),\omega)\right]\,ds\,.
  \end{align*}
 Here
 \begin{align*}
 & (-A-z(\theta_s\omega))P^sy(0,u_c(s,v,\omega),\omega)+\frac d{ds}P^sy(0,u_c(s,v,\omega),\omega)\\
 =&-AP^sy(0,u_c(s,v,\omega),\omega)-z(\theta_s\omega)P^sy(0,u_c(s,v,\omega),\omega)+P^sy_v(0,u_c(s,v,\omega),\omega)\\&[Au_c+z(\theta_t\omega)u_c+P^cG(\theta_t\omega,y(0,u_c,v)+w(0,u_c,v))]\\
-=&M(P^sy)-P^sy_v(0,u_c(s,v,\omega),\omega)[Au_c+z(\theta_t\omega)u_c+P^cG(\theta_t\omega,y(0,u_c,v))]\\&+P^sG(\theta_t\omega,y(0,u_c,v))+P^sy_v(0,u_c(s,v,\omega),\omega)\\&\left[Au_c+z(\theta_t\omega)u_c+P^cG(\theta_t\omega,y(0,u_c,v)+w(0,u_c,v))\right]\\
-=&M(P^sy)-P^sy_v(0,u_c(s,v,\omega),\omega)[P^cG(\theta_t\omega,y(0,u_c,v))-P^cG(\theta_t\omega,y(0,u_c,v)\\ &+w(0,u_c,v))]+P^sG(\theta_t\omega,y(0,u_c,v)).   \end{align*}
+=&M(P^sy)-P^sy_v(0,u_c(s,v,\omega),\omega)[Au_c+z(\theta_t\omega)u_c+P^cG(\theta_t\omega,y(0,u_c,v))]\\&{} +P^sG(\theta_t\omega,y(0,u_c,v))+P^sy_v(0,u_c(s,v,\omega),\omega)\\&\left[Au_c+z(\theta_t\omega)u_c+P^cG(\theta_t\omega,y(0,u_c,v)+w(0,u_c,v))\right]\\
+=&M(P^sy)-P^sy_v(0,u_c(s,v,\omega),\omega)[P^cG(\theta_t\omega,y(0,u_c,v))-P^cG(\theta_t\omega,y(0,u_c,v)\\ &{} +w(0,u_c,v))]+P^sG(\theta_t\omega,y(0,u_c,v)).   \end{align*}
 \begin{align*}  & (-A-z(\theta_s\omega))P^uy(0,u_c(s,v,\omega),\omega)+\frac d{ds}P^uy(0,u_c(s,v,\omega),\omega)\\
-=&-AP^uy(0,u_c(s,v,\omega),\omega)-z(\theta_s\omega)P^uy(0,u_c(s,v,\omega),\omega)\\& +P^uy_v(0,u_c(s,v,\omega),\omega)[Au_c+z(\theta_t\omega)u_c+P^cG(\theta_t\omega,y(0,u_c,v)+w(0,u_c,v))]\\=&M(P^uy)-P^uy_v(0,u_c(s,v,\omega),\omega)[P^cG(\theta_t\omega,y(0,u_c,v))-P^cG(\theta_t\omega,y(0,u_c,v)\\&+w(0,u_c,v))]+P^uG(\theta_t\omega,y(0,u_c,v)).  \end{align*}
+=&-AP^uy(0,u_c(s,v,\omega),\omega)-z(\theta_s\omega)P^uy(0,u_c(s,v,\omega),\omega)\\&{} +P^uy_v(0,u_c(s,v,\omega),\omega)[Au_c+z(\theta_t\omega)u_c+P^cG(\theta_t\omega,y(0,u_c,v)+w(0,u_c,v))]\\=&M(P^uy)-P^uy_v(0,u_c(s,v,\omega),\omega)[P^cG(\theta_t\omega,y(0,u_c,v))-P^cG(\theta_t\omega,y(0,u_c,v)\\&{} +w(0,u_c,v))]+P^uG(\theta_t\omega,y(0,u_c,v)).  \end{align*}
 From the above calculations
 \begin{align*}
 &J^c(y(0,u_c,\omega)+w(0,u_c,\omega))-y(0,u_c,\omega)\\
-&\quad\quad=\int_{-\infty}^0\Psi_{-A}(0,s)Q^sds+\int^{\infty}_0\Psi_{-A}(0,s)Q^uds,
+&\quad\quad=\int_{-\infty}^0\Psi_{-A}(0,s)Q^s\,ds+\int^{\infty}_0\Psi_{-A}(0,s)Q^u\,ds\,,
  \end{align*}
  where $Q^s$ and $Q^u$ is \begin{align*}
- Q^s(y,w,\omega)=&P^sy_v(0,u_c(s,v,\omega),\omega)[P^cG(\theta_t\omega,y(0,u_c,\omega))-P^cG(\theta_t\omega,y(0,u_c,\omega)\\&+w(0,u_c,\omega))]
--M(P^sy)+[P^sG(\theta_t\omega,y(0,u_c,\omega)+w(0,u_c,\omega))\\&-P^s(\theta_t\omega,y(0,u_c,\omega))],\\
+ Q^s(y,w,\omega)=&P^sy_v(0,u_c(s,v,\omega),\omega)[P^cG(\theta_t\omega,y(0,u_c,\omega))-P^cG(\theta_t\omega,y(0,u_c,\omega)\\&{} +w(0,u_c,\omega))]
+-M(P^sy)+[P^sG(\theta_t\omega,y(0,u_c,\omega)+w(0,u_c,\omega))\\&{} -P^s(\theta_t\omega,y(0,u_c,\omega))],\\
 Q^u(y,w,\omega)=&M(P^uy)-P^sy_v(0,u_c(s,v,\omega),\omega)[P^cG(\theta_t\omega,y(0,u_c,\omega))\\&\-P^cG(\theta_t\omega,y(0,u_c,\omega)+w(0,u_c,\omega))]
--[P^uG(\theta_t\omega,y(0,u_c,\omega)\\&+w(0,u_c,\omega))-P^u(\theta_t\omega,y(0,u_c,\omega))].
+-[P^uG(\theta_t\omega,y(0,u_c,\omega)\\&{} +w(0,u_c,\omega))-P^u(\theta_t\omega,y(0,u_c,\omega))].
 \end{align*}
-Since $g(0,\omega)=0$, $g_v(0,\omega)=0$ and $g$ is  $\mathcal{F}$-measurable, for a small random variable~$\epsilon(\omega) $,  there exists a positive random variable~$\delta(\omega) $ such that
+Since $g(0,\omega)=0$\,, $g_v(0,\omega)=0$ and $g$~is  $\mathcal{F}$-measurable, for a small random variable~$\epsilon(\omega) $,  there exists a positive random variable~$\delta(\omega) $ such that
 \begin{eqnarray*}|g_v(v,\omega)|<\epsilon(\omega)\end{eqnarray*} if $|v|<\delta(\omega) $.
 From $M(y)(0,u_c,\omega)=C_1(\omega)|u_c|^q$ for a positive random variable~$C_1(\omega)$ and all $v\in H^c$,
 $|Q^s|\leq C_2(\omega)|u_c|^q$ and  $|Q^u|\leq C_3(\omega)|u_c|^q$.   Using the Gronwall's  inequality in equation~\eqref{eq(6.1)}  we  conclude  $|u_c|\leq C_4(\omega)|v|$.
@@ -1225,32 +1217,32 @@ $|Q^s|\leq C_2(\omega)|u_c|^q$ and  $|Q^u|\leq C_3(\omega)|u_c|^q$.   Using the 
 
 \section{Examples} \label{Sec7}
 We present some examples to show our results.   Example~\ref{exam1} shows that we  directly use the computer algebra~\cite{Rob} to compute the stochastic center manifolds.  We  also do not need the convolution term.  This is different from the results of Roberts~\cite{Rob1}, which   cutted the stochastic partial differential differential equations to be finite dimensional and then used the finite dimensional stochastic center manifolds theory.
-\begin{example}\label{exam1}
+
+\subsection{Reaction-diffusion dynamics}
+\label{exam1}
 Consider the stochastic parabolic equation
 \begin{equation}\label{pa}
- u_{t}= u_{xx}+u- a  u^3+  u\circ\dot{W}\;
+ u_{t}= u_{xx}+u- a  u^3+  u\circ\dot{W} 
+\quad\text{with}\quad
+ u(0,t)=u(\pi,t)=0\,,  \quad t\geq 0\,.
 \end{equation}
-with
-\begin{equation*}
- u(0,t)=u(\pi,t)=0,  \; {\;\; t\geq 0}.
-\end{equation*}
 We set $H:=L^2(0,\pi)$, $Au=\frac {d^2u}{dx^2}+u$ with domain $D(A):=H^2(0,\pi)\cap H_0^1(0,\pi)$.  Then
 the spectrum of the operator~$A$ is
 \begin{equation*}\sigma(A)=\{1-n^2\mid n=1,2,\ldots\}. \end{equation*}
-The corresponding complete and orthogonal  eigenfunctions  are~$\sin nx$, $n=1,2,\ldots$. The operator~$A$  satisfies the exponent trichotomy.  Denote $H^c=\operatorname{span}\{\sin x\}$, $H^s=\operatorname{span}\{\sin nx, n=2,3,\ldots\}$.
+The corresponding complete and orthogonal  eigenfunctions  are~$\sin nx$\,, $n=1,2,\ldots$\,. The operator~$A$  satisfies the exponent trichotomy.  Denote $H^c=\operatorname{span}\{\sin x\}$, $H^s=\operatorname{span}\{\sin nx, n=2,3,\ldots\}$.
 
 The transformed random parabolic equation is
 \begin{equation}\label{pa1}
- u_{t}= u_{xx}+u+z(\theta_t\omega)u-a\exp[2z(\theta_t\omega)] u^3. \;
+ u_{t}= u_{xx}+u+z(\theta_t\omega)u-a\exp[2z(\theta_t\omega)] u^3.  
 \end{equation}
 
 Select parameter~$a$ small enough such the condition of  Theorem~\ref{Thm(3.1)}  is satisfied.  Then we have the slow (center) manifold
 \begin{equation*}M^c(\omega)=\{s\sin x+h^c(s\sin x,\omega)\}=\left \{s \sin x + \sum_{n=2}^\infty c_n(s,\omega)\sin nx\right \},\end{equation*}
-where $c_n(s,\omega)=\Ord{s^3}$ as $s\to 0$ for $\omega\in \Omega$.
+where $c_n(s,\omega)=\Ord{s^3}$ as $s\to 0$ for $\omega\in \Omega$\,.
 The random dynamical system on the slow manifold~$M^c(\omega)$ satisfies
 \begin{eqnarray}\label{pa2}
 \frac {ds}{dt}\sin x+\sum_{n=2}^\infty c_n'(s,\omega)\sin nx=\sum_{n=2}^\infty[1-n^2+z(\theta_s\omega)] c_n(s,\omega)\sin nx\nonumber\\
-+sz(\theta_s\omega)\sin x-{\exp[2z(\theta_s\omega)]} as^3\sin^3 x+\Ord{s^5}. \;
++sz(\theta_s\omega)\sin x-{\exp[2z(\theta_s\omega)]} as^3\sin^3 x+\Ord{s^5}.  
 \end{eqnarray}
 It follows that
 \begin{eqnarray*}
@@ -1269,26 +1261,65 @@ a\exp[2z(\theta_s\omega)](s\sin x+c_3\sin 3x)^3
 So \begin{equation*}P^cG(\theta_t\omega,s\sin x+h^c)=\frac 3 4 as^3\exp[2z(\theta_s\omega)]\sin x+\Ord{s^5}, \end{equation*} \begin{equation*}P^sG(\theta_t\omega,s\sin x+h^c)=-\frac 1 {4} as^3\exp[2z(\theta_s\omega)]\sin 3x+\Ord{s^5}.\end{equation*}
 From
 \begin{align*}
-M(h^c)(v,\omega)=&\,h_v^c(v,\omega)[P^cA+z(\theta_t\omega)v+P^cG(\theta_t\omega, v+h^c)]-(\operatorname{id}-P^cA)h^c\\&-z(\theta_t\omega)h^c-P^s G(\theta_t\omega,  v+h^c)-P^uG(\theta_t\omega,  v+h^c),
+M(h^c)(v,\omega)=&\,h_v^c(v,\omega)[P^cA+z(\theta_t\omega)v+P^cG(\theta_t\omega, v+h^c)]-(\operatorname{id}-P^cA)h^c\\&{} -z(\theta_t\omega)h^c-P^s G(\theta_t\omega,  v+h^c)-P^uG(\theta_t\omega,  v+h^c),
 \end{align*}
-and $h^c(v,\omega)=c_3(s,\omega)\sin 3x$, we have $c_3(s,\omega)=\frac 1 {8-z(\theta_t\omega)}\times \frac 1 4 a s^3\exp[2z(\theta_s\omega)]$.
+and $h^c(v,\omega)=c_3(s,\omega)\sin 3x$\,, we have $c_3(s,\omega)=\frac 1 {8-z(\theta_t\omega)}\times \frac 1 4 a s^3\exp[2z(\theta_s\omega)]$.
 So
+\marginpar{Need some explanation of $1/[ {8-z(\theta_t\omega)}]$ ??}
  \begin{equation*}h^c(s\sin x,\omega)= \frac 1 {8-z(\theta_s\omega)}\times \frac 1 4 a s^3\exp[2z(\theta_s\omega)]\sin 3x+\Ord{s^5}. \end{equation*}
-\end{example}
-\begin{example}
-Wang and Duan~\cite{ Wang}  presented a  two dimension center--unstable manifold in a semilinear wave equation.  We show that the   semilinear wave equation has a one dimension center manifold.    %For the deterministic case see  Carr's book~\cite[Example 6.4]{Carr}.
+
+\marginpar{Must relate to what my analysis gives??}
+\begin{verbatim}
+Slow manifold to error O(a^3,sig^2):
+noise := phi(0,{})
+                           3     3     3    2  5
+dsdt := s*sig*phi(0,{}) - ---*a*s  + -----*a *s
+                           4          128
+             3    2  5
+         - -----*a *s *sig*phi(0,{})
+            512
+                     1      3
+uslow := s*sin(x) + ----*a*s *sin(3*x)
+                     32
+             1      3
+          - ----*a*s *sig*phi(0,{3})*sin(3*x)
+             16
+             2  5    3                 1                 2
+          + a *s *(------*sin(3*x) + ------*sin(5*x)) + a
+                    1024              1024
+           5        3
+         *s *sig*(-----*phi(0,{3})*sin(x)
+                   512
+                 3
+             - -----*phi(0,{3})*sin(3*x)
+                256
+                3
+             - ----*phi(0,{3,3})*sin(3*x)
+                64
+                 1
+             - -----*phi(0,{5})*sin(5*x)
+                256
+                3
+             - ----*phi(0,{5,3})*sin(5*x))
+                64
+\end{verbatim}
+ 
+ 
+ 
+\subsection{Semilinear damped wave dynamics}
+Wang and Duan~\cite{ Wang}  presented a  two dimension center--unstable manifold in a semilinear wave equation.  We show that the   semilinear wave equation has a one dimensional center manifold.    %For the deterministic case see  Carr's book~\cite[Example 6.4]{Carr}.
 
 Consider the equation
 \begin{equation}\label{HypM}
- u_{tt}+ u_t= \frac 1 4 u_{xx}+u+f(u)+  u\circ\dot{W},\;
-\; {\;\; x\in (0,2\pi)},  \quad t\geq 0
+ u_{tt}+ u_t= \frac 1 4 u_{xx}+u+f(u)+  u\circ\dot{W}, 
+  \quad x\in (0,2\pi),  \quad t\geq 0\,,
 \end{equation}
 with
 \begin{equation*}
- u(0,t)=u(2\pi, t)=0.
+ u(0,t)=u(2\pi, t)=0\,.
 \end{equation*}
 %$\nu$ and $a$ are positive constants,
-$W(t)$ is the standard $\mathbb{R}$-valued Wiener process on a probability space~$(\Omega,\mathcal{F}, \mathbb{P} )$.
+$W(t)$~is the standard $\mathbb{R}$-valued Wiener process on a probability space~$(\Omega,\mathcal{F}, \mathbb{P} )$.
 
 
 
@@ -1296,7 +1327,7 @@ Let ${H}=H_0^1(0,2\pi)\times L^2(0,2\pi)$. Rewrite the
 equation~(\ref{HypM}) as the following first order stochastic
 evolution equations in~${H}$:
 \begin{eqnarray}
-du&=&vdt\label{shyp1}\\
+du&=&v\,dt\label{shyp1}\\
 dv&=&\big[ \frac 1 4   u_{xx}+ u- v+f(u)\big]dt+  u\circ dW(t). \label{shyp2}
 \end{eqnarray}
 
@@ -1304,54 +1335,44 @@ dv&=&\big[ \frac 1 4   u_{xx}+ u- v+f(u)\big]dt+  u\circ dW(t). \label{shyp2}
 First we prove that the system~(\ref{shyp1})--(\ref{shyp2}) generates
 a continuous random dynamical system in~${H}$. Let
 $\Psi_1(t)=u(t)$, $\Psi_2(t)=v(t)-  u(t) z(\theta_t\omega)$, where
-$z(\omega)$ is the stationary solution of~(\ref{eq(2.4)}). Then we have
+$z(\omega)$~is the stationary solution of~(\ref{eq(2.4)}). Then we have
 the following random evolution equation
 \begin{eqnarray}
-d\Psi_1&=&\big[\Psi_2+  \Psi_1 z(\theta_t\omega)\big]dt\label{rhpy1}\\
+d\Psi_1&=&\big[\Psi_2+  \Psi_1 z(\theta_t\omega)\big]dt\,,\label{rhpy1}\\
 d\Psi_2&=&\big[\frac 1 4\frac {d^2\Psi_1}{dx^2}+\Psi_1-\Psi_2+f(\Psi_1)\big]dt+\big[- z^2(\theta_t\omega)\Psi_1
 \nonumber\\
-&&-  z(\theta_t\omega)\Psi_2
-\big]dt\label{rhyp2}.
+&&{}-  z(\theta_t\omega)\Psi_2
+\big]dt\label{rhyp2}\,.
 \end{eqnarray}
 Let $\Psi(t,\omega)=(\Psi_1(t,\omega),
-\Psi_2(t,\omega))\in H$, then $\varphi(t, \Psi(0),\omega)=\Psi(t,\omega)$
+\Psi_2(t,\omega))\in H$\,, then $\varphi(t, \Psi(0),\omega)=\Psi(t,\omega)$
 defines a continuous random dynamical system in~${H}$.
 Notice that the stochastic system~(\ref{shyp1})--(\ref{shyp2}) is
 conjugated to the random system~(\ref{rhpy1})--(\ref{rhyp2}) by the
 homeomorphism
 \begin{equation*}
-T(\omega, (u, v))=(u, v+uz(\omega)),\;\; (u, v)\in{H}
+T(\omega, (u, v))=(u, v+uz(\omega)), \quad (u, v)\in{H}
 \end{equation*}
 with inverse
 \begin{equation*}
-T^{-1}(\omega, (u, v))=(u, v-uz(\omega)),\;\; (u,
-v)\in{H}.
+T^{-1}(\omega, (u, v))=(u, v-uz(\omega)), \quad (u,
+v)\in{H}\,.
 \end{equation*}
 Then $\hat{\varphi}(t,\omega, (u_0, v_0))=T(\theta_t\omega,
 \varphi(t,\omega, T^{-1}(\omega,(u_0, v_0) )))$ is the random
 dynamical system generated by~(\ref{shyp1})--(\ref{shyp2}).
 
-Define \begin{equation*} \mathcal{A}=\left(
-\begin{array}{cc}
-    0, &  -{\operatorname{id}}  \\
-    \frac 1 4 \frac {\partial^2}{\partial x^2}+\operatorname{id}, &  \operatorname{id}\\
-\end{array}
-\right),\;\; F(\Psi)= \left(
-\begin{array}{cc}
-    0   \\
-    f(\Psi_1)  \\
-\end{array}
-\right),\end{equation*}
-\begin{equation*} Z(\theta_t\omega)=\left(%
-\begin{array}{cc}
-       z(\theta_t\omega), & 0 \\
-
+Define \begin{align*}&
+ \mathcal{A}=\begin{bmatrix}     0, &  -{\operatorname{id}}  \\
+    \frac 1 4 \frac {\partial^2}{\partial x^2}+\operatorname{id}, &  \operatorname{id} \end{bmatrix}, 
+    \quad F(\Psi)= \begin{bmatrix} 0   \\
+    f(\Psi_1) \end{bmatrix},
+    \\&
+     Z(\theta_t\omega)=\begin{bmatrix} z(\theta_t\omega), & 0 \\
 -  z^2(\theta_t\omega), & -
-z(\theta_t\omega)
-\end{array}
-\right),
-\end{equation*}
-where $\operatorname{id}$ is the identity operator on the Hilbert
+z(\theta_t\omega) \end{bmatrix},
+\end{align*}
+where $\operatorname{id}$~is the identity operator on the Hilbert
 space~$L^2(0,2\pi)$.
 
  Then~(\ref{rhpy1})--(\ref{rhyp2}) can be written as
@@ -1366,19 +1387,19 @@ Then
 the operator~$\mathcal{A}$ has the eigenvalues
 \begin{equation*}
 \delta_k^\pm=-\frac{1}{2}\pm\sqrt{\frac{5}{4}-\frac 1 4
-k^2},\;\;k=1,2,\ldots
+k^2}, \quad k=1,2,\ldots\,,
 \end{equation*}
-and corresponding eigenvectors are $q^{\pm}_k=(1, \delta_k^\pm)\sin kx $.
+and corresponding eigenvectors are $q^{\pm}_k=(1, \delta_k^\pm)\sin kx $\,.
  The operator~$\mathcal{A}$ has one zero
-eigenvalue $\delta_2^+=0$, one negative eigenvalue
+eigenvalue $\delta_2^+=0$\,, one negative eigenvalue
 $\delta_1^+=\frac{1}{2}$ and the others are all complex numbers
 with negative real part. By using a new inner product~\cite{Wang},  we  define an equivalent norm on~${H}$ with  $\{(1, \delta_k^\pm)\sin kx \}$ are
  orthogonal. 
 
 A   calculation yields that, in terms of the new norm, the
 semigroup~$\mathcal{S}(t)$ generated by~$\mathcal{A}_\nu$
-satisfies exponent trichotomy with $\alpha=\frac 1 2+\epsilon$, $\gamma=\frac 1 4 +\epsilon$
-$\beta=\frac{1}{2}-\epsilon$ for $\epsilon$ small enough and $\dim H^c=\dim {H}^{u}=1$. %Taking
+satisfies exponent trichotomy with $\alpha=\frac 1 2+\epsilon$\,, $\gamma=\frac 1 4 +\epsilon$
+$\beta=\frac{1}{2}-\epsilon$ for $\epsilon$ small enough and $\dim H^c=\dim {H}^{u}=1$\,. %Taking
 %$\eta=\frac{+\beta-\alpha}{2}$, condition~(\ref{c1}) for
 %(\ref{HypM}) becomes
 %\begin{equation}\label{c11}
@@ -1387,7 +1408,7 @@ $\beta=\frac{1}{2}-\epsilon$ for $\epsilon$ small enough and $\dim H^c=\dim {H}^
 %which holds if $a$ is large enough.
 
 
-Let $\Psi=rq_1^++sq_2^++y$, $y\in P^s H$.  From equation~\eqref{RHPY} we have
+Let $\Psi=rq_1^++sq_2^++y$\,, $y\in P^s H$\,.  From equation~\eqref{RHPY} we have
 \begin{eqnarray}
 \dot{s}q_2^+=Z(\theta_t\omega)sq_2^++P^cF(\theta_t\omega, rq_1^++sq_2^++y).
 \end{eqnarray}
@@ -1409,7 +1430,33 @@ Or
 \dot{s}=z(\theta_t\omega)s-s^3+\Ord{s^3}.
 \end{eqnarray}
 
-\end{example}
+
+
+
+
+\subsection{An infinite dimensional center manifold}
+
+Let's consider the \spde{}s
+\begin{equation*}
+\D tu=au-uv+u\dot W\,,\quad
+\D tv=-v+\DD zv+u^2-2\cK(u^2v)+v\dot W\,,
+\end{equation*}
+with Neumann boundary conditions $v_z=0$ at $z=0,\pi$\,, and where operator $\cK=(1+2a-\partial_{zz})^{-1}$.  For example, for the specific case $a=0$
+\begin{equation*}
+\cK v=\int_0^\pi K_0(z,\zeta)v(\zeta)\,d\zeta
+\quad\text{where }K_0=\begin{cases}
+\frac{\cosh(\pi-\zeta)\cosh z}{\sinh\pi}\,,&z<\zeta\,,\\
+\frac{\cosh(\pi-z)\cosh\zeta}{\sinh\pi}\,,&z>\zeta\,,
+\end{cases}
+\end{equation*}
+for which $\csch\pi\leq K_0\leq\coth\pi$ and $\int_0^\pi K_0\,d\zeta=1$\,.
+The above system of \spde{}s has an exact deterministic slow manifold of $v=\cK u^2$.  
+
+The challenge is to approximate the stochastic slow manifold.
+\marginpar{See my report \emph{Truncated infinite dimensional stochastic slow manifold}??}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
