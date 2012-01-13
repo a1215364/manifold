@@ -1257,7 +1257,8 @@ It follows that
 \end{eqnarray*}
 %So $u=0$ is stable if $a<0$.
 
-We now  calculate the slow manifold~$h^c(s\sin x,\omega)$. Assume  \begin{equation*}h^c(s\sin x,\omega)= c_3(s,\omega)\sin 3x+\Ord{s^5}. \end{equation*}
+We now  calculate the slow manifold~$h^c(s\sin x,\omega)$. Assume  \begin{equation*}h^c(s\sin x,\omega)= c_3(s,\omega)\sin 3x+\Ord{s^5}. 
+\end{equation*}
 
 
 Since
@@ -1279,7 +1280,41 @@ is
 $$Eh^c(s\sin x,\omega)=\frac 1{32} a s^3\sin 3x+\Ord{s^5}.$$
 It is the corresponding center manifold of  equation  \eqref{pa} without noise.
 %\marginpar{Must relate to what my analysis gives??}
-%\begin{verbatim}
+\begin{verbatim}
+Slow manifold to error O(a^3,sig^2):
+noise := phi(0,{})
+                           3     3     3    2  5
+dsdt := s*sig*phi(0,{}) - ---*a*s  + -----*a *s
+                           4          128
+             3    2  5
+         - -----*a *s *sig*phi(0,{})
+            512
+                     1      3
+uslow := s*sin(x) + ----*a*s *sin(3*x)
+                     32
+             1      3
+          - ----*a*s *sig*phi(0,{3})*sin(3*x)
+             16
+             2  5    3                 1                 2
+          + a *s *(------*sin(3*x) + ------*sin(5*x)) + a
+                    1024              1024
+           5        3
+         *s *sig*(-----*phi(0,{3})*sin(x)
+                   512
+                 3
+             - -----*phi(0,{3})*sin(3*x)
+                256
+                3
+             - ----*phi(0,{3,3})*sin(3*x)
+                64
+                 1
+             - -----*phi(0,{5})*sin(5*x)
+                256
+                3
+             - ----*phi(0,{5,3})*sin(5*x))
+                64
+\end{verbatim}
+
 
 
 \subsection{Semilinear damped wave dynamics}
@@ -1345,7 +1380,7 @@ Define \begin{align*}&
     f(\Psi_1) \end{bmatrix},
     \\&
      Z(\theta_t\omega)=\begin{bmatrix} z(\theta_t\omega), & 0 \\
--  z^2(\theta_t\omega), & -
+ -  z^2(\theta_t\omega), & -
 z(\theta_t\omega) \end{bmatrix},
 \end{align*}
 where $\operatorname{id}$~is the identity operator on the Hilbert
@@ -1421,7 +1456,7 @@ with Neumann boundary conditions $v_z=0$ at $z=0,\pi$\,, and where operator $\cK
 \begin{equation*}
 \cK v=\int_0^\pi K_0(z,\zeta)v(\zeta)\,d\zeta
 \quad\text{where }K_0=\begin{cases}
-\frac{\cosh(\pi-\zeta)\cos h z}{\sinh\pi}\,,&z<\zeta\,,\\
+\frac{\cosh(\pi-\zeta)\cosh z}{\sinh\pi}\,,&z<\zeta\,,\\
 \frac{\cosh(\pi-z)\cosh\zeta}{\sinh\pi}\,,&z>\zeta\,,
 \end{cases}
 \end{equation*}
