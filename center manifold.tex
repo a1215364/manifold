@@ -41,6 +41,7 @@
 \newcommand{\DDD}[2]{\Dn{#1}3{#2}}
 \newcommand{\DDDD}[2]{\Dn{#1}4{#2}}
 \newcommand{\cK}{\mathcal K_a}
+\newcommand{\cKo}{\mathcal K_0}
 \newcommand{\csch}{\operatorname{csch}}
 
 \newtheorem{theorem}{Theorem}
@@ -285,18 +286,18 @@ following we consider a random dynamical system over  the metric dynamical syste
 (\Omega,\mathcal{F},\mathbb{P},\theta)$.
 
 
-We show that  the solution of equation~(\ref{eq(2.1)}) define  a random dynamical system.  For any $v\in H$ and $\omega\in \Omega$\,,
+We show that  the solution of equation~(\ref{eq(2.1)}) define  a random dynamical system.  For any $u^*\in H$ and $\omega\in \Omega$\,,
 we introduce the  coordinate transform
 \begin{equation}\label{eq(2.7)}
-T(v, \omega)=v\exp[{-z(\omega)}]
+u=T(u^*, \omega)=u^*\exp[{-z(\omega)}]
 \end{equation}
 and its inverse transform
 \begin{equation}\label{eq(2.8)}
-T^{-1}(v, \omega)=v\exp[{z(\omega)}].
+T^{-1}(u^*, \omega)=u^*\exp[{z(\omega)}].
 \end{equation}
 
 
-
+Without loss of generality, we drop the $*$. 
 We transform  the stochastic evolution equation~\eqref{eq(2.1)}  into the following partial differential equation with random coefficients
 \begin{equation}\label{eq(2.5)}
 \frac{du}{dt}=Au+z(\theta_t\omega)u+G(\theta_t\omega,u),\quad
@@ -1192,7 +1193,7 @@ We prove that there exist a random variable~$K(\omega)$ such that $S$ maps~$Y(\o
 Since
 \begin{align*}
 &y(0,u_c,\omega)\\=&\int_{-\infty}^0\frac d{ds}\left[\Psi_{-A}(0,s)P^sy(0,u_c(s,v,\omega),\omega)\right]\,ds\\&{} -\int^{\infty}_0\frac d{ds}\left[\Psi_{-A}(0,s)P^uy(0,u_c(s,v,\omega),\omega)\right]\,ds
-\\  =&\int_{-\infty}^0\Psi_{-A}(0,s)\left[(-A-z(\theta_s\omega))P^sy(0,u_c(s,v,\omega),\omega)+\frac d{ds}P^sy(0,u_c(s,v,\omega),\omega)\right]\,ds\\&{} -\int^{\infty}_0\Psi_{-A}(0,s)\left[(-A-z(\theta_s\omega))P^uy(0,u_c(s,v,\omega),\omega)
+\\  =&\int_{-\infty}^0\Psi_{-A}(0,s)\left[(-A-z(\theta_s\omega))P^sy(0,u_c(s,v,\omega),\omega)+\frac d{ds}P^sy(0,u_c(s,v,\omega),\omega)\right]\,ds\\&{} -\int^{\infty}_0\Psi_{-A}(0,s)\\&\left[(-A-z(\theta_s\omega))P^uy(0,u_c(s,v,\omega),\omega)
  +\frac d{ds}P^uy(0,u_c(s,v,\omega),\omega)\right]\,ds\,.
  \end{align*}
 Here
@@ -1214,20 +1215,20 @@ From the above calculations
 Q^u(y,w,\omega)=&M(P^uy)-P^sy_v(0,u_c(s,v,\omega),\omega)[P^cG(\theta_t\omega,y(0,u_c,\omega))\\&\-P^cG(\theta_t\omega,y(0,u_c,\omega)+w(0,u_c,\omega))]
 -[P^uG(\theta_t\omega,y(0,u_c,\omega)\\&{} +w(0,u_c,\omega))-P^u(\theta_t\omega,y(0,u_c,\omega))].
 \end{align*}
-Since $g(0,\omega)=0$\,, $g_v(0,\omega)=0$ and $g$~is  $\mathcal{F}$-measurable, for a small random variable~$\epsilon(\omega) $,  there exists a positive random variable~$\delta(\omega) $ such that
+Since $g_v(0,\omega)=0$ and $g$ is ~$C^1$ in a neighborhood of origin  in~$H^c$, for a small random variable~$\epsilon(\omega) $,  there exists a positive random variable~$\delta(\omega) $ such that
 \begin{eqnarray*}|g_v(v,\omega)|<\epsilon(\omega)\end{eqnarray*} if $|v|<\delta(\omega) $.
-From $M(y)(0,u_c,\omega)=C_1(\omega)|u_c|^q$ for a positive random variable~$C_1(\omega)$ and all $v\in H^c$,
+From $M(y)(0,u_c,\omega)=C_1(\omega)|u_c|^q$ for a positive random variable~$C_1(\omega)$ and all $u_c\in H^c$,
 $|Q^s|\leq C_2(\omega)|u_c|^q$ and  $|Q^u|\leq C_3(\omega)|u_c|^q$.   Using the Gronwall's  inequality in equation~\eqref{eq(6.1)}  we  conclude  $|u_c|\leq C_4(\omega)|v|$.
  \end{proof}
 
 \section{Examples} \label{Sec7}
-We present some examples to show our results.   Example~\ref{exam1} shows that we  directly use the computer algebra~\cite{Rob} to compute the stochastic center manifolds.  We  also do not need the convolution term.  This is different from the results of Roberts~\cite{Rob1}, which   cutted the stochastic partial differential differential equations to be finite dimensional and then used the finite dimensional stochastic center manifolds theory.
+We present some examples to show our results.   Example~\ref{exam1} shows that we  directly use the computer algebra~\cite{Rob} to compute the stochastic center manifolds.  We  also do not need the convolution term.  This is different from the results of Roberts~\cite{Rob1}, which  assume the existence of theory of center manifolds in the stochastic partial differential equations.
 
 \subsection{Reaction-diffusion dynamics}
 \label{exam1}
 Consider the stochastic parabolic equation
 \begin{equation}\label{pa}
- u_{t}= u_{xx}+u- a  u^3+  u\circ\dot{W}
+ u_{t}= u_{xx}+u- a  u^3+ \sigma u\circ\dot{W}
 \quad\text{with}\quad
  u(0,t)=u(\pi,t)=0\,,  \quad t\geq 0\,.
 \end{equation}
@@ -1240,7 +1241,7 @@ The corresponding complete and orthogonal  eigenfunctions  are~$\sin nx$\,, $n=1
 Random variable $z(\theta_t\omega)$ is the stationary solution of  the Ornstein--Uhlenbeck \sde~(\ref{eq(2.4)}).
 The transformed random parabolic equation is
 \begin{equation}\label{pa1}
- u_{t}= u_{xx}+u+z(\theta_t\omega)u-a\exp[2z(\theta_t\omega)] u^3.
+ u_{t}= u_{xx}+u+\sigma z(\theta_t\omega)u-a\exp[2\sigma z(\theta_t\omega)] u^3.
 \end{equation}
 
 Select parameter~$a$ small enough such the condition of  Theorem~\ref{Thm(3.1)}  is satisfied.  Then we have the slow (center) manifold
@@ -1248,12 +1249,12 @@ Select parameter~$a$ small enough such the condition of  Theorem~\ref{Thm(3.1)} 
 where $c_n(s,\omega)=\Ord{s^3}$ as $s\to 0$ for $\omega\in \Omega$\,.
 The random dynamical system on the slow manifold~$M^c(\omega)$ satisfies
 \begin{eqnarray}\label{pa2}
-\frac {ds}{dt}\sin x+\sum_{n=2}^\infty c_n'(s,\omega)\sin nx=\sum_{n=2}^\infty[1-n^2+z(\theta_s\omega)] c_n(s,\omega)\sin nx\nonumber\\
-+sz(\theta_s\omega)\sin x-{\exp[2z(\theta_s\omega)]} as^3\sin^3 x+\Ord{s^5}.
+\frac {ds}{dt}\sin x+\sum_{n=2}^\infty c_n'(s,\omega)\sin nx=\sum_{n=2}^\infty[1-n^2+z(\theta_t\omega)] c_n(s,\omega)\sin nx\nonumber\\
++s\sigma z(\theta_t\omega)\sin x-{\exp[2\sigma z(\theta_t\omega)]} as^3\sin^3 x+\Ord{s^5}.
 \end{eqnarray}
 It follows that
 \begin{eqnarray*}
-\frac {ds}{dt}=sz(\theta_s\omega)-\frac 3 4 {\exp[2z(\theta_s\omega)]}  as^3+\Ord{s^5}.
+\frac {ds}{dt}=s\sigma z(\theta_t\omega)-\frac 3 4 {\exp[2\sigma z(\theta_t\omega)]}  as^3+\Ord{s^5}.
 \end{eqnarray*}
 %So $u=0$ is stable if $a<0$.
 
@@ -1263,23 +1264,29 @@ We now  calculate the slow manifold~$h^c(s\sin x,\omega)$. Assume  \begin{equati
 
 Since
 \begin{eqnarray*}
-a\exp[2z(\theta_s\omega)](s\sin x+c_3\sin 3x)^3
+a\exp[2\sigma z(\theta_t\omega)](s\sin x+c_3\sin 3x)^3
  = {as^3}
- \exp[2z(\theta_s\omega)]\sin ^3 x+\Ord{s^5}.\end{eqnarray*}
-So \begin{equation*}P^cG(\theta_t\omega,s\sin x+h^c)=\frac 3 4 as^3\exp[2z(\theta_s\omega)]\sin x+\Ord{s^5}, \end{equation*} \begin{equation*}P^sG(\theta_t\omega,s\sin x+h^c)=-\frac 1 {4} as^3\exp[2z(\theta_s\omega)]\sin 3x+\Ord{s^5}.\end{equation*}
+ \exp[2\sigma z(\theta_t\omega)]\sin ^3 x+\Ord{s^5}.\end{eqnarray*}
+So \begin{equation*}P^cG(\theta_t\omega,s\sin x+h^c)=\frac 3 4 as^3\exp[2\sigma z(\theta_t\omega)]\sin x+\Ord{s^5}, \end{equation*} \begin{equation*}P^sG(\theta_t\omega,s\sin x+h^c)=-\frac 1 {4} as^3\exp[2\sigma z(\theta_t\omega)]\sin 3x+\Ord{s^5}.\end{equation*}
 From
 \begin{align*}
-M(h^c)(v,\omega)=&\,h_v^c(v,\omega)[P^cA+z(\theta_t\omega)v+P^cG(\theta_t\omega, v+h^c)]-(\operatorname{id}-P^cA)h^c\\&{} -z(\theta_t\omega)h^c-P^s G(\theta_t\omega,  v+h^c)-P^uG(\theta_t\omega,  v+h^c),
+M(h^c)(v,\omega)=&\,h_v^c(v,\omega)[P^cA+\sigma z(\theta_t\omega)v+P^cG(\theta_t\omega, v+h^c)]-(\operatorname{id}-P^cA)h^c\\&{} -\sigma z(\theta_t\omega)h^c-P^s G(\theta_t\omega,  v+h^c)-P^uG(\theta_t\omega,  v+h^c),
 \end{align*}
-and $h^c(v,\omega)=c_3(s,\omega)\sin 3x$\,, we have $c_3(s,\omega)=\frac 1 {8-z(\theta_t\omega)}\times \frac 1 4 a s^3\exp[2z(\theta_s\omega)]$.
+and $h^c(v,\omega)=c_3(s,\omega)\sin 3x$\,, we have $c_3(s,\omega)=\frac 1 {8-\sigma z(\theta_t\omega)}\times \frac 1 4 a s^3\exp[2\sigma z(\theta_t\omega)]$.
 So
 %\marginpar{Need some explanation of $1/[ {8-z(\theta_t\omega)}]$ ??}
- \begin{equation*}h^c(s\sin x,\omega)= \frac 1 {8-z(\theta_s\omega)}\times \frac 1 4 a s^3\exp[2z(\theta_s\omega)]\sin 3x+\Ord{s^5}. \end{equation*}
-Note that $z(\theta_s\omega)=-\int_{-\infty}^0\exp(\tau)\omega(\tau+t)\,d\tau+\omega(t)=\int_{-\infty}^t\exp(s-t)dW(s)$.  In fact this is the convolution term~\cite{Rob1}. Then the expectation of stochastic centre manifold
+ \begin{equation*}h^c(s\sin x,\omega)= \frac 1 {8-\sigma z(\theta_t\omega)}\times \frac 1 4 a s^3\exp[2\sigma z(\theta_t\omega)]\sin 3x+\Ord{s^5}. \end{equation*}
+Note that $z(\theta_t\omega)=-\int_{-\infty}^0\exp(\tau)\omega(\tau+t)\,d\tau+\omega(t)=\int_{-\infty}^t\exp(s-t)dW(s)$.  In fact this is the convolution term~\cite{Rob1}. Then the expectation of stochastic centre manifold
 is
 $$Eh^c(s\sin x,\omega)=\frac 1{32} a s^3\sin 3x+\Ord{s^5}.$$
 It is the corresponding center manifold of  equation  \eqref{pa} without noise.
 %\marginpar{Must relate to what my analysis gives??}
+The  stochastic center manifold of stochastic parabolic equation \eqref{pa} is 
+$$\tilde h^c(s\sin x,\omega)=\frac 1{32} a   s^3\sin 3x-\frac 1{32} \sigma z(\theta_t\omega) a s^3\sin 3x+\Ord{s^5, \sigma^2}.$$
+\begin{eqnarray*}
+\frac {ds}{dt}=s\sigma z(\theta_t\omega)-\frac 3 4  as^3+\Ord{s^5}.
+\end{eqnarray*}
+Since $z(\theta_t\omega)=$phi(0,\, \{\}),  this is the first and second terms of the follow stochastic slow manifold by  the computer algebra~\cite{Rob}. 
 \begin{verbatim}
 Slow manifold to error O(a^3,sig^2):
 noise := phi(0,{})
@@ -1445,27 +1452,51 @@ Or
 
 
 
+
 \subsection{An infinite dimensional center manifold}
 We have not found some examples of infinite dimensional center manifolds except  Mielke~\cite{Mie}.
 As a toy example let's  consider the \spde{}s
+\begin{equation}\label{1}
+\D tu=au-uv+\sigma u \circ \dot W\,,\quad
+\D tv=-v+\DD xv+u^2-2\cK(u^2v)+\sigma v \circ \dot W\,,
+\end{equation}
+with Neumann boundary conditions $v_z=0$ at $z=0,\pi$\,, and the  operator $\cK=(1+2a-\partial_{zz})^{-1}$.  
+
+
+%\begin{equation*}
+%\D tu=au-uv+u\dot W\,,\quad
+%\D tv=-v+\DD zv+u^2-2\cK(u^2v)+v\dot W\,,
+%\end{equation*}
+%with Neumann boundary conditions $v_z=0$ at $z=0,\pi$\,, and where operator $\cK=(1+2a-\partial_{zz})^{-1}$.  For example, for the specific case $a=0$
+%\begin{equation*}
+%\cK v=\int_0^\pi K_0(z,\zeta)v(\zeta)\,d\zeta
+%\quad\text{where }K_0=\begin{cases}
+%\frac{\cosh(\pi-\zeta)\cosh z}{\sinh\pi}\,,&z<\zeta\,,\\
+%\frac{\cosh(\pi-z)\cosh\zeta}{\sinh\pi}\,,&z>\zeta\,,
+%\end{cases}
+%\end{equation*}
+%for which $\csch\pi\leq K_0\leq\coth\pi$ and $\int_0^\pi K_0\,d\zeta=1$\,.
+%The above system of \spde{}s has an exact deterministic slow manifold of $v=\cK u^2$.
+
+%The challenge is to approximate the stochastic slow manifold.
+%\marginpar{See my report \emph{Truncated infinite dimensional stochastic slow manifold}??}
+
+Transform the \spde{}s \eqref{1} to  systems of \spde{}s with random coefficient.  
+\begin{eqnarray*}\label{2}
+\D tu&=&au+\sigma z(\theta_t\omega)u-\exp(\sigma z(\theta_t\omega))uv,\\
+\D tv&=&-v+\DD xv+\sigma z(\theta_t\omega)v+\exp(\sigma z(\theta_t\omega))u^2-2\exp(2\sigma z(\theta_t\omega))\cK(u^2v)\,,
+\end{eqnarray*}
+For the specific case $a=0$,
 \begin{equation*}
-\D tu=au-uv+u\dot W\,,\quad
-\D tv=-v+\DD zv+u^2-2\cK(u^2v)+v\dot W\,,
-\end{equation*}
-with Neumann boundary conditions $v_z=0$ at $z=0,\pi$\,, and where operator $\cK=(1+2a-\partial_{zz})^{-1}$.  For example, for the specific case $a=0$
-\begin{equation*}
-\cK v=\int_0^\pi K_0(z,\zeta)v(\zeta)\,d\zeta
+\cKo v=\int_0^\pi K_0(z,\zeta)v(\zeta)\,d\zeta
 \quad\text{where }K_0=\begin{cases}
-\frac{\cosh(\pi-\zeta)\cosh z}{\sinh\pi}\,,&z<\zeta\,,\\
-\frac{\cosh(\pi-z)\cosh\zeta}{\sinh\pi}\,,&z>\zeta\,,
+\frac{\cos(\pi-\zeta)\cos z}{\sin\pi}\,,&z<\zeta\,,\\
+\frac{\cos(\pi-z)\cos\zeta}{\sin\pi}\,,&z>\zeta\,,
 \end{cases}
 \end{equation*}
-for which $\csch\pi\leq K_0\leq\coth\pi$ and $\int_0^\pi K_0\,d\zeta=1$\,.
-The above system of \spde{}s has an exact deterministic slow manifold of $v=\cK u^2$.
+for which $\csc\pi\leq K_0\leq\cot\pi$ and $\int_0^\pi K_0\,d\zeta=1$\,.
 
-The challenge is to approximate the stochastic slow manifold.
-\marginpar{See my report \emph{Truncated infinite dimensional stochastic slow manifold}??}
-
+If the parameter $\sigma$ is small enough,  then the above system of \spde{}s has an approximation stochastic slow manifold of $v=\cKo u^2$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
