@@ -105,7 +105,7 @@ Recently invariant manifolds for stochastic differential equations and stochasti
 Inertial manifolds is a   generalization of center-unstable manifolds on   finite dimensional  space to  infinite dimensional space.  Flandoli  and others~\cite{Ben, Car1, Prato}  constructed the  stochastic inertial manifolds on infinite dimensional space by different methods. Center manifolds  are  important invariant manifolds.  It  has been  investigated extensively  for  infinite dimensional deterministic systems~\cite{Bat, Carr, Van}.  But there are only few papers  dealing  specifically with infinite dimensional center manifolds. Gallay~\cite{Gal}  proved   the existence of  infinite dimensional center-stable manifolds and local center manifolds  for a class of  deterministic evolution equations  in Banach spaces.
 
 
-In this paper, we treat the problems of stochastic center manifolds  on infinite dimensional Hilbert space with multiplicative white noise in  the following class of stochastic evolution equation
+This article establishes existence and properties of stochastic center manifolds  on infinite dimensional Hilbert spaces with multiplicative white noise in the following class of stochastic evolution equation
 \begin{equation}\label{eq(2.1)}
     \frac{d u}{dt}=A u+F( u)+u\circ \dot{W}(t),
 \end{equation}
@@ -113,7 +113,11 @@ where $u\in H$ is a Hilbert space typically defined on some spatial domain,  ${W
 \begin{equation}\label{pa}
  u_{t}= u_{xx}+4u+u\circ\dot{W}(t), \quad u(0,t)=u(\pi,t)=0\,, \quad  t\geq 0\,.
 \end{equation}
+<<<<<<< HEAD
 In this example the Hilbert space~$H$ is the function space~$L^2(0,\pi)$.  This example  stochastic partial differential equation (\textsc{spde}) has   stable  center  and unstable subspaces.
+=======
+In this example the Hilbert space~$H$ is the function space~$L^2(0,\pi)$.  This example  stochastic partial differential equation (\textsc{spde}) has all three subspaces of interest:  stable,  center  and unstable subspaces.
+>>>>>>> some preliminary minor tweaks
 %  This \textsc{spde} also defines a center subspace.
 Thus, the theory of Duan et al.~\cite{Car2,Duan1,Duan2} does not apply.   Sections~\ref{Sec2}--\ref{Sec4} establish the theory of center manifolds of such  \textsc{spde}s.
 That is we prove the existence and smoothness of the center manifolds for  stochastic evolution equation~\eqref{eq(2.1)}. The results generalize the work of  Duan  et al.~\cite{Duan1, Duan2}, who proved the existence and smoothness of center-stable and center-unstable  manifolds. % We also consider the application of such stochastic center manifolds.
@@ -121,8 +125,14 @@ The stochastic center manifolds we obtain  are generally  infinite dimensional. 
 
 Our main assumption is that there exists a spectral gap for the linear operator~$A$.  Such  a gap  allows us to construct the infinite dimensional  center manifolds.  Exponential dichotomy is one of the basic assumptions  in nonlinear dynamical systems.  The assumption plays a central role in the study of stable and unstable manifolds.
 %However, the assumption of exponential dichotomy is not a a sufficient condition of  the existence of center manifolds.
+<<<<<<< HEAD
 But the assumption of exponential dichotomy~\cite{Duan1, Duan2}  is not a sufficient condition for proving the existence of center manifolds. For example,   a  generator of a strongly continuous semigroup  has some of its spectrum on the imaginary axis,    which implies  the existence of  center manifolds, but there is no exponential dichotomy
 as  Pr\"{u}ss~\cite{Pr}  showed.     The pseudo-exponential dichotomy~\cite{Duan1,Pli} is also  not a sufficient assumption to prove the existence  of  center manifolds since in the finite dimension case  we need to ensure  the existence of zero real part of the  spectrum of a bounded operator. The concept of exponential trichotomy is important for center manifold theory  in infinite dimensional dynamical systems and non-autonomous systems~\cite{Bar, Gal, Pli}.  The existence of exponential trichotomy means  that the space is split  into three subspaces: center subspace, unstable subspace and stable subspace.  In  finite dimensional space  the exponential trichotomy is satisfied automatically.   Center manifold theory is based on the assumption of exponential trichotomy~\cite{Pli}.    Section~\ref{Sec2}  introduces the exponential trichotomy and conjugated random evolution equations.  Using the Lyapunov--Perron method, Section~\ref{Sec3}  proves the existence of   stochastic center manifolds  under the assumption of exponential trichotomy.   We  consider  the existence of local center manifolds  via a cut-off technique.
+=======
+But the assumption of an exponential dichotomy~\cite{Duan1, Duan2}  is not a sufficient condition for proving the existence of center manifolds. 
+For example,  a  generator of a strongly continuous semigroup  has some of its spectrum on the imaginary axis,  which implies  the existence of  center manifolds, but Pr\"{u}ss~\cite{Pr} showed there is no exponential dichotomy.     
+The pseudo-exponential dichotomy~\cite{Duan1,Pli} is also  not a sufficient assumption to prove the existence  of  center manifolds since in the finite dimension case  we need to ensure  the existence of zero real part of the  spectrum of a bounded operator. The concept of exponential trichotomy is important for center manifold theory  in infinite dimensional dynamical systems and non-autonomous systems~\cite{Bar, Gal, Pli}.  The existence of exponential trichotomy means  that the space is split  into three subspaces: center subspace, unstable subspace and stable subspace.  In  finite dimensional space  the exponential trichotomy is satisfied automatically.   Center manifold theory is based on the assumption of exponential trichotomy~\cite{Pli}.    Section~\ref{Sec2}  introduces the exponential trichotomy and conjugated random evolution equations.  Using the Lyapunov--Perron method, Section~\ref{Sec3}  proves the existence of   stochastic center manifolds  under the assumption of exponential trichotomy.   We  consider  the existence of local center manifolds  via a cut-off technique.
+>>>>>>> some preliminary minor tweaks
 When the stable subspace or the unstable subspace disappear, then our theorems reduce to  the results by Duan and others ~\cite{Duan1, Duan2}.
 
 Deterministic center manifold theory is widely studied and further extended by others in various contexts~\cite[e.g.]{Adi, Bat, Carr,Chi,  Har, Hen,  Van,  Van2}.
@@ -157,6 +167,7 @@ strongly continuous semigroup $S(t):=\exp({At})$ on~$H$ is said to  satisfy  the
 exponential trichotomy  with exponents $\alpha >\gamma> 0>-\gamma>-\beta$\,, if the there exist continuous projection operators~$P^c$, $P^u$ and~$P^s$ on~$H$ such
 that the following four conditions hold.
 \begin{enumerate}
+<<<<<<< HEAD
 \item [(i)] $\operatorname{id}=P^c+P^s+P^u$,  where $P^iP^j=0$ for $ i\neq j$ and $i,j\in\{c,s,u\}$, and where $\operatorname{id}$~is the identity operator.
 \item [(ii)]   $P^c \exp (At)=\exp(At)P^c$, $P^u\exp(At)=\exp(At)P^u$, $P^s\exp(At)=\exp(At)P^s$ for $t\geq 0$\,.
 \item [(iii)]  Denote the reducing subspaces $H^c:= P^cH$\,, $H^u:=P^uH$ and  $H^s:=P^sH$\,. We  call~$H^c$,  $H^u$ and~$H^s$ the center subspace, the unstable
@@ -164,6 +175,15 @@ subspace  and the stable subspace, respectively.  The restriction~$\exp(At)|_{H^
 isomorphism from~$H^i$ onto~$H^i$,  and we
 define~$\exp(At)|_{H^i}$ for $t <0$ as the inverse map of~$\exp(-At)|_{H^i}$, $i\in\{c,s,u\}$.
 \item [(iv)] 
+=======
+\item $\operatorname{id}=P^c+P^s+P^u$,  where $P^iP^j=0$ for $ i\neq j$ and $i,j\in\{c,s,u\}$, and where $\operatorname{id}$~is the identity operator.
+\item   $P^c \exp (At)=\exp(At)P^c$, $P^u\exp(At)=\exp(At)P^u$, $P^s\exp(At)=\exp(At)P^s$ for $t\geq 0$\,.
+\item  Denote the reducing subspaces $H^c:= P^cH$\,, $H^u:=P^uH$ and  $H^s:=P^sH$\,. We  call~$H^c$,  $H^u$ and~$H^s$ the center subspace, the unstable
+subspace  and the stable subspace, respectively.  The restriction~$\exp(At)|_{H^i}$\,,  $t\geq 0$ are
+isomorphism from~$H^i$ onto~$H^i$,  and we
+define~$\exp(At)|_{H^i}$ for $t <0$ as the inverse map of~$\exp(-At)|_{H^i}$, $i\in\{c,s,u\}$.
+\item  
+>>>>>>> some preliminary minor tweaks
 \begin{eqnarray}
 &&|\exp(At)P^c v|\leq K \exp({\gamma |t|})|P^cv|,  \quad t \in  \mathbb{R},   v\in H,   \label{trichotomy1} \\
 &&|\exp(At)P^u v|\leq K \exp({\alpha t}) |P^uv|,\quad t\leq 0\,,  v\in H,   \label{trichotomy2}\\
@@ -171,7 +191,6 @@ define~$\exp(At)|_{H^i}$ for $t <0$ as the inverse map of~$\exp(-At)|_{H^i}$, $i
 \end{eqnarray}
 \end{enumerate}
 % Then$H=H^c\oplus H^u\oplus H^s$.
-
 \end{definition}
 
 \begin{remark}If $H$~is a  finite dimensional space  and there exist     eigenvalues with real part   zero, less than zero,  and greater than zero,  then we have the
@@ -219,6 +238,7 @@ differential equation,
 dz+z\,dt=dW.
 \end{equation}
 A solution of this equation is called an Ornstein--Uhlenbeck
+<<<<<<< HEAD
 process. Let $C_0(\mathbb{R},\mathbb{R})$ be continuous functions on~$\mathbb{R}$, the associated distribution~$\mathbb{P}$ is a Wiener measure defined on the Borel-$\sigma$-algebra $\mathcal{B}(C_0(\mathbb{R},\mathbb{R}))$.   $\{\theta_t\}_{t\in\mathbb{R}}$ is the metric dynamical system generated by Wiener process $W(t)$.  A random dynamical system on a metric space $H$ over on $(\Omega,\mathcal{B}, \mathbb{P}, \theta_t)$ is a measurable map
 \begin{eqnarray*}\phi:\mathbb{R}\times H  \times  \Omega&\to& H\\
 (t,u, \omega)& \mapsto &\phi(t,u, \omega)\end{eqnarray*}such that
@@ -227,6 +247,16 @@ process. Let $C_0(\mathbb{R},\mathbb{R})$ be continuous functions on~$\mathbb{R}
 \item [(ii)]  $\phi(t+s,u,\omega)=\phi(t,u,\theta_s\omega)\phi(s,u,\omega)$,   $\forall \, t,s \in \mathbb{R}$ for almost for $\omega \in \Omega$. 
 \end{enumerate}
  Caraballo et~al.~\cite{Car3} and Duan et al.~\cite{ Duan1} established the following lemma, which is used in the proof of existence of  stochastic  invariant manifolds.
+=======
+process. Let $C_0(\mathbb{R},\mathbb{R})$ be continuous functions on~$\mathbb{R}$, the associated distribution~$\mathbb{P}$ is a Wiener measure defined on the Borel-$\sigma$-algebra $\mathcal{B}(C_0(\mathbb{R},\mathbb{R}))$.   Define $\{\theta_t\}_{t\in\mathbb{R}}$ to be the metric dynamical system generated by the Wiener process~$W(t)$.  A random dynamical system on a metric space~$H$ on $(\Omega,\mathcal{B}, \mathbb{P}, \theta_t)$ is a measurable map
+\begin{eqnarray*}\phi:\mathbb{R}\times H  \times  \Omega&\to& H\\
+(t,u, \omega)& \mapsto &\phi(t,u, \omega)\end{eqnarray*}such that
+\begin{enumerate}
+\item   $\phi(0,u,\omega)=\operatorname{id}$;
+\item   $\phi(t+s,u,\omega)=\phi(t,u,\theta_s\omega)\phi(s,u,\omega)$,   for all $t,s \in \mathbb{R}$ for almost all $\omega \in \Omega$. 
+\end{enumerate}
+ Caraballo et~al.~\cite{Car3} and Duan et al.~\cite{ Duan1} established the following lemma, which is used in the proof of the existence of  stochastic  invariant manifolds.
+>>>>>>> some preliminary minor tweaks
 \begin{lemma}\label{lem(2.1)}
 \begin{enumerate}
 \item  [(i)] There exists a $\{\theta_t\}_{t\in\mathbb{R}}$-invariant set
@@ -236,7 +266,11 @@ with sublinear growth:
 \lim_{t\to\pm\infty}\frac{|\omega(t)|}{|t|}=0\,,\quad
 \omega\in\Omega\,.
 \]
+<<<<<<< HEAD
 \item  [(ii)]  For $\omega\in\Omega$ the random variable
+=======
+\item   For $\omega\in\Omega$ the random variable
+>>>>>>> some preliminary minor tweaks
 $z(\omega)=-\int_{-\infty}^0e^\tau\omega(\tau)\,d\tau$
 exists and generates a unique stationary solution of the Ornstein--Uhlenbeck \sde~(\ref{eq(2.4)})
 given by the convolutions
@@ -247,13 +281,21 @@ given by the convolutions
 \end{eqnarray*}
 The mapping $t\mapsto z(\theta_t\omega)$
 is continuous.
+<<<<<<< HEAD
 \item  [(iii)]  In particular,
+=======
+\item    In particular,
+>>>>>>> some preliminary minor tweaks
 \begin{equation*}
 %\label{eq401}
 \lim_{t\to\pm\infty}\frac{|z(\theta_t\omega)|}{|t|}=0\quad
    \text{for }\omega\in\Omega\,.
 \end{equation*}
+<<<<<<< HEAD
 \item [(iv)]   In addition,
+=======
+\item    In addition,
+>>>>>>> some preliminary minor tweaks
 \begin{equation*}
 \lim_{t\to\pm\infty}\frac{1}{t}\int_0^tz(\theta_\tau\omega)\,d\tau=0\quad
   \text{for }\omega\in\Omega\,.
@@ -382,8 +424,12 @@ such that
 $M(\omega)=\{v + h^c(v,\omega) \mid v\in H^c\}$,
 $h^c(0,\omega)=0$\,, and the tangency condition that  the derivative $Dh^c(0,\omega)=0$\,, $h^c(v,\cdot)$ is measurable for every $v\in H^c$,
 then $M(\omega)$~is called a (Lipschitz) center
+<<<<<<< HEAD
 manifold, often denoted as~$M^c(\omega)$.  $M(\omega)$ is called a local center manifold if  it is a graph of     (Lipschitz)
 mapping   $\chi_R(v)h^c(\cdot,\omega)$.
+=======
+manifold, often denoted as~$M^c(\omega)$.  $M(\omega)$~is called a local center manifold if it is a graph of a (Lipschitz) mapping~$\chi_R(v)h^c(\cdot,\omega)$.
+>>>>>>> some preliminary minor tweaks
 \end{definition}
 
 
@@ -1076,7 +1122,11 @@ This section proves the stability of the random evolution equation~\eqref{eq(2.5
 
 
 \begin{lemma} \label{lemma9}
+<<<<<<< HEAD
 Let $M^c(\omega)$ be a  locally stochastic center manifold for stochastic evolution equation~\eqref{eq(2.5)}, then there exist positive constants~$U$  and~$\mu$ such that for $\omega \in \Omega$,
+=======
+Let $M^c(\omega)$ be a  locally stochastic center manifold for the stochastic evolution equation~\eqref{eq(2.5)}, then there exist positive constants~$U$  and~$\mu$ such that for $\omega \in \Omega$\,,
+>>>>>>> some preliminary minor tweaks
 \begin{eqnarray*}
 |P^su(t,u_0, \omega)-P^sh^c(P^cu(t,u_0,\omega),\omega)|\leq U\exp({-\mu t})|P^su_0-P^sh^c(P^cu_0,\omega)|,
 \end{eqnarray*}
@@ -1226,7 +1276,11 @@ Q^u(y,w,\omega)=&M(P^uy)-P^sy_v(0,u_c(s,v,\omega),\omega)[P^cG(\theta_t\omega,y(
 Since $g_v(0,\omega)=0$ and $g$ is ~$C^1$ in a neighborhood of origin  in~$H^c$, for a small random variable~$\epsilon(\omega) $,  there exists a positive random variable~$\delta(\omega) $ such that
 \begin{eqnarray*}|g_v(v,\omega)|<\epsilon(\omega)\end{eqnarray*} if $|v|<\delta(\omega) $.
 From $M(y)(0,u_c,\omega)=C_1(\omega)|u_c|^q$ for a positive random variable~$C_1(\omega)$ and all $u_c\in H^c$,
+<<<<<<< HEAD
 $|Q^s|\leq C_2(\omega)|u_c|^q$ and  $|Q^u|\leq C_3(\omega)|u_c|^q$.   Using the Gronwall's  inequality in equation~\eqref{eq(6.1)}  we  conclude  $|u_c|\leq C_4(\omega)|v|$.
+=======
+$|Q^s|\leq C_2(\omega)|u_c|^q$ and  $|Q^u|\leq C_3(\omega)|u_c|^q$.   Using Gronwall's  inequality in equation~\eqref{eq(6.1)}  we  conclude  $|u_c|\leq C_4(\omega)|v|$.
+>>>>>>> some preliminary minor tweaks
  \end{proof}
 
 \section{Examples} \label{Sec7}
