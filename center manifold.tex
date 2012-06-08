@@ -1279,10 +1279,15 @@ This establishes Corollary~\ref{cor5.4}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Approximation of the center manifolds} \label{Sec6}
 In this section, we prove  existence an  approximation of the stochastic center manifolds. We avoid  assuming the   differentiable  noise in the proof process~\cite{Box1}.  
-For a $\mathcal{F}$-measurable function $g(v,\omega):H^c\to  H^u\oplus H^s$ which are~$C^1$ in a neighborhood of origin  in~$H^c$,
+For a $\mathcal{F}$-measurable function $g(v,\omega):H^c\to  H^u\oplus H^s$ which are~$C^1$ in a neighbourhood of origin  in~$H^c$,
 define
+\marginpar{Need to follow through the effects of direct time dependence as shown in $g_t$??}
 \begin{align*}
-M(g)(v,\omega)={}& \,g_v(v,\omega)[P^cAv+P^cG(\omega,v+ g)]-Av\\&{}-P^s G(\omega, v+g)-P^uG(\omega, v+ g),\end{align*}
+M(g)(v,\omega)={}& 
+g_t(v,\omega)+g_v(v,\omega)[P^cAv+P^cG(\omega,v+ g)]
+\\&{}
+-Ag-P^s G(\omega, v+g)-P^uG(\omega, v+ g),
+\end{align*}
 where $v\in H^c$.
 \begin{theorem}\label{k12}
 Suppose that a  $\mathcal{F}$-measurable function $g(0,\omega)=0$\,, $g_v(0,\omega)=0$ and that $M(g)(v,\omega)=\Ord{|v|^q}$ for some $q>1$\,.
@@ -1382,8 +1387,8 @@ $H^c=\operatorname{span}\{\sin x\}$, the stable subspace $H^s=\operatorname{span
 
 
 Recall that the random variable $z(\theta_t\omega)$ is the stationary solution of  the Ornstein--Uhlenbeck \sde~(\ref{eq(2.4)}) .
-In order to transform to random parabolic equation~\eqref{pa}, from the coordinate transform  \eqref{eq(2.7)} we let the transform $u=u^*\exp(\sigma z(\theta_t\omega))$. %\marginpar{??from where?? you must cross-reference explicitly}
-Drop the $*$,
+In order to transform to random parabolic equation~\eqref{pa}, from the coordinate transform~\eqref{eq(2.7)} we let the transform $u=u^*\exp(\sigma z(\theta_t\omega))$. %\marginpar{??from where?? you must cross-reference explicitly}
+For simplicity omit the~$*$ from here on,
 the transformed random parabolic equation is
 \begin{equation}\label{pa1}
  u_{t}= u_{xx}+u+\sigma z(\theta_t\omega)u-a\exp[2\sigma z(\theta_t\omega)] u^3.
@@ -1418,11 +1423,11 @@ a\exp[2\sigma z(\theta_t\omega)](s\sin x+c_3\sin 3x)^3
 So \begin{align*}&P^cG(\theta_t\omega,s\sin x+h^c)=\frac 3 4 as^3\exp[2\sigma z(\theta_t\omega)]\sin x+\Ord{s^5},
 \\&
 P^sG(\theta_t\omega,s\sin x+h^c)=-\frac 1 {4} as^3\exp[2\sigma z(\theta_t\omega)]\sin 3x+\Ord{s^5}.\end{align*}
-From the formulation of approximation of  center manifild, 
+From the formulation of approximation of  center manifold, 
 \begin{align*}
 M(h^c)(v,\omega)={}&\,h_v^c(v,\omega)[P^cAv+P^cG(\omega, v+h^c)]-Ah^c\\&{} -P^s G(\omega,  v+h^c)-P^uG(\omega,  v+h^c),
 \end{align*}
-and $h^c(v,\omega)=c_3(t,s,\omega)\sin 3x$\,, the coefficients yieds:
+and $h^c(v,\omega)=c_3(t,s,\omega)\sin 3x$\,, the coefficients yield
  \begin{eqnarray*}c_3(t,s,\omega)= \frac 1{ 32} a s^3\exp[2\sigma z(\omega)]. \end{eqnarray*}
 So
 %\marginpar{I am still not happy with $1/[ {8-z(\theta_t\omega)}]$ ??  and I suspect related to neglect of $\partial_t c_n$.  What happens when rare events case a division by zero??}
@@ -1437,17 +1442,18 @@ So
 %It is the corresponding center manifold of  equation  \eqref{pa} without noise.
 %\marginpar{Rewrite to clarify.  Which here involves rewriting the computer algebra in sensible forms: the notation $\phi(0,\{k\})$ is a result of something needed for computer algebra, not notation to be used here.   Expand your interpretation and incorporate appropriately.  Justify why $z_t$ is somehow mysteriously equal to my $\phi(0,0)$ when I believe it is not?? why is your reciprocal equivalent to what appears in (39)??  Give detailed evidence.}
 The  stochastic center manifold of stochastic parabolic equation \eqref{pa} is
-\begin{eqnarray}
-s\sin x+\tilde h^c(s\sin x,\omega)&=&s\sin x+\frac 1{32} a   s^3\sin 3x+\Ord{s^5, \sigma^2}, \label{cas1}
-\\
-\frac {ds}{dt}&=&s\sigma z(\theta_t\omega)-\frac 3 4  as^3+\Ord{s^5,\sigma^2}. \nonumber
+\begin{eqnarray}&&
+s\sin x+\tilde h^c(s\sin x,\omega) = s\sin x+\frac 1{32} a   s^3\sin 3x+\Ord{s^5, \sigma^2}, \label{cas1}
+\\&&\text{such that}\quad
+\frac {ds}{dt} = s\sigma z(\theta_t\omega)-\frac 3 4  as^3+\Ord{s^5,\sigma^2}. \nonumber
 \end{eqnarray}
 Now we directly use the  computer algebra to compute the stochastic center manifold~\cite{Rob}.
-Denote the noise $\phi_k(t)=\exp[-(k^2-1)\star W(t)$, $\phi(t)$ is a noise  dependant on $\phi_k(t)$, %\marginpar{??This convolution looks wrong too.  Check??} 
+Define the Ornstein--Uhlenbeck processes $\phi_k(t)=\exp[-(k^2-1)t]\star \dot W(t)$, 
+%$\phi(t)$ is a noise  dependant on $\phi_k(t)$, %\marginpar{??This convolution looks wrong too.  Check??} 
  then
-\begin{eqnarray}
+\begin{eqnarray}&&
   u= s\sin x + \frac 1 {32} as^3 \sin 3x -\frac 1 {16} as^3\sigma \phi_3(t)\sin 3x+\Ord{s^5, a^2,\sigma^2}\label{cas2}\\
-\mbox{such that } \frac {ds}{dt}= s\sigma \phi(t) -\frac 3 4 as^3 +  \Ord{s^5, a^3,\sigma^2}.  \nonumber
+&&\mbox{such that}\quad \frac {ds}{dt}= s\sigma \dot W(t) -\frac 3 4 as^3 +  \Ord{s^5, a^3,\sigma^2}.  \nonumber
  \end{eqnarray}
  This implies  that  both the stochastic slow manifolds \eqref{cas1} and \eqref{cas2}  have a similar  dynamical behavior.
 
@@ -1464,10 +1470,7 @@ Consider the \spde
  u_{tt}+ u_t= \frac 1 4 u_{xx}+u+f(u)+  u\circ\dot{W},
   \quad x\in (0,2\pi),  \quad t\geq 0\,,
 \end{equation}
-with
-\begin{equation*}
- u(0,t)=u(2\pi, t)=0\,.
-\end{equation*}
+with $u(0,t)=u(2\pi, t)=0$\,.
 %$\nu$ and $a$ are positive constants,
 $W(t)$~is the standard $\mathbb{R}$-valued Wiener process on a probability space~$(\Omega,\mathcal{F}, \mathbb{P} )$.
 The nonlinearity term $f$ is smooth and $f(0)=0$.
