@@ -1278,12 +1278,12 @@ This establishes Corollary~\ref{cor5.4}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Approximation of the center manifolds} \label{Sec6}
-In this section, we prove  existence an  approximation of the stochastic center manifolds. We avoid  assuming the   differentiable  noise in the proof process~\cite{Box1}.
+In this section, we prove  existence an  approximation of the stochastic center manifolds. We avoid  assuming the   differentiable  noise in the proof process~\cite{Box1}.  
 For a $\mathcal{F}$-measurable function $g(v,\omega):H^c\to  H^u\oplus H^s$ which are~$C^1$ in a neighbourhood of origin  in~$H^c$,
 define
 %\marginpar{Need to follow through the effects of direct time dependence as shown in $g_t$??}
 \begin{align*}
-M(g)(v,\omega)={}g_v(v,\omega)[P^cAv+z(\omega)+P^cG(\omega,v+ g)]
+M(g)(v,\omega)={}g_t(v,\omega)+g_v(v,\omega)[P^cAv+z(\omega)+P^cG(\omega,v+ g)]
 \\
 -Ag-z(\omega)g-P^s G(\omega, v+g)-P^uG(\omega, v+ g),
 \end{align*}
@@ -1299,7 +1299,7 @@ $y(0,0,\omega)=g(0,\omega)=0$\,,  $y_v(0,0,\omega)=g_v(0,\omega)=0$ and $y_v(0,v
 The function~$y(t,v,\omega)$ connects the functions~$h^c(v,\omega)$ and~$g(v,\omega)$.
 Set
 \begin{align*}
-M(y)(0,v,\omega)={}& \,y_v(0,v,\omega)[P^cAv+z(\omega)+P^cG(\omega, y(0,v,\omega))]\\&{} -Ay(0,v,\omega)-z(\omega)y(0,v,\omega)+P^s G(\omega, y(0,v,\omega))\\&{} -P^uG(\omega, y(0,v,\omega)),\end{align*}
+M(y)(0,v,\omega)={}&y_t(0,v,\omega) +y_v(0,v,\omega)[P^cAv+z(\omega)+P^cG(\omega, y(0,v,\omega))]\\&{} -Ay(0,v,\omega)-z(\omega)y(0,v,\omega)+P^s G(\omega, y(0,v,\omega))\\&{} -P^uG(\omega, y(0,v,\omega)),\end{align*}
 where $v\in H^c$.
 For a  $\mathcal{F}$-measurable function~$w(t,v,\theta_{-t}\omega)$, define the operator
 \begin{equation*}Sw=J^c (w(t,v,\theta_{-t}\omega)+y(t,v,\theta_{-t}\omega),v)-y(t,v,\theta_{-t}\omega),\end{equation*}
@@ -1308,7 +1308,7 @@ where the operator~$J^c$ is defined by
 J^c(u,v):={}&\exp(At)v+\int_0^t
 \exp[A(t-s)]
 P^cG(\omega,u(s))\,ds\\&{}
-+\int^{+\infty}_{-\infty}B(t-s)\exp(-z(\omega))G(\omega,u(s))\,ds\,.
++\int^{+\infty}_{-\infty}B(t-s)\exp(-z(\omega)s)G(\omega,u(s))\,ds\,.
 \end{split}
 \end{align}
 For a random variable $K(\omega)$, define the domain~$Y$
@@ -1325,23 +1325,23 @@ For $w\in C_\eta$,  let $u_c(t,v,\theta_{-t}\omega)$ be the solution of
  \end{align}
      From equation~\eqref{eq(3.221)}
 \begin{align*}
-&J^c(y(0,u_c,\omega)+w(0,u_c,\omega),0)=\\&\quad\quad \quad\quad \int^{+\infty}_{-\infty}B(-s)\exp(-z(\omega))G(\omega,y(0,u_c,\omega)+w(0,u_c,\omega))\,ds\,.
+&J^c(y(0,u_c,\omega)+w(0,u_c,\omega),0)=\\&\quad\quad \quad\quad \int^{+\infty}_{-\infty}B(-s)\exp(-z(\omega)s)G(\omega,y(0,u_c,\omega)+w(0,u_c,\omega))\,ds\,.
 \end{align*}
-Select a  initial condition $z(omega)$ such that $\alpha>-z(\omega)>-\beta$. So
+Select a  initial condition $z(\omega)$ such that $\alpha>-z(\omega)>-\beta$. So
 \begin{align*}
-&y(0,u_c,\omega)\\={}&\int_{-\infty}^0\frac d{ds}\left[\exp(-As)\exp(-z(\omega))P^sy(0,u_c(s,v,\omega),\omega)\right]\,ds\\&{} -\int^{\infty}_0\frac d{ds}\left[\exp(-As)\exp(-z(\omega))P^uy(0,u_c(s,v,\omega),\omega)\right]\,ds
-\\  ={}&\int_{-\infty}^0\ \exp(-As)\exp(-z(\omega))\bigg[(-A-z(\omega))P^sy(0,u_c(s,v,\omega),\omega)\\&{} +\frac d{ds}P^sy(0,u_c(s,v,\omega),\omega)\bigg]\,ds-\int^{\infty}_0\exp(-As)\\ &
+&y(0,u_c,\omega)\\={}&\int_{-\infty}^0\frac d{ds}\left[\exp(-As)\exp(-z(\omega)s)P^sy(0,u_c(s,v,\omega),\omega)\right]\,ds\\&{} -\int^{\infty}_0\frac d{ds}\left[\exp(-As)\exp(-z(\omega)s)P^uy(0,u_c(s,v,\omega),\omega)\right]\,ds
+\\  ={}&\int_{-\infty}^0\ \exp(-As)\exp(-z(\omega)s)\bigg[(-A-z(\omega))P^sy(0,u_c(s,v,\omega),\omega)\\&{} +\frac d{ds}P^sy(0,u_c(s,v,\omega),\omega)\bigg]\,ds-\int^{\infty}_0\exp(-As)\exp(-z(\omega)s)\\\ &
 \left[(-A-z(\omega))P^uy(0,u_c(s,v,\omega),\omega)
  +\frac d{ds}P^uy(0,u_c(s,v,\omega),\omega)\right]\,ds\,.
  \end{align*}
 Here
 \begin{align*}
 & (-A-z(\omega))P^sy(0,u_c(s,v,\omega),\omega)+\frac d{ds}P^sy(0,u_c(s,v,\omega),\omega)\\
-={}&(-A-z(\omega))P^sy(0,u_c(s,v,\omega),\omega)+P^sy_v(0,u_c(s,v,\omega),\omega)[Au_c\\&{}+P^cG(\omega,y(0,u_c,\omega)+w(0,u_c,\omega))]\\
+={}&(-A-z(\omega))P^sy(0,u_c(s,v,\omega),\omega)+P^sy_v(0,u_c(s,v,\omega),\omega)[Au_c\\&{}+P^cG(\omega,y(0,u_c,\omega)+w(0,u_c,\omega))]+P^sy_s(0,u_c(s,v,\omega),\omega)\\
 ={}&M(P^sy)-P^sy_v(0,u_c(s,v,\omega),\omega)[Au_c+P^cG(\omega,y(0,u_c,\omega))]\\&{} +P^sG(\omega,P^sy(0,u_c,\omega))+P^sy_v(0,u_c(s,v,\omega),\omega)\\&\left[Au_c+P^cG(\omega,y(0,u_c,\omega)+w(0,u_c,\omega))\right]\\
 ={}&M(P^sy)-P^sy_v(0,u_c(s,v,\omega),\omega)[P^cG(\omega,y(0,u_c,\omega))\\ &{}-P^cG(\omega,y(0,u_c,\omega) +w(0,u_c,\omega))]+P^sG(\omega,y(0,u_c,\omega)).   \end{align*}
 \begin{align*}  & (-A-z(\omega))P^uy(0,u_c(s,v,\omega),\omega)+\frac d{ds}P^uy(0,u_c(s,v,\omega),\omega)\\
-={}&(-A-z(\omega))P^uy(0,u_c(s,v,\omega),\omega)+P^uy_v(0,u_c(s,v,\omega),\omega)[Au_c\\&{}+P^cG(\omega,y(0,u_c,\omega)+w(0,u_c,\omega))]\\={}&M(P^uy)-P^uy_v(0,u_c(s,v,\omega),\omega)[P^cG(\omega,y(0,u_c,\omega))\\&{} -P^cG(\omega,y(0,u_c,\omega)+w(0,u_c,\omega))]+P^uG(\omega,y(0,u_c,\omega)).  \end{align*}
+={}&(-A-z(\omega))P^uy(0,u_c(s,v,\omega),\omega)+P^uy_v(0,u_c(s,v,\omega),\omega)[Au_c\\&{}+P^cG(\omega,y(0,u_c,\omega)+w(0,u_c,\omega))]+P^uy_s(0,u_c(s,v,\omega),\omega)\\={}&M(P^uy)-P^uy_v(0,u_c(s,v,\omega),\omega)[P^cG(\omega,y(0,u_c,\omega))\\&{} -P^cG(\omega,y(0,u_c,\omega)+w(0,u_c,\omega))]+P^uG(\omega,y(0,u_c,\omega)).  \end{align*}
 From the above calculations
 \begin{align*}
 &J^c(y(0,u_c,\omega)+w(0,u_c,\omega),0)-y(0,u_c,\omega)\\
@@ -1400,9 +1400,8 @@ where $c_n(s,\omega)=\Ord{s^3}$ as $s\to 0$ for $\omega\in \Omega$\,.
 The random dynamical system on the slow manifold~$M^c(\omega)$ is governed by the following equation.
 %\marginpar{Now this is not correct (and so I suppose (28) is not correct either although I fail to see why it applies here---explain).  The error is that you end up with $c_n$ also depending upon time through~$z_t$ so you need to recognise that dependence here:~$c_n(s,\omega)$.  Then $\partial u/\partial t$ not only has terms in $ds/dt$ but also terms $\partial c_n/\partial t$ and also $(\partial c_n/\partial s)ds/dt$.  The terms $\partial c_n/\partial t$ generate convolutions and should be one place where $\mu$ might be useful.  Fix.}
 \begin{eqnarray}
-\frac {ds}{dt} \sin x%+\sum_{n=2}^\infty \frac {\partial c_n(s,\omega)}{\partial s}\sin nx+ \sum_{n=2}^\infty\frac {\partial c_n(s,\omega)}{\partial t}\sin nx\nonumber\\&\quad=\sum_{n=2}^\infty[1-n^2+z(\theta_t\omega)] c_n(s,\omega)\sin nx
-=s\sigma z(\theta_t\omega)\sin x\nonumber-\frac 3 4{\exp[2\sigma z(\theta_t\omega)]} as^3\sin x+\Ord{s^5}.
-\label{pa2}
+&&\frac {ds}{dt} \sin x=s\sigma z(\theta_t\omega)\sin x\nonumber-\frac 3 4{\exp[2\sigma z(\theta_t\omega)]} as^3\sin x\nonumber\\
+&&\quad \quad\quad \quad\quad \quad{}+\Ord{s^5}.  \label{pa2}
 \end{eqnarray}
 Equation \eqref{pa2} is integrated with $\sin x$ for each term, it follows that%\marginpar{what do you mean by "against"??  clarify?? could it be more simply put as equating coefficients of $\sin x$?? especially if $\sin^3x$ was expanded??}
 \begin{eqnarray*}
@@ -1424,13 +1423,14 @@ So \begin{align*}&P^cG(\theta_t\omega,s\sin x+h^c)=\frac 3 4 as^3\exp[2\sigma z(
 P^sG(\theta_t\omega,s\sin x+h^c)=-\frac 1 {4} as^3\exp[2\sigma z(\theta_t\omega)]\sin 3x+\Ord{s^5}.\end{align*}
 From the formulation of approximation of  center manifold,
 \begin{align*}
-M(h^c)(v,\omega)={}&\,h_v^c(v,\omega)[P^cAv+z(\omega)+P^cG(\omega, v+h^c)]-Ah^c\\&{}-z(\omega)h^c -P^s G(\omega,  v+h^c)-P^uG(\omega,  v+h^c),
+M(h^c)(v,\omega)={}&\,h_t^c(v,\omega)+h_v^c(v,\omega)[P^cAv+z(\omega)+P^cG(\omega, v+h^c)]-Ah^c\\&{}-z(\omega)h^c -P^s G(\omega,  v+h^c)-P^uG(\omega,  v+h^c),
 \end{align*}
-and $h^c(v,\omega)=c_3(s,\omega)\sin 3x$\,, the coefficients yield
- \begin{eqnarray*}c_3(s,\omega)= \frac 1{ 8-z(\omega)}\times\frac 1 4 a s^3\exp[2\sigma z(\omega)]. \end{eqnarray*}
-So
+%and $h^c(v,\omega)=c_3(s,\omega)\sin 3x$\,, the coefficients yield
+% \begin{eqnarray*}c_3(s,\omega)= \frac 1{ 8-z(\omega)}\times\frac 1 4 a s^3\exp[2\sigma z(\omega)]. \end{eqnarray*}
+there exists an stochastic approximation of center manifold of equation \eqref{pa1}.
+%So
 %\marginpar{I am still not happy with $1/[ {8-z(\theta_t\omega)}]$ ??  and I suspect related to neglect of $\partial_t c_n$.  What happens when rare events case a division by zero??}
- \begin{equation*}h^c(s\sin x,\omega)= \frac 1{ 8-z(\omega)}\times\frac 1 4 a s^3\exp[2\sigma z(\omega)]\sin 3x+\Ord{s^5}. \end{equation*}
+% \begin{equation*}h^c(s\sin x,\omega)= \frac 1{ 8-z(\omega)}\times\frac 1 4 a s^3\exp[2\sigma z(\omega)]\sin 3x+\Ord{s^5}. \end{equation*}
 %Note that $z(\theta_t\omega)$%=-\int_{-\infty}^0\exp(\tau)\omega(\tau+t)\,d\tau+\omega(t)=\int_{-\infty}^t\exp(s-t)dW(s)$.
 %\marginpar{?? Not any more as we have changed the definition of $z$.  Fix??}
 % is the convolution term~\cite{Rob1}.
@@ -1440,12 +1440,13 @@ So
 %\begin{eqnarray*}Eh^c(s\sin x,\omega)=\frac 1{32} a s^3\sin 3x+\Ord{s^5,\sigma^2}.\end{eqnarray*}
 %It is the corresponding center manifold of  equation  \eqref{pa} without noise.
 %\marginpar{Rewrite to clarify.  Which here involves rewriting the computer algebra in sensible forms: the notation $\phi(0,\{k\})$ is a result of something needed for computer algebra, not notation to be used here.   Expand your interpretation and incorporate appropriately.  Justify why $z_t$ is somehow mysteriously equal to my $\phi(0,0)$ when I believe it is not?? why is your reciprocal equivalent to what appears in (39)??  Give detailed evidence.}
-The  stochastic center manifold of stochastic parabolic equation \eqref{pa} is
-\begin{eqnarray}&&
-s\sin x+\tilde h^c(s\sin x,\omega) = s\sin x+\frac 1{ 8-z(\omega)}\times\frac 1 4 a   s^3\sin 3x+\Ord{s^5, a^2},\nonumber  \\ \label{cas1}
-\\&&\text{such that}\quad
-\frac {ds}{dt} =s\sigma \dot W(t)-\frac 3 4  as^3+\Ord{s^5,\sigma^2}. \nonumber
-\end{eqnarray}
+%The  stochastic center manifold of stochastic parabolic equation \eqref{pa} is
+%\begin{eqnarray}&&
+%s\sin x+\tilde h^c(s\sin x,\omega) = s\sin x+\frac 1{ 8-z(\omega)}\times\frac 1 4 a   s^3\sin 3x+\Ord{s^5, a^2},\nonumber  \\ \label{cas1}
+%\\&&\text{such that}\quad
+%\frac {ds}{dt} =s\sigma \dot W(t)-\frac 3 4  as^3+\Ord{s^5,\sigma^2}. \nonumber
+%\end{eqnarray}
+
 Now we directly use the  computer algebra to compute the stochastic center manifold~\cite{Rob}.
 Define the Ornstein--Uhlenbeck processes $\phi_k(t)=\exp[-(k^2-1)t]\star \dot W(t)$,
 %$\phi(t)$ is a noise  dependant on $\phi_k(t)$, %\marginpar{??This convolution looks wrong too.  Check??}
@@ -1454,7 +1455,7 @@ Define the Ornstein--Uhlenbeck processes $\phi_k(t)=\exp[-(k^2-1)t]\star \dot W(
   u= s\sin x + \frac 1 {32} as^3 \sin 3x -\frac 1 {16} as^3\sigma \phi_3(t)\sin 3x+\Ord{s^5, a^2,\sigma^2}\label{cas2}\\
 &&\mbox{such that}\quad \frac {ds}{dt}= s\sigma \dot W(t) -\frac 3 4 as^3 +  \Ord{s^5, a^3,\sigma^2}.  \nonumber
  \end{eqnarray}
- This implies  that  both the stochastic slow manifolds \eqref{cas1} and \eqref{cas2}  have a similar  dynamical behavior.
+% This implies  that  both the stochastic slow manifolds \eqref{cas1} and \eqref{cas2}  have a similar  dynamical behavior.
 
 
 
