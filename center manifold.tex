@@ -129,7 +129,6 @@ A simple example is the linear stochastic parabolic equation
 \end{equation}
 In this example the Hilbert space~$H$ is the function space~$L^2(0,\pi)$.
 This example  stochastic partial differential equation (\textsc{spde}) has all three subspaces of interest:  stable,  center  and unstable subspaces.
-%  This \textsc{spde} also defines a center subspace.
 Thus, the theory of Duan et al.~\cite{Car2,Duan1,Duan2} does not apply.
 Sections~\ref{Sec2}--\ref{Sec4} establish the theory of center manifolds of such  \textsc{spde}s.
 That is we prove the existence and smoothness of the center manifolds for  stochastic evolution equation~\eqref{eq(2.1)}.
@@ -141,7 +140,6 @@ Our main assumption is that there exists a spectral gap for the linear operator~
 Such  a gap  allows us to construct the infinite dimensional  center manifolds.
 Exponential dichotomy is one of the basic assumptions  in nonlinear dynamical systems.
 The assumption plays a central role in the study of stable and unstable manifolds.
-%However, the assumption of exponential dichotomy is not a a sufficient condition of  the existence of center manifolds.
 But the assumption of an exponential dichotomy~\cite{Duan1, Duan2}  is not a sufficient condition for proving the existence of center manifolds.
 For example,  a  generator of a strongly continuous semigroup  has some of its spectrum on the imaginary axis,  which implies  the existence of  center manifolds, but Pr\"{u}ss~\cite{Pr} showed there is no exponential dichotomy.
 The pseudo-exponential dichotomy~\cite{Duan1,Pli} is also  not a sufficient assumption to prove the existence  of  center manifolds since in the finite dimension case  we need to ensure  the existence of zero real part of the  spectrum of a bounded operator.
@@ -155,7 +153,6 @@ We  consider  the existence of local center manifolds  via a cut-off technique.
 When the stable subspace or the unstable subspace disappear, then our theorems reduce to  the results by Duan and others ~\cite{Duan1, Duan2}.
 
 Deterministic center manifold theory is widely studied and further extended by others in various contexts~\cite[e.g.]{Adi, Bat, Carr,Chi,  Har, Hen,  Van,  Van2}.
- %Their method is to show tha tthere exist a projection on the center subspace and a subexponential growth.
  The  method of  proving the existence of  center manifolds   is to show that the  center manifold is the fixed point of a certain of operator.
 It is also the  intersection of the center-unstable manifolds and center-stable manifolds~\cite{Bat,Chi1}.
 In this  paper,   we define the stochastic center manifold as a graph of Lipschitz map.
@@ -164,14 +161,12 @@ It  is different from the Hadamard's graph transform method~\cite{Box,Duan2}, wh
 Section~\ref{Sec4} proves the  center manifolds  are smooth  by using the method of Lyapunov--Perron.
 
 
-%The theory of center manifolds plays an important role in the study of nonlinear dynamical systems.
 There are  many applications of the theory of center manifolds such as the dimensional reduction~\cite{Du, Xu},  bifurcation~\cite{Carr},  discretisation~\cite{Rob, Rob2}. %synchronization ~\cite{Chu}.
 The stability  of  an equilibrium point  on  center manifolds  has been considered in deterministic case~\cite{Adi, Pal}.
 In the random case
 we show the  equilibrium  points are   asymptotically stable  when the equilibrium points restricted  on  the stochastic center manifolds  are  asymptotically stable  (Section~\ref{Sec5}).
- The next problem is to know the stochastic centre manifolds.
-We  prove that there  exists  an approximation of the stochastic centre manifolds (Section~\ref{Sec6}). % Recently there are some work on the approximation of the invariant manifolds by Wang,  Duan, Chen and  Bl\"{o}mker et al.~\cite{Bl, Bl1,  Chen,  Sun, Wang}.
- There have  some recent results on approximation of the invariant manifolds.
+We then prove that there  exists  an approximation of the stochastic centre manifold (Section~\ref{Sec6}). 
+There has been  some recent results on the approximation of invariant manifolds.
 Wang and Duan~\cite{Wang}  proved an asymptotic completeness property  for a class of stochastic partial differential equations.
 Sun et al.~\cite{Sun} showed that  an invariant manifold is approximated by  a deterministic manifold when the noise is small.
 Chen et al.~\cite{Bl1,Chen} gave a geometric shape of invariant manifolds for a class of stochastic partial differential equations.
@@ -200,7 +195,6 @@ strongly continuous semigroup $S(t):=\exp({At})$ on a Hilbert space~$(H, |\cdot|
 \emph{exponential trichotomy } with exponents $\alpha >\gamma> 0>-\gamma>-\beta$ and bound~$K$.
 
 First we introduce the exponential trichotomy,  which generalizes the exponential dichotomy~\cite{Cop, Duan1, Duan2, Sac}.
-%Let $H$ be an infinite dimensional separable Hilbert space with norm $|\cdot|$.
 \begin{definition} \label{trich}
 A strongly continuous semigroup $S(t):=\exp({At})$ on~$H$ is said to  satisfy  the exponential trichotomy  with exponents $\alpha >\gamma> 0>-\gamma>-\beta$\,, if the there exist continuous projection operators~$P^c$, $P^u$ and~$P^s$ on~$H$ such
 that the following four conditions hold.
@@ -220,13 +214,11 @@ define~$\exp(At)|_{H^i}$ for $t <0$ as the inverse map of~$\exp(-At)|_{H^i}$, $i
 &&|\exp(At) P^sv|\leq K \exp({-\beta t}) |P^sv|,  \quad t\geq 0\,,   v\in H. \label{trichotomy3}
 \end{eqnarray}
 \end{enumerate}
-% Then$H=H^c\oplus H^u\oplus H^s$.
 \end{definition}
 
 \begin{remark}If $H$~is a  finite dimensional space  and there exist     eigenvalues with real part   zero, less than zero,  and greater than zero,  then we have the
 exponential trichotomy.
 If $H$~is an infinite dimensional space and  the spectrum of~$A$ satisfies $\sigma(A)=\sigma^s\cup\sigma^c\cup\sigma^u$, where $\sigma^s=\{\lambda\in \sigma(A)\mid \operatorname{Re} \lambda \leq-\beta\}$, $\sigma^c=\{\lambda\in \sigma(A)\mid| \operatorname{Re} \lambda| \leq \gamma\}$, $\sigma^u=\{\lambda\in \sigma(A)\mid \operatorname{Re} \lambda \geq \alpha\}$, %$\sigma^c$~is finite
-%\marginpar{What is this `finite' condition doing here??  I thought we were trying to cater for infnite-D center manifolds.}
 and $A$~generates a strong continuous semigroup,  then we  have the exponential trichotomy~\cite{Gal}.
 \end{remark}
 
@@ -240,34 +232,17 @@ If  the  nonlinear term~$F$ is locally Lipschitz, let $F^{(R)}(u)=\chi_R(u)F(u)$
 
 
 
-% The equivalent Ito equation for
-%(\ref{eq(2.1)}) is
-%\begin{equation}\label{eq(2.2)}
-%du=Au\,dt+F(u)\,dt+\frac{u}{2}dt+u\,dW.
-%\end{equation}
-%Then, for any initial data $x\in H$, there exists a unique
-%solution of~(\ref{eq(2.2)}). For details about the properties of
-%this solution see Da Prato and Zabczyk \cite{DaPZab92}, Chapter 7.
-
-
-%The solution of~(\ref{eq(2.2)}) can be written as a \emph{mild}
-%solution:
-%\[
-%u(t)=\exp(At)x+\int_0^t\{e^{A(t-s)}[F(u(s)]+\frac{u(s)}{2}\}ds
-%+\int_0^te^{A(t-s)}u(s)dW,\quad x\in H
-%\]
-%almost surely for any $x\in H$.
 
 
 
-%\section{Conjugated Random Evolution Equations}
+
+
 
 Second  we use a coordinate transform   to
 convert  the stochastic partial differential equation~\eqref{eq(2.1)}
 into a random evolution equation~\cite{Car3, Duan1,Duan2}.
 Consider the   linear stochastic
 differential equation,
-%\marginpar{??I reiterate: if possible, redo all the analysis with rate~$\mu$, say, that is $dz+\mu z\,dt=dW$ and see if there is any use to the freedom in choosing $\mu$; alternatively, if it is not possible, then say why not??}
 \begin{equation}\label{eq(2.4)}
 dz+\mu z\,dt=dW,
 \end{equation}
@@ -307,7 +282,6 @@ The mapping $t\mapsto z(\theta_t\omega)$
 is continuous.
 \item    In particular,
 \begin{equation*}
-%\label{eq401}
 \lim_{t\to\pm\infty}\frac{|z(\theta_t\omega)|}{|t|}=0\quad
    \text{for }\omega\in\Omega\,.
 \end{equation*}
@@ -318,27 +292,13 @@ is continuous.
  \end{equation*}
  \end{enumerate}
 \end{lemma}
-%We give a simple and complete  proof of this lemma.
-%\begin{proof}i) $W_t(\omega)=:\omega(t)$ is a process with independent and stationary increments. The strong law of large numbers states that there exists a set $\Omega_1\in \mathcal{B}(C_0(\mathbb{R},\mathbb{R}))$,  $ \mathbb{P}(\Omega_1)=1$, such that
-%\[
-%\lim_{t\to\pm\infty}\frac{|\omega(t)|}{|t|}=0
-%\]
-%for $\omega\in \Omega_1$ and $\mathbb{P}(\Omega_1)=\mathbb{P}(\theta_t\Omega_1)$.
-%ii)  The existence of the integral on the right hand side  for $\omega\in \Omega_1$ from the strong law of large numbers.
-
-
-%The  unique solution of the eq~(\ref{eq(2.4)}) is
-%\begin{equation*}\int_{-\infty}^t\exp(\tau-t)\,dW_\tau(\omega). \end{equation*}
 
 
 
-%Using the strong law of large numbers, the function
-%\begin{equation*}\tau\to \exp(\tau)\sup\limits_{t\in [t_0-1,t_0+1]}|\omega(\tau+t)|\end{equation*}
-%is an integrable majorant for $\exp(\tau)\omega(\tau+t)$ for $t\in[t_0-1,t_0+1]$ and $\tau\in(-\infty, 0]$.  Hence the continuity at $t_0\in\mathbb{R} $ follows straightforwardly from
-%Lebesgue's theorem of dominated convergence.
 
 
-% \end{proof}
+
+
 We now replace the Borel-$\sigma$-algebra  $\mathcal{B}(C_0(\mathbb{R},\mathbb{R}))$ by
 \[
 \mathcal{F}=\{\Omega\cap D \mid D\in
@@ -380,7 +340,6 @@ where $\Lip_u G$ denotes the Lipschitz constant of~$G(\cdot, u)$ with
 respect to~$u$.
 For  any $\omega\in\Omega$ the function~$G$ has the
 same global Lipschitz constant  as~$F$ by the construction of~$G$. %In contrast to the
-%stochastic PDE~(\ref{eq(2.2)}),  no stochastic differential appears in the random PDE  ~\eqref{eq(2.5)}.
 Define \begin{equation*}\Psi_A(t,s)=\exp\left[A(t-s)+\int_s^tz(\theta_r\omega)\,dr\right]\end{equation*} as a `state transition operator' for the linear random partial differential equation~\eqref{eq(2.5)} in the case
 when the nonlinearity is neglected,  $G(\omega,u)=0$\,.
 The solution is interpreted in a mild sense
@@ -392,7 +351,6 @@ This equation has  a unique measurable solution from the  Lipschitz continuity o
 Hence the solution mapping
 $(t,v,\omega)\mapsto u(t, v, \omega)$
 generates a random dynamical system. % Indeed, the mapping $u$ is
-%$(\mathcal{B}(\mathbb{R})\otimes\mathcal{F}\otimes\mathcal{B}(H),\mathcal{F})$-measurable.
 
 
 
@@ -409,14 +367,6 @@ is a random dynamical system.
 For any $v\in H$ this process
 $(t,\omega)\mapsto  \hat u(t, v,\omega)$ is a solution to~(\ref{eq(2.1)}).
 \end{lemma}
-%\begin{remark}
-%The linearize equation~\eqref{eq(2.5)} is
-%\begin{equation}\label{eq(2.6)}
-%\frac{du}{dt}=Au+z(\theta_t\omega)u,\quad
-%u(0)=x\in H.
-%\end{equation}
-%Equation~\eqref{eq(2.6)} generates a random dynamical system. The Lyapunov exponents is equal to the spectrum  of  operator $A$ by the sublinear growth of  rate of $z(\theta_t \omega)$~\cite{Car2}.
-%\end{remark}
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -428,14 +378,6 @@ $(t,\omega)\mapsto  \hat u(t, v,\omega)$ is a solution to~(\ref{eq(2.1)}).
 We introduce the definition of stochastic center manifolds.
 A basic tool of proving the existence of  stochastic center manifolds is to define an appropriate function space, which is a Banach space.
 
-%We first recall that a multifunction
-%$M=\{M(\omega)\}_{\omega\in\Omega}$ of nonempty closed sets
-%$M(\omega),\,\omega\in\Omega$, contained in a complete separable
-%metric space $(H,d_H)$ is called a \emph{random set} if
-%\[
-%\omega\to\inf_{y\in M(\omega)}d_H(x,y)
-%\]
-%is a random variable for any $x\in H$.
 \begin{definition}
 A random set~$M(\omega)$ is called an (forward) invariant set for a random
 dynamical system~$\phi(t, \omega, x)$ if
@@ -463,9 +405,6 @@ manifold for the stochastic evolution equation~(\ref{eq(2.1)}).
 
 
 
-%Denote by $u(t, \omega, u_0)$ the solution of~(\ref{eq(3.1)}) with the
-%initial data $u (0, \omega, u_0) $
-%$= u_0$.
 For each $\eta>0$\,,  we denote the Banach
 space
 \begin{align*}
@@ -487,15 +426,12 @@ Let
 where  $u(t, u_0, \omega)$~is  the solution of~(\ref{eq(2.5)}) with the
 initial data $u (0)= u_0$\,.
 
-%This is the set of all initial datum through  which solutions
-%decay  as $e^{\eta t +\int_0^t z(\theta_\tau\omega) d\tau}$.
   We
 prove that $M^c(\omega)$~is invariant and is  the
 graph of a Lipschitz function.
 
 For simple the expression of the proof, define the operator $B: \mathbb{R} \to L(H)$ by
 \[ B(t):= \begin{cases}-\exp(At) P^u, & t \leq 0\,; \\   \exp(At) P^s, &  t \geq 0\,. \end{cases}\]
-%It follows that  $\|B(t)\|\leq  e^{+\beta |t|}$.
 Different from the proof process of Duan et al.~\cite{Duan1,Duan2}, we need analysis the behavior of the  solution on center subspace.
 \begin{theorem} \label{Thm(3.1)}    If   $\gamma < \eta<\min\{\beta, \alpha\}$ such that the nonlinearity term is sufficiently small,
 \begin{eqnarray}K    \Lip_u G   \left(\frac{1}{\eta-\gamma}+\frac{1}{\beta-\eta}+\frac{1}{\alpha-\eta}\right)<
@@ -506,17 +442,8 @@ M^c(\omega) = \{v+h^c(v,\omega)\mid v \in H^c\},
 \]
 where $h^c(\cdot,  \omega) : H^c\to  H^u\oplus H^s$ is a Lipschitz continuous mapping from the center subspace and
 satisfies $h^c(0,\omega)=0$\,. %Note that $K, \alpha, -\beta$ are from the
-%exponential trichotomy condition  and $\text{{\rm
-%Lip}}_u G$ denotes the Lipschitz constant of $G(\cdot, u)$ with
-%respect to $u$.
 \end{theorem}
 
-% \noindent {\bf Remark}: $\eta=(\alpha+-\beta)/2$
-%minimizes the quantity
-%\begin{equation*}
-%K \; \Lip_u G \;
-%(\frac{1}{\beta-\eta}+\frac{1}{\alpha-\eta})
-%\end{equation*}
 
 \begin{proof}
  First we claim that $u_0 \in M^c(\omega)$ if and only if  there exists a slowly varying function $u(\cdot, u_0, \omega)\in
@@ -606,7 +533,7 @@ P^c(G(\theta_s\omega,u)-G(\theta_s\omega,\bar u))\,ds
 \Bigg\}\\
 &\leq\sup_{t\in \mathbb{R}} \Bigg\{K \Lip_u G |u-\bar
 u|_{C_\eta}\bigg|\int_0^{t} \exp[{(\gamma-\eta)|t-s|}]\,ds
-\\&  \quad \quad
+\\&  \quad \quad{}
 +\int^t_{-\infty}\exp[{(\eta-\beta)(t-s)}]\,ds
 +\int_t^{+\infty}\exp[{(\alpha-\eta)(t-s)}]\,ds\bigg |
 \Bigg\}\\
@@ -618,7 +545,6 @@ u|_{C_\eta}.
 
 From equation~\eqref{eq(3.6)}, $ J^c$~is Lipschitz continuous in~$v$.
 By the theorem's precondition~\eqref{pr1},
-% \begin{equation*}K \Lip_u G\left(\frac{1}{\eta-\gamma}+\frac{1}{\beta-\eta}+\frac{1}{\alpha-\eta}\right)< 1,\end{equation*}
 $ J^c$~is a uniform contraction with respect to the parameter~$v$.
 By the uniform contraction mapping principle,
 for each $v \in H^c$,  the mapping $J^c (\cdot , v )$ has a
@@ -648,12 +574,6 @@ h^c(v, \omega) =\int^{+\infty}_{-\infty} \Psi_0(0,s)
 B(-s)G(\theta_s\omega,u(s,v,\omega))\,ds\,.
 \]
 We see that~$h^c$ is $\mathcal{F}$-measurable and  $h^c(0,\omega)=0$\,.
-%Thus, by using~(\ref{eq(3.7)}), we obtain that
-%\[
-%|h^c(v,\omega) - h^c(\bar v, \omega)|\leq \frac{K^2\text{{\rm
-%Lip}}_u G}{(\alpha-\eta)\big(1-K \Lip_u
-%G(\frac{1}{\beta-\eta}+\frac{1}{\alpha-\eta}\big)}|v - \barv |
-%\]
  From the definition of~$h^c(v,
 \omega)$ and the claim that $ u_0 \in M^c(\omega)$  if and only if
 there exists $u(\cdot, u_0, \omega)~\in~C_\eta$ with $u(0)=u_0$ and satisfies~(\ref{eq(3.2)}) it follows that $ u_0 \in M^c(\omega)$ if and only
@@ -736,7 +656,6 @@ Note that a local center manifolds is not unique~\cite{Carr}.
 
 
 \section{Smoothness of center  manifolds} \label{Sec4}
-%Duan et al.'s work~\cite{Duan1} only implies existence of~$M^c(\omega)$ but not the smoothness.
 In this section, we prove that for each $\omega\in \Omega$\,, $M^c(\omega)$~is
 a $C^k$~center manifold.
 
@@ -797,12 +716,12 @@ For $v, v_0\in H^c$, we set
 I={}&\int_0^t \Psi_A(t,s)
 P^c\Big[G(\theta_s\omega,u(s,v,\omega))-
 G(\theta_s\omega,u(s,v_0,\omega))\\
-&\quad\quad\quad\quad\quad\quad{}-D_uG(\theta_s\omega,u(s,v_0,\omega))
+&\qquad{}-D_uG(\theta_s\omega,u(s,v_0,\omega))
 (u(s,v,\omega)-u(s,v_0,\omega))\Big]\,ds\\
 &{} +\int^{+\infty}_{-\infty} \Psi_0(t,s)
 B(t-s)\Big[G(\theta_s\omega,u(s,v,\omega))-
 G(\theta_s\omega,u(s,v_0,\omega))\\
-&\quad\quad\quad\quad\quad\quad{}-D_uG(\theta_s\omega,u(s,v_0,\omega))
+&\qquad{}-D_uG(\theta_s\omega,u(s,v_0,\omega))
 (u(s,v,\omega)-u(s,v_0,\omega))\Big]\,ds\,.
 \end{align*}
 
@@ -814,7 +733,6 @@ We obtain
 \omega)-u(\cdot,v_0,
 \omega))
 =S(v-v_0) + I,\\
-%&=S(v-v_0) + o(|v-v_0|), \,\text{as}\,v \to v_0.\\
 \end{split}
 \end{align}
 which yields
@@ -923,7 +841,6 @@ P^s\Big[G(\theta_s\omega,u(s,v,\omega))\\ &{} -
 G(\theta_s\omega,u(s,v_0,\omega))-D_uG(\theta_s\omega,u(s,v_0,\omega))
 (u(s,v,\omega)-u(s,v_0,\omega))\Big]\,ds\bigg|.
 \end{align*}
-%for $t\leq -\overline{N}$.
 
 
 It is sufficient to show that for any $\epsilon >0$ there is a
@@ -961,10 +878,6 @@ Hence for such~$N$ we have that
 \begin{equation*}
 \sup_{t\geq N}I_1 \leq \frac{1}{8}\epsilon |v-v_0|.
 \end{equation*}
-%Similarly we have
-%\begin{equation*}
-%\sup_{t\leq  -N}I_1' \leq \frac{1}{8}\epsilon |v-v_0|.
-%\end{equation*}
 Fixing such~$N$, for~$I_2$ we have that
 \begin{align*}
 I_2 &\leq K\int_0^N \exp[{(\gamma+(\eta-\delta))|t-s|}]\Big\{
@@ -986,10 +899,6 @@ is a $\sigma_1
 \begin{equation*}
 \sup_{N\geq t\geq 0}I_2 \leq \frac{1}{8}\epsilon |v-v_0|.
 \end{equation*}
-%Similarly
-%\begin{equation*}
-%\sup_{  -N\leq t}I_2' \leq \frac{1}{8}\epsilon |v-v_0|.
-%\end{equation*}
 Therefore, if  $|v-v_0| \leq \sigma_1$\,, then
 \begin{equation*}
 \sup_{t\geq N} I_1 + \sup_{N\geq t\geq 0}
@@ -1115,17 +1024,12 @@ Thus, using~$G$ is~$C^k$, we  verify that $R_{k-1}(\cdot,v,\omega) \in
 L^{k-1}\big(H^c,C_{(k-1)\eta}\big)$ and is~$C^1$  with respect to~$v$, where
 $L^{k-1}\big(H^c,C_{(k-1)\eta}\big)$ is the usual space of
 bounded $k-1$ linear forms.
-% In order to insure that the above
-%integrals are well-defined one has to require that $
-%-\gamma<(k-1)\eta<\gamma$.  The fact that $t\to z(\theta_t\omega)$ has a sublinear
-%growth rate is also used in these analysis.
 Since %from the assumption $-\gamma < k\eta < \gamma$ and
 \[
 K \Lip_u
 G\left(\frac{1}{i\eta-\gamma}+\frac{1}{\beta-i\eta}+\frac{1}{\alpha-i\eta}\right)< 1 \quad\text{for
 all } 1\leq i\leq k.
 \]
-%Using this fact and
 The same argument used in the case
 $k=1$  shows that $ D^{k-1}_v u(\cdot, v,\omega)$ is~$C^1$ from~$H^c$ to~$L^k(H^c,C_{k\eta})$.
 This completes the
@@ -1159,10 +1063,7 @@ We conclude $\widetilde M^c(\omega)$  is a $C^k$~center
  manifold for the stochastic partial differential  equation~(\ref{eq(2.1)}).
 
 \end{proof}
-%\begin{remark}
-%From the above process, we have  $h^c(0,\omega)=0$,  $Dh^c(0,\omega)=0$.
 
-%\end{remark}
 
 
 
@@ -1279,23 +1180,22 @@ This establishes Corollary~\ref{cor5.4}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Approximation of the center manifolds} \label{Sec6}
-In this section, we prove  existence an  approximation of the stochastic center manifolds. We avoid  assuming the   differentiable  noise in the proof process~\cite{Box1}. Denote~$h(v(t,v_0,\omega),\omega)=:h(v,\omega)$ for the initial value $P^cu(t,u_0,\omega)=:v(t,v_0,\omega)$.
+In this section, we prove the existence and  approximation of stochastic center manifolds. We avoid  assuming the noise is differentiable in the proof process~\cite{Box1}. Denote~$h(v(t,v_0,\omega),\omega)=:h(v,\omega)$ for the initial value $P^cu(t,u_0,\omega)=:v(t,v_0,\omega)$.
 For a $\mathcal{F}$-measurable function $g(v,\omega):H^c\to  H^u\oplus H^s$ which are~$C^1$ in a neighbourhood of origin  in~$H^c$,
 define
-%\marginpar{Need to follow through the effects of direct time dependence as shown in $g_t$??}
 \begin{align*}
-M(g)(v,\omega)={}g_t(v,\omega)+g_v(v,\omega)[P^cAv+z(\theta_t\omega)+P^cG(\theta_t\omega,v+ g)]
-\\
+M(g)(v,\omega)={}&g_t(v,\omega)+g_v(v,\omega)[P^cAv+z(\theta_t\omega)+P^cG(\theta_t\omega,v+ g)]
+\\&{}
 -Ag-z(\theta_t\omega)g-P^s G(\theta_t\omega, v+g)-P^uG(\theta_t\omega, v+ g),
 \end{align*}
 where $v\in H^c$.
 \begin{theorem}\label{k12}
-Suppose that a  $\mathcal{F}$-measurable function $g(0,\omega)=0$\,, $g_v(0,\omega)$ $=0$ and that $M(g)(v,\omega)=\Ord{|v|^q}$ for some $q>1$\,.
+Suppose that \(g\)~is a  $\mathcal{F}$-measurable function such that $g(0,\omega)=0$\,, $g_v(0,\omega)$ $=0$ and $M(g)(v,\omega)=\Ord{|v|^q}$ for some $q>1$\,.
 Then as $v\to 0$\,,
 \begin{equation*}|h^c(v,\omega)-g(v,\omega)|=\Ord{|v|^q}.\end{equation*}
 \end{theorem}
 \begin{proof}
-Let a  $\mathcal{F}$-measurable function  $y(s,v,\omega)\in C_\eta(\omega)$ and let $y(s,\cdot,\omega):H^c\to H^u\oplus H^s$ be continuous differential with compact support such that
+Let an  $\mathcal{F}$-measurable function  $y(s,v,\omega)\in C_\eta(\omega)$ and let $y(s,\cdot,\omega):H^c\to H^u\oplus H^s$ be continuous differential with compact support such that
 $y(0,0,\omega)=g(0,\omega)=0$\,,  $y_v(0,0,\omega)=g_v(0,\omega)=0$ and $y_v(0,v,\omega)=g_v(v,\omega)$ for $|v|$~small enough.
 The function~$y(s,v,\omega)$ connects the functions~$h^c(v,\omega)$ and~$g(v,\omega)$.
 Set
@@ -1314,39 +1214,40 @@ P^cG(\theta_{r}\omega,u(r))\,dr\\&{}
 \end{align}
 For a random variable $K(\omega)$, define the domain~$Y$
 \begin{equation*}Y(\omega)=\left\{w(s,v,\omega)\in C_\eta(\omega)\mid|w(0,v,\omega)|\leq K(\omega) |v|^q\quad \mbox{for all } v\in H^c\right\}.\end{equation*}
-From the construction of~$Y(\omega)$,  $Y(\omega)$~is closed in~$C_\eta(\omega)$.
+From its construction,  $Y(\omega)$~is closed in~$C_\eta(\omega)$.
 Since $J^c$~is a contraction mapping on~$C_\eta(\omega)$, $S$~is a contracting mapping on~$Y(\omega)$.
 We prove that there exists a random variable~$K(\omega)$ such that $S$ maps~$Y(\omega)$ into~$Y(\omega)$.
 Then by the uniqueness of fixed points and definition of~$h^c$ we conclude the theorem.
 
- Now we prove there exists~$Y(\omega)$.
+ Now we prove $Y(\omega)$ exists.
 For $w\in C_\eta(\omega)$,  let $u_c(s,v,\omega)$ be the solution of
 \begin{align}\label{eq(6.1)}
 &  \frac {du_c} {dt}=Au_c+z(\theta_{s}\omega)u_c+P^cG(\theta_{s}\omega,y(0,u_c,\omega)+w(0,u_c,\omega)),\nonumber\\ &u_c(0,v,\omega)=v.
  \end{align}
      From equation~\eqref{eq(3.221)} and the construction of $h(v,\omega)$,
 \begin{align*}
-&J^c(y(0,v,\omega)+w(0,v,\omega),0)=\int^{+\infty}_{-\infty}B(-r)\exp(\int_r^0 z(\theta_{l}\omega)\,dl)\\& P^cG(\theta_{r}\omega,y(0,u_c,\omega)+w(0,u_c,\omega))\,dr\,.
+&J^c(y(0,v,\omega)+w(0,v,\omega),0)=\int^{+\infty}_{-\infty}B(-r)\exp\left[\int_r^0 z(\theta_{l}\omega)\,dl\right]\\& P^cG(\theta_{r}\omega,y(0,u_c,\omega)+w(0,u_c,\omega))\,dr\,.
 \end{align*}
 Since the slowly varying function $y(r,u_c,\omega)\in C_\eta(\omega)$\,,
 \begin{align*}&
-\left|\exp(-Ar+\int_r^0 z(\theta_{l}\omega)\,dl)P^sy(0, u_c,
+\left|\exp\left[-Ar+\int_r^0 z(\theta_{l}\omega)\,dl\right]P^sy(0, u_c,
 \omega)\right|
 \\ &\leq K\exp[(\beta-\eta)r] |y(r,u_c,\omega)|_{C_\eta(\omega)}
 \\&\to 0 \quad\text{as }r \to -\infty.
 \end{align*}
-
+Also
 \begin{align*}&
-\left|\exp(-Ar+\int_r^0 z(\theta_{l}\omega)\,dl)P^uy(0, u_c,
+\left|\exp\left[-Ar+\int_r^0 z(\theta_{l}\omega)\,dl\right]P^uy(0, u_c,
 \omega)\right|
 \\ &\leq K\exp[-(\alpha-\eta)r] |y(r,u_c,\omega)|_{C_\eta(\omega)}
 \\&\to 0 \quad\text{as }r \to +\infty.
 \end{align*}
-
  So
 \begin{align*}
-&y(0,v,\omega)\\={}&\int_{-\infty}^0\frac d{dr}\left[\exp(-Ar+\int_r^0 z(\theta_{l}\omega)\,dl)P^sy(0,u_c,\omega)\right]\,dr\\&{} -\int^{\infty}_0\frac d{dr}\left[\exp(-Ar+\int_r^0 z(\theta_{l}\omega)\,dl)P^uy(0,u_c,\omega)\right]\,dr
-\\  ={}&\int_{-\infty}^0\ \exp(-Ar+\int_r^0 z(\theta_{l}\omega)\,dl)\bigg[(-A-z(\theta_r\omega))P^sy(0,u_c,\omega)\\&{} +\frac d{dr}P^sy(0,u_c,\omega)\bigg]\,dr-\int^{\infty}_0\exp(-Ar+\int_r^0 z(\theta_{l}\omega)\,dl)\\\ &
+&y(0,v,\omega)\\={}&\int_{-\infty}^0\frac d{dr}\left[\exp\left[-Ar+\int_r^0 z(\theta_{l}\omega)\,dl\right]P^sy(0,u_c,\omega)\right]\,dr
+\\&{} -\int^{\infty}_0\frac d{dr}\left[\exp\left[-Ar+\int_r^0 z(\theta_{l}\omega)\,dl\right]P^uy(0,u_c,\omega)\right]\,dr
+\\  ={}&\int_{-\infty}^0\ \exp\left[-Ar+\int_r^0 z(\theta_{l}\omega)\,dl\right]\bigg[(-A-z(\theta_r\omega))P^sy(0,u_c,\omega)
+\\&{} +\frac d{dr}P^sy(0,u_c,\omega)\bigg]\,dr-\int^{\infty}_0\exp\left[-Ar+\int_r^0 z(\theta_{l}\omega)\,dl\right]\\\ &
 \left[(-A-z(\theta_r\omega))P^uy(0,u_c,\omega)
  +\frac d{dr}P^uy(0,u_c,\omega)\right]\,dr\,.
  \end{align*}
@@ -1361,7 +1262,8 @@ Here
 From the above calculations
 \begin{align*}
 &J^c(y(0,v,\omega)+w(0,v,\omega),0)-y(0,v,\omega)\\
-&=\int_{-\infty}^0\exp(-Ar+\int_r^0 z(\theta_{l}\omega)\,dl)Q^s\,dr+\int^{\infty}_0\exp(-Ar+\int_r^0 z(\theta_{l}\omega)\,dl)Q^u\,dr\,,
+&=\int_{-\infty}^0\exp\left[-Ar+\int_r^0 z(\theta_{l}\omega)\,dl\right]Q^s\,dr
++\int^{\infty}_0\exp\left[-Ar+\int_r^0 z(\theta_{l}\omega)\,dl\right]Q^u\,dr\,,
  \end{align*}
  where $Q^s$ and $Q^u$ is \begin{align*}
  Q^s(y,w,\omega)={}&P^ry_v(0,u_c(r,v,\omega),\omega)[P^cG(\theta_r\omega,y(0,u_c,\omega))\\&{}-P^cG(\theta_r\omega,y(0,u_c,\omega) +w(0,u_c,\omega))]
@@ -1401,8 +1303,8 @@ The operator~$A$  satisfies the exponential trichotomy (Definition~\ref{trich}):
 $H^c=\operatorname{span}\{\sin x\}$, the stable subspace $H^s=\operatorname{span}\{\sin nx,$ $n=2,3,\ldots\}$,  and the unstable subspace $H^u=\emptyset$.
 
 
-Recall that the random variable $z(\theta_t\omega)$ is the stationary solution of  the Ornstein--Uhlenbeck \sde~(\ref{eq(2.4)}) .
-In order to transform to random parabolic equation~\eqref{pa}, from the coordinate transform~\eqref{eq(2.7)} we let the transform $u=u^*\exp(\sigma z(\theta_t\omega))$. %\marginpar{??from where?? you must cross-reference explicitly}
+Recall that the random variable $z(\theta_t\omega)$ is the stationary solution of  the Ornstein--Uhlenbeck \sde~\eqref{eq(2.4)}.
+In order to transform the random parabolic equation~\eqref{pa}, from the coordinate transform~\eqref{eq(2.7)} we let the transform $u=u^*\exp(\sigma z(\theta_t\omega))$. 
 For simplicity omit the~$*$ from here on,
 the transformed random parabolic equation is
 \begin{equation}\label{pa1}
@@ -1414,18 +1316,18 @@ Then Theorem~\ref{Thm(3.1)} assures us that there exists a slow (center) manifol
 \begin{equation*}M^c(\omega)=\{s\sin x+h^c(s\sin x,\omega)\}=\left \{s \sin x + \sum_{n=2}^\infty c_n(s,\omega)\sin nx\right \},\end{equation*}
 where $c_n(s,\omega)=\Ord{s^3}$ as $s\to 0$ for $\omega\in \Omega$\,.
 The random dynamical system on the slow manifold~$M^c(\omega)$ is governed by the following equation.
-%\marginpar{Now this is not correct (and so I suppose (28) is not correct either although I fail to see why it applies here---explain).  The error is that you end up with $c_n$ also depending upon time through~$z_t$ so you need to recognise that dependence here:~$c_n(s,\omega)$.  Then $\partial u/\partial t$ not only has terms in $ds/dt$ but also terms $\partial c_n/\partial t$ and also $(\partial c_n/\partial s)ds/dt$.  The terms $\partial c_n/\partial t$ generate convolutions and should be one place where $\mu$ might be useful.  Fix.}
-\begin{eqnarray}
-&&\frac {ds}{dt} \sin x=s\sigma z(\theta_t\omega)\sin x\nonumber-\frac 3 4{\exp[2\sigma z(\theta_t\omega)]} as^3\sin x\nonumber\\
-&&\quad \quad\quad \quad\quad \quad{}+\Ord{s^5}.  \label{pa2}
-\end{eqnarray}
-Equation \eqref{pa2} is integrated with $\sin x$ for each term, it follows that%\marginpar{what do you mean by "against"??  clarify?? could it be more simply put as equating coefficients of $\sin x$?? especially if $\sin^3x$ was expanded??}
-\begin{eqnarray*}
+
+\begin{equation}
+\frac {ds}{dt} \sin x=s\sigma z(\theta_t\omega)\sin x
+-\frac 3 4{\exp[2\sigma z(\theta_t\omega)]} as^3\sin x
++\Ord{s^5}.  \label{pa2}
+\end{equation}
+Equation \eqref{pa2} has a common factor of $\sin x$ in each term, it follows that
+\begin{equation*}
 \frac {ds}{dt}=s\sigma z(\theta_t\omega)-\frac 3 4 {\exp[2\sigma z(\theta_t\omega)]}  as^3+\Ord{s^5}.
-\end{eqnarray*}
-%So $u=0$ is stable if $a<0$.
+\end{equation*}
 We now  calculate the slow manifold~$h^c(s\sin x,\omega)$.
-For $\omega\in \Omega$, $c_n(s,\omega)$ is odd functions of  $s$ since $-u$ is a solution of equation \eqref{pa1}. The coefficient $c_n(s,\omega)$ is zero for odd term,
+For $\omega\in \Omega$, $c_n(s,\omega)$ is odd functions of  $s$ since $-u$ is a solution of equation~\eqref{pa1}. The coefficient $c_n(s,\omega)$ is zero for odd term,
 so%\marginpar{??what evidence is there that this form is good??  do not assume: argue it must follow.}
 \begin{equation*}h^c(s\sin x,\omega)= c_3(s,\omega)\sin 3x+\Ord{s^5}.
 \end{equation*}
@@ -1441,37 +1343,15 @@ From the formulation of approximation of  center manifold,
 \begin{align*}
 M(h^c)(v,\omega)={}&\,h_t^c(v,\omega)+h_v^c(v,\omega)[P^cAv+z(\theta_t\omega)+P^cG(\theta_t\omega, v+h^c)]-Ah^c\\&{}-z(\theta_t\omega)h^c -P^s G(\theta_t\omega,  v+h^c)-P^uG(\theta_t\omega,  v+h^c),
 \end{align*}
-%and $h^c(v,\omega)=c_3(s,\omega)\sin 3x$\,, the coefficients yield
-% \begin{eqnarray*}c_3(s,\omega)= \frac 1{ 8-z(\omega)}\times\frac 1 4 a s^3\exp[2\sigma z(\omega)]. \end{eqnarray*}
 there exists an stochastic approximation of center manifold of equation \eqref{pa1}.
-%So
-%\marginpar{I am still not happy with $1/[ {8-z(\theta_t\omega)}]$ ??  and I suspect related to neglect of $\partial_t c_n$.  What happens when rare events case a division by zero??}
-% \begin{equation*}h^c(s\sin x,\omega)= \frac 1{ 8-z(\omega)}\times\frac 1 4 a s^3\exp[2\sigma z(\omega)]\sin 3x+\Ord{s^5}. \end{equation*}
-%Note that $z(\theta_t\omega)$%=-\int_{-\infty}^0\exp(\tau)\omega(\tau+t)\,d\tau+\omega(t)=\int_{-\infty}^t\exp(s-t)dW(s)$.
-%\marginpar{?? Not any more as we have changed the definition of $z$.  Fix??}
-% is the convolution term~\cite{Rob1}.
-%From the Taylor series and $E(z(\theta_t\omega))=0$, the expectation of the stochastic centre manifold
-%is
-%marginpar{?? I still do not see how it can be correct. What is the justification?? how can you take the expectation inside the exp and the reciprocal??}
-%\begin{eqnarray*}Eh^c(s\sin x,\omega)=\frac 1{32} a s^3\sin 3x+\Ord{s^5,\sigma^2}.\end{eqnarray*}
-%It is the corresponding center manifold of  equation  \eqref{pa} without noise.
-%\marginpar{Rewrite to clarify.  Which here involves rewriting the computer algebra in sensible forms: the notation $\phi(0,\{k\})$ is a result of something needed for computer algebra, not notation to be used here.   Expand your interpretation and incorporate appropriately.  Justify why $z_t$ is somehow mysteriously equal to my $\phi(0,0)$ when I believe it is not?? why is your reciprocal equivalent to what appears in (39)??  Give detailed evidence.}
-%The  stochastic center manifold of stochastic parabolic equation \eqref{pa} is
-%\begin{eqnarray}&&
-%s\sin x+\tilde h^c(s\sin x,\omega) = s\sin x+\frac 1{ 8-z(\omega)}\times\frac 1 4 a   s^3\sin 3x+\Ord{s^5, a^2},\nonumber  \\ \label{cas1}
-%\\&&\text{such that}\quad
-%\frac {ds}{dt} =s\sigma \dot W(t)-\frac 3 4  as^3+\Ord{s^5,\sigma^2}. \nonumber
-%\end{eqnarray}
 
-Now we directly use the  computer algebra to compute the stochastic center manifold~\cite{Rob}.
+Now we directly use  computer algebra to compute the stochastic center manifold~\cite{Rob}.
 Define the Ornstein--Uhlenbeck processes $\phi_k(t)=\exp[-(k^2-1)t]\star \dot W(t)$,
-%$\phi(t)$ is a noise  dependant on $\phi_k(t)$, %\marginpar{??This convolution looks wrong too.  Check??}
  then
 \begin{eqnarray}&&
   u= s\sin x + \frac 1 {32} as^3 \sin 3x -\frac 1 {16} as^3\sigma \phi_3(t)\sin 3x+\Ord{s^5, a^2,\sigma^2}\label{cas2}\\
 &&\mbox{such that}\quad \frac {ds}{dt}= s\sigma \dot W(t) -\frac 3 4 as^3 +  \Ord{s^5, a^3,\sigma^2}.  \nonumber
  \end{eqnarray}
-% This implies  that  both the stochastic slow manifolds \eqref{cas1} and \eqref{cas2}  have a similar  dynamical behavior.
 
 
 
@@ -1487,7 +1367,6 @@ Consider the \spde
   \quad x\in (0,2\pi),  \quad t\geq 0\,,
 \end{equation}
 with $u(0,t)=u(2\pi, t)=0$\,.
-%$\nu$ and $a$ are positive constants,
 $W(t)$~is the standard $\mathbb{R}$-valued Wiener process on a probability space~$(\Omega,\mathcal{F}, \mathbb{P} )$.
 The nonlinearity term $f$ is smooth and $f(0)=0$.
 
@@ -1508,7 +1387,6 @@ Let
 $\Psi_1(t)=u(t)$, $\Psi_2(t)=v(t)-  u(t) z(\theta_t\omega)$, where
 $z(\omega)$~is the stationary solution of~(\ref{eq(2.4)}).
 Then equations \eqref{shyp1} and \eqref{shyp2} are transformed to
-%\marginpar{??replace "we have" by explicit cross-reference: presumably you mean (39)--(40).??}
  the following random evolution equations
 \begin{align}
 d\Psi_1&=\big[\Psi_2+  \Psi_1 z(\theta_t\omega)\big]dt\,,\label{rhpy1}\\
@@ -1533,7 +1411,6 @@ v)\in{H}\,.
 From Lemma \ref{lem(2.2)}, $\hat{\varphi}(t,\omega, (u_0, v_0))=T(\theta_t\omega,
 \varphi(t,\omega, T^{-1}(\omega,(u_0, v_0) )))$ is a random
 dynamical system generated by~(\ref{shyp1})--(\ref{shyp2}).
-%\marginpar{??Cross-reference all of this to earlier definitions, theorems, results as appropriate??}
 Define \begin{align*}&
  \mathcal{A}=\begin{bmatrix}     0, &  {\operatorname{id}}  \\
     \frac 1 4 \frac {\partial^2}{\partial x^2}+\operatorname{id}, &  -\operatorname{id} \end{bmatrix},
@@ -1550,8 +1427,6 @@ Then the random system~(\ref{rhpy1})--(\ref{rhyp2}) can be written as
 \begin{equation}\label{RHPY}
 \frac{d\Psi}{dt}=\mathcal{A}\Psi+Z(\theta_t\omega)\Psi+F(\Psi).
 \end{equation}
-%The eigenvalues of the operator $\frac {\partial^2}{\partial x^2}$ are $\lambda_k=k^2$
-% with corresponding eigenvectors $\sin kx$, $k=1,2, \ldots$.
 The operator~$\mathcal{A}$ has the eigenvalues
 \begin{equation*}
 \delta_k^\pm=-\frac{1}{2}\pm\sqrt{\frac{5}{4}-\frac 1 4
@@ -1568,12 +1443,6 @@ A   calculation yields that, in terms of the new norm, the
 semigroup~$\mathcal{S}(t)$ generated by~$\mathcal{A}$
 satisfies the exponent trichotomy with $\alpha=\frac 1 2+\epsilon$\,, $\gamma=\frac 1 4 +\epsilon$
 $\beta=\frac{1}{2}-\epsilon$ for parameter~$\epsilon$ small enough, and $\dim H^c=\dim {H}^{u}=1$\,. %Taking
-%$\eta=\frac{+\beta-\alpha}{2}$, condition~(\ref{c1}) for
-%(\ref{HypM}) becomes
-%\begin{equation}\label{c11}
-%\frac{8L_f}{a^2}<1
-%\end{equation}
-%which holds if $a$ is large enough.
 
 
 Let $\Psi=rq_1^++sq_2^++y$\,, $y\in P^s H$\,.  For application the theory of stochastic center manifolds,
@@ -1581,7 +1450,6 @@ projecting the random system~\eqref{RHPY} to the center subspace span$\{q^+_2\}$
 \begin{eqnarray}
 \dot{s}q_2^+=Z(\theta_t\omega)sq_2^++P^cF(\theta_t\omega, rq_1^++sq_2^++y).
 \end{eqnarray}
-%\marginpar{??why does it apply??}
 By a cut-off function,  $\Lip  F$ is sufficient small.
 From Theorem~\ref{Thm(3.1)} we obtain a center manifold~$M(\omega)$ which we denote as the graph of a
 random Lipschitz map~$h^c(sq_2^+, \omega)$.
@@ -1592,14 +1460,6 @@ The asymptotic behavior of the random system~\eqref{RHPY} is governed by  the on
 \end{eqnarray}
 From Theorem~\ref{th5.3}, %\marginpar{??why does it apply??}
 we know that  the long time  asymptotic behavior of the random system~\eqref{RHPY} is the same as the equation \eqref{eqe}.
-%Suppose $f(u)=- u^3$, then%\marginpar{??why does this follow?? justify.}
-%\begin{eqnarray}
-%\dot{s}q_2^+=Z(\theta_t\omega)sq_2^+-s^3q_2^++\Ord{s^4q_2^+}.
-%\end{eqnarray}
-%Or
-%\begin{eqnarray}
-%\dot{s}=z(\theta_t\omega)s-s^3+\Ord{s^4}.
-%\end{eqnarray}
 
 
 
@@ -1628,45 +1488,34 @@ For example, for the specific case $a=0$,
 for which $\csc\pi\leq K_0\leq\cot\pi$ and $\int_0^\pi K_0\,d\zeta=1$\,.
 
 
-%\begin{equation*}
-%\D tu=au-uv+u\dot W\,,\quad
-%\D tv=-v+\DD zv+u^2-2\cK(u^2v)+v\dot W\,,
-%\end{equation*}
-%with Neumann boundary conditions $v_z=0$ at $z=0,\pi$\,, and where operator $\cK=(1+2a-\partial_{zz})^{-1}$.  For example, for the specific case $a=0$
-%\begin{equation*}
-%\cK v=\int_0^\pi K_0(z,\zeta)v(\zeta)\,d\zeta
-%\quad\text{where }K_0=\begin{cases}
-%\frac{\cosh(\pi-\zeta)\cosh z}{\sinh\pi}\,,&z<\zeta\,,\\
-%\frac{\cosh(\pi-z)\cosh\zeta}{\sinh\pi}\,,&z>\zeta\,,
-%\end{cases}
-%\end{equation*}
-%for which $\csch\pi\leq K_0\leq\coth\pi$ and $\int_0^\pi K_0\,d\zeta=1$\,.
-%The above system of \spde{}s has an exact deterministic slow manifold of $v=\cK u^2$.
 
-%The challenge is to approximate the stochastic slow manifold.
-%\marginpar{See my report \emph{Truncated infinite dimensional stochastic slow manifold}??}
 Let the transform $u=u^*\exp(\sigma z(\theta_t\omega))$, where the random variable $z(\theta_t\omega)$ is the stationary solution of  the Ornstein--Uhlenbeck \sde~(\ref{eq(22.4)}).
 \begin{equation}\label{eq(22.4)}
 dz+z\,dt=dW.
 \end{equation}
-Transform the \spde{}s~\eqref{1} to the following system of \spde{} with random coefficient:
-%\marginpar{??describe what the transform is??}
+Transform the \spde{}s~\eqref{1} to the following system of \spde{}s with random coefficients:
 \begin{eqnarray}\label{2}
 \D tu&=&au+\sigma z(\theta_t\omega)u-\exp(\sigma z(\theta_t\omega))uv,\nonumber \\
 \D tv&=&-v+\DD xv+\sigma z(\theta_t\omega)v+\exp(\sigma z(\theta_t\omega))u^2-2\exp(2\sigma z(\theta_t\omega))\cK(u^2v)\,, \nonumber \\
 \end{eqnarray}
 
-%\marginpar{??Need to insert discussion on what is the steps from the above?  what theorems apply? and justify? what are the specific results from the theorems here? what is the domain of validity? what is the emergence? what is the order of error of approximations? what is the evolution on the center manifold? its error?  Interpret the evolution?  Justify all results??}
+
 If  $a=0$,  from Theorem~\ref{Thm(3.1)}, there exists  an infinite dimension  stochastic slow manifold.  Assume the stochastic slow manifold is $v=h^c(u,\omega)$, then from Theorem  \ref{k12}, the exact slow manifold satisfies
-\begin{eqnarray*}
-h^c_t(u,\omega)+h_u^c(u,\omega)[\sigma z(\theta_t\omega)u-\exp(\sigma z(\omega))uh^c(u,\omega)]+(h^c(u,\omega)-\DD xh^c(u,\omega))\\{}\quad\quad-\sigma z(\theta_t\omega)h^c(u,\omega)-\exp(\sigma z(\theta_t\omega))u^2 +2\exp(2\sigma z(\theta_t\omega))\cK(u^2h^c(u,\omega))=0,
+\begin{eqnarray*}&&
+h^c_t(u,\omega)+h_u^c(u,\omega)[\sigma z(\theta_t\omega)u-\exp(\sigma z(\omega))uh^c(u,\omega)]
+\\&&{}
++(h^c(u,\omega)-\DD xh^c(u,\omega))
+-\sigma z(\theta_t\omega)h^c(u,\omega)-\exp(\sigma z(\theta_t\omega))u^2 
+\\&&{}
++2\exp(2\sigma z(\theta_t\omega))\cK(u^2h^c(u,\omega))=0,
 \end{eqnarray*}
 for $\sigma$ small enough. 
-From the construction of operator $\cKo$,  above system of \spde{}s \eqref{2} has an stochastic slow manifold of \begin{eqnarray*}v=h(u,\omega)=\exp(\sigma z(\theta_t\omega))\cKo u^2.\end{eqnarray*}
-By the equation \eqref{th2},  the evolution on the center manifold is governed by the following \spde{},
-\begin{eqnarray*}
-\D tu&=&\sigma z(\theta_t\omega)u-\exp(2\sigma z(\theta_t\omega))u\cKo u^2.
-\end{eqnarray*}
+From the construction of operator~$\cKo$, the above system of \spde{}s~\eqref{2} has a stochastic slow manifold of 
+\begin{eqnarray*}v=h(u,\omega)=\exp(\sigma z(\theta_t\omega))\cKo u^2.\end{eqnarray*}
+By the equation \eqref{th2},  the evolution on the center manifold is governed by the \spde
+\begin{equation*}
+\D tu=\sigma z(\theta_t\omega)u-\exp(2\sigma z(\theta_t\omega))u\cKo u^2.
+\end{equation*}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1709,7 +1558,6 @@ Qualitative properties of local random invariant manifolds for SPDEs with quadra
 
 \bibitem{Carr}  J.  Carr,   Applications of Center Manifold Theory, Springer-Verlag, New York, 1981.
 
-%\bibitem{Car4}    T.  Caraballo, J. Langa and J. C. Robinson,  A stochastic pitchfork bifurcation in a reaction-diffusion equation. \emph{Proc. R. Soc. Lond. A}, \textbf{457},     2041--2061,  2001.
 
 \bibitem{Car3}    T.  Caraballo, P. E. Kloeden and B. Schmalfu{\ss},  Exponentially stable stationary solutions for stochastic evolution equations and their perturbation. \emph{Appl. Math. Optiim.}, \textbf{50},   187--203,  2004.
 
@@ -1717,14 +1565,7 @@ Qualitative properties of local random invariant manifolds for SPDEs with quadra
 
 \bibitem{Car2}  T. Caraballo, J. Duan, K. Lu and B. Schmalfuss, Invariant manifolds for random and stochastic partial differential equations. \emph{Adv. Nonlinear Stud.}, \textbf{10},  23--52,   2010.
 
-%\bibitem{Car}
-%T. ~Caraballo,  J.  Duan, K.  Lu and B.  Schmalfu{\ss},   Invariant manifolds for random and stochastic partial differential equations.
-%&\emph{ Adv. Nonlinear Stud.}  \textbf{10},     23--52, 2010.
 
-%\bibitem{CasVal77}
-% C.~Castaing and M.~Valadier.
-%\emph { Convex Analysis and Measurable Multifunctions}.
-% LNM 580. Springer--Verlag, Berlin--Heidelberg--New York,  1977.
 
 \bibitem{Chen}    G.  Chen, J.  Duan and J.  Zhang, Geometric shape of invariant manifolds for a class of stochastic partial differential equations. \emph{J. Math. Phys.},  \textbf{52},  072702, 2011.
 
@@ -1733,12 +1574,9 @@ Qualitative properties of local random invariant manifolds for SPDEs with quadra
 
 \bibitem{Chi1}     C. Chicone,  Ordinary differential equations with applications.  Springer-Verlag,  New York, 1999.
 
-%\bibitem{Chow}    S. N.  Chow   and K.  Lu,   Invariant manifolds for flows in Banach spaces,  \emph{J. Dynam. Differential Equations},  \textbf{74},  285--317,  1988.
 
-%\bibitem{Chu}   I.  Chueshov and B. Schmalfu{\ss},  Master-slave synchronization and invariant manifolds for coupled stochastic systems. \emph{J. Math. Phys.} \emph{ 51}, 102702,  2010.
 
 \bibitem{Cop} W. A. Coppel, \emph{Dichotomies in stability theory}.  Springer-Verlag, 1978.
-%\bibitem{Dol}    J. Dolbow, M. A. Khaleel  and J. Mitchell, Multiscale mathematics initiative: a roadmap.  Technical report, Department of Energy, USA,    2004.
 
 \bibitem{Duan1}   J. Duan, K.  Lu   and B. Schmalfu{\ss},  {Smooth stable and unstable manifolds for stochastic evolutionary equations}. \emph{J. Dynam. Differential Equations},   \textbf{ 16},
 949--972, 2004 .
@@ -1758,22 +1596,10 @@ Springer--Verlag, 2010.
 
 
 \bibitem{Hen}    D.  Henry,  Geometric theory of semilinear parabolic equations.  Lecture Notes in Mathematics, Vol. 840,  1981.
-%\bibitem{Kel}  A. Kelley,   The stable, center stable, center, center unstable and unstable manifolds.   \emph{J. Differential Equations}, \textbf{3} ,  546Ð-570,  1967.
 
-%\bibitem{Kno}    E. Knobloch and K. A. Wiesenfel,   Bifurcations in fluctuating systems: The center-manifold approach. \emph{J. Stat. Phys.}, \textbf{33} ,  611--637, 1983.
 
-%\bibitem{Lu}   K.  Lu   and B. Schmalfu{\ss},   Invariant manifolds for stochastic wave equations.
-%\emph{Journal of Differential Equations},
-%\textbf{2},   460--492,  2007.
 
-%\bibitem{DaPZab92}
-%G.~Da Prato and J.~Zabczyk.
-%\emph{ Stochastic Equations in Infinite Dimensions}.
-%University Press, Cambridge, 1992.
 
-%\bibitem{Meg}
-%M.  Megan and C. Stoica,  On uniform exponential trichotomy of evolution operators in Banach spaces.
-% \emph{Integral Equations  Operator Theory},  \textbf{60},  499--506, 2008.
 \bibitem{Mie}  A. Mielke, On nonlinear problems of mixed type: a qualitative theory using infinite dimensional
 center manifolds. \emph{J. Dynam. Differential Equations},  \textbf{4}, 419--443, 1992.
 
@@ -1782,19 +1608,9 @@ S.-E.~A. Mohammed and M.~K.~R. Scheutzow.
 The stable manifold theorem for stochastic differential equations.
  \emph{Ann. Probab.},  \textbf{27},  615--652, 1999.
 
-%\bibitem{Moh}
-%S-E. A. Mohammed, T. Zhang  and H. Zhao, The stable manifold theorem for semilinear stochastic evolution equations and stochastic partial differential equations.
-%\emph{Mem. Amer. Math. Soc.},  \textbf{196},   1--105,  2008.
 
-%\bibitem{Nag}    R. Nagel, One Parameters Semigroups of Positive Operators, Lecture Notes in
-%Mathematics, Vol. 1184, Springer-Verlag, Berlin, 1984.
 
-%\bibitem{Van}  A. Vanderbauwhedea and S. A. Van Gilsb, Center manifolds and contractions on a scale of Banach spaces.
-%\emph{ Journal of Functional Analysis}.
-%\textbf{ 72} ,   209--224, 1987.
 \bibitem{Pal} K. Palmer, On the stability of the center manifold. \emph{J. Appl. Maths. Phys.}, \textbf{38}, 273--278, 1987.
-%\bibitem{Peg}  R. L. Pego, J. R. Quintero, A host of traveling waves in a model of three-dimensional water wave
-%dynamics. \emph{J. Nonlinear Sci.} \textbf{12},  59--83, 2002.
 
 
 
@@ -1828,7 +1644,6 @@ A.~J. Roberts.
 \emph{Multiscale model. simul.},   \textbf{ 7},   1525--1548,    2009.
 
 
-%\bibitem{Rob3}     A. J. Roberts,  Resolve subgrid microscale interactions to discretise stochastic partial differential equations, arXiv:math/0601702, 2010.
 
 
 \bibitem{Sac}     R. J. Sacker and G. R. Sell,  Existence of dichotomies and invariant splittings for linear differential systems. III.   \emph{J. Differential Equations},
@@ -1839,14 +1654,9 @@ A.~J. Roberts.
 
 
 
-%\bibitem{Sca}  B. Scarpellini,   Center manifolds of infinite dimensions I: Main results and applications. \emph{J. Appl. Math. Phys.},  \textbf{ 42 },  1Ð-32, 1991.
-%\bibitem{Sch}  B. Schmalfu{\ss}  and K.  R. Schneider,  Invariant manifolds for random dynamical systems with slow and fast variables.
-%\emph{J. Dynam. Differential Equations},
-%\textbf{ 20},   133--164,  2007.
 \bibitem{Van}  A. Vanderbauwhede and G. Iooss, Center manifold theory in infinite dimensions.   \emph{Dynam. Report}, \textbf{1},  125--163,  1992.
 
 
-%\bibitem{Van1}    A. Vanderbauwhede, Center manifolds, normal forms and elementary bifurcations. \emph{ Dynam. Report},  \textbf{2},   89Ð-169, 1989.
 
 \bibitem{Van2}  A.  Vanderbauwhede and  S. A.  Van Gils,  Center manifolds and contractions on a
 scale of B-spaces.  \emph{ J. Funct. Anal}., \textbf{72},    209--224, 1987.
